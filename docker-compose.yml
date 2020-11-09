@@ -1,0 +1,23 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+
+  dog_port:
+    build: .
+    command: rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/dog_pf
+      - ./mysql-confd:/usr/local/etc/my.cnf
+    ports:
+      - "3000:3000"
+    links:
+      - mysql
+    tty: true
+    stdin_open: true
