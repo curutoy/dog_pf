@@ -49,7 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: dog_pf_production
-  username: dog_pf
-  password: <%= ENV['DOG_PF_DATABASE_PASSWORD'] %>
-  url: <%= ENV['JAWSDB_URL']&.sub('mysql://', 'mysql2://') %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
