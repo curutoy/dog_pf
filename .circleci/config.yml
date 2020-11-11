@@ -71,9 +71,9 @@ jobs:
           destination: test-results
 
   heroku_deploy:
+    machine:
+      enabled: true
     working_directory: ~/dog_pf
-    docker:
-      - image: circleci/postgres:12.4-alpine
     steps:
       - checkout
 
