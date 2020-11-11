@@ -36,11 +36,7 @@ jobs:
       - run: mv ./config/database.yml.ci ./config/database.yml
 
       # Database setup
-      - run:
-          name: Databasesetup
-          command: |
-            bundle exec rake db:create
-            bundle exec rake db:schema:load
+      - run: bundle exec rake db:create db:schema:load
 
       # rspec
       - run:
