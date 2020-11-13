@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_033515) do
+ActiveRecord::Schema.define(version: 2020_11_13_113159) do
 
   create_table "protectors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 2020_11_13_033515) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "address"
+    t.string "url"
+    t.text "profile"
     t.index ["email"], name: "index_protectors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_protectors_on_reset_password_token", unique: true
   end
@@ -34,6 +38,12 @@ ActiveRecord::Schema.define(version: 2020_11_13_033515) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+    t.string "name"
+    t.integer "address"
+    t.integer "family_people"
+    t.integer "house"
+    t.integer "caretaker"
+    t.text "profile"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
