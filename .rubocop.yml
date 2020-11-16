@@ -22,5 +22,10 @@ Airbnb/OptArgParameters:
   Exclude:
     - "app/helpers/application_helper.rb"
 
+Layout/IndentFirstHashElement:
+  Exclude:
+    - "app/models/user.rb"
+    - "app/models/protector.rb"
+
 Metrics/LineLength:
   Max: 120

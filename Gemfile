@@ -38,6 +38,7 @@ gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'active_storage_validations', '~> 0.6.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

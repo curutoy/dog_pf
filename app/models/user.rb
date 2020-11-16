@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one_attached :image
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook]
 
@@ -11,6 +12,14 @@ class User < ApplicationRecord
   validates :house,         presence: true
   validates :caretaker,     presence: true
   validates :profile,       length: { maximum: 200 }
+  validates :image,         content_type: {
+                              in: %w(image/jpeg image/png),
+                              message: "jpgまたはpngの画像を添付してください",
+                            },
+                            size: {
+                              less_than: 5.megabytes,
+                              message: "5MB以下のファイルを選んでください",
+                            }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
