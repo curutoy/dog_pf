@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/show'
   root 'dogs#index'
 
   devise_for :protectors, controllers: {
@@ -16,4 +15,6 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show]
+
+  resources :protectors, only: [:show]
 end
