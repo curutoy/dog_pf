@@ -28,4 +28,4 @@ Layout/IndentFirstHashElement:
     - "app/models/protector.rb"
 
 Metrics/LineLength:
-  Max: 120
+  Max: 180
