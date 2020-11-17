@@ -1,2 +1,7 @@
-<h1>Protectors#show</h1>
-<p>Find me in app/views/protectors/show.html.erb</p>
+<h1>Protector#show</h1>
+<p>名前 : <%= @protector.name %></p>
+<p>メールアドレス : <%= @protector.email %></p>
+<p>プロフィール : <%= @protector.profile %></p>
+<p>所在地 : <%= @protector.address %></p>
+<p>Webサイト: <%= @protector.url %></p>
+<%= image_tag(@protector.image) %>

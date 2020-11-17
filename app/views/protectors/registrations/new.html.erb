@@ -4,8 +4,33 @@
   <%= render "protectors/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :アイコン %><br />
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :団体名 %><br />
+    <%= f.text_field :name, autofocus: true, :placeholder => "団体名", autocomplete: "name" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, :placeholder => "Eメールアドレス", autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profile %><br />
+    <%= f.text_field :profile, autofocus: true, class: "form-control", :placeholder => "自己紹介", autocomplete: "profile" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.select :address, Protector.addresses.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url, autofocus: true, class: "form-control", :placeholder => "Webサイト", autocomplete: "url" %>
   </div>
 
   <div class="field">
@@ -13,17 +38,13 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, :placeholder => "パスワード（６文字以上）", autocomplete: "new-password" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, :placeholder => "パスワード（確認用）", autocomplete: "new-password" %>
   </div>
-
-  <span class="image">
-    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
-  </span>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

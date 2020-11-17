@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+一般の方だけでなく、保護活動家の方達も使いたいと思えるような Web サイトになるようにしました。
 
-Things you may want to cover:
+####具体的には
 
-* Ruby version
+- 一般の方のページをみただけで、最初に活動家の方々が知りたいような情報を可視化しておく
+- 一般の方々は、気になる保護犬が日々どんな生活をしているのか、会う前に少しでもわかるようにする。
+- 保護犬の日常を載せることで、悪質な活動家は一般の肩から見てもわかるので、そういった団体が少しでも減少すれば良いと思う。
 
-* System dependencies
+##devise
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- アカウントの種類を２つに分けることに挑戦
