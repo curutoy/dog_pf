@@ -36,9 +36,15 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
+#devise
 gem 'devise'
 gem 'omniauth-facebook'
+#Image
 gem 'active_storage_validations', '~> 0.6.1'
+gem 'rmagick'
+gem 'paperclip'
+#AWS
+gem 'aws-sdk'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
