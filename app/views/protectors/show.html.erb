@@ -4,4 +4,8 @@
 <p>プロフィール : <%= @protector.profile %></p>
 <p>所在地 : <%= @protector.address %></p>
 <p>Webサイト: <%= @protector.url %></p>
-<%= image_tag(@protector.image) %>
+<% if @protector.image.attached? %>
+  <%= image_tag @protector.image.variant(combine_options:{gravity: :center, resize:"200x200^", crop:"200x200+0+0"}).processed %>
+<% else %>
+  <%= image_tag "protector_default.png", :size => "200x200" %>
+<% end %>

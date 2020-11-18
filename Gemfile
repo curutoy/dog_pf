@@ -36,14 +36,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
-#devise
+# devise
 gem 'devise'
 gem 'omniauth-facebook'
-#Image
+# Image
 gem 'active_storage_validations', '~> 0.6.1'
-gem 'rmagick'
+gem "mini_magick"
 gem 'paperclip'
-#AWS
+# AWS
 gem 'aws-sdk'
 
 group :development, :test do

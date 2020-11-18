@@ -1091,6 +1091,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.1104)
     mimemagic (0.3.5)
+    mini_magick (4.11.0)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.2)
@@ -1170,7 +1171,6 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rmagick (4.1.2)
     rspec-core (3.10.0)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.0)
@@ -1290,6 +1290,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mini_magick
   mysql2 (>= 0.4.4, < 0.6.0)
   omniauth-facebook
   paperclip
@@ -1297,7 +1298,6 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.2)
   rails-controller-testing
-  rmagick
   rspec-rails
   rspec_junit_formatter
   rubocop-airbnb

@@ -5,3 +5,8 @@
 <p>居住地 : <%= @user.address %></p>
 <p>同居人数 : <%= @user.family_people %></p>
 <p>お留守番 : <%= @user.caretaker%></p>
+<% if @user.image.attached? %>
+  <%= image_tag @user.image.variant(combine_options:{gravity: :center, resize:"200x200^", crop:"200x200+0+0"}).processed %>
+<% else %>
+  <%= image_tag "user_default.png", :size => "200x200" %>
+<% end %>
