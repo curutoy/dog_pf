@@ -1,0 +1,41 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "protectors/shared/error_messages", resource: resource %>
+  <div class="field">
+    <%= f.label :image, "アイコン" %><br />
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "sign-up-field" %>
+  </div>
+  <div class="field">
+    <%= f.label :name, "保護団体名" %><span class="mandatory">必須</span><br />
+    <%= f.text_field :name, autofocus: true, :placeholder => "団体名", autocomplete: "name", class: "sign-up-field" %>
+  </div>
+  <div class="field">
+    <%= f.label :email, "Eメールアドレス" %><span class="mandatory">必須</span><br />
+    <%= f.email_field :email, autofocus: true, :placeholder => "Eメールアドレス", autocomplete: "email", class: "sign-up-field" %>
+  </div>
+  <div class="field">
+    <%= f.label :profile, "紹介文" %><br />
+    <%= f.text_field :profile, autofocus: true, class: "form-control", :placeholder => "紹介文", autocomplete: "profile", class: "sign-up-field" %>
+  </div>
+  <div class="field">
+    <%= f.label :address, "所在地" %><span class="mandatory">必須</span><br />
+    <%= f.select :address, Protector.addresses.keys, {prompt: '選択してください'}, class: 'form-control sign-up-field' %>
+  </div>
+  <div class="field">
+    <%= f.label :url,"Webサイト" %><br />
+    <%= f.text_field :url, autofocus: true, class: "form-control", :placeholder => "Webサイト", autocomplete: "url", class: "sign-up-field" %>
+  </div>
+  <div class="field">
+    <%= f.label :password, "パスワード" %><span class="mandatory">必須</span></br>
+    <% if @minimum_password_length %>
+    <em>（<%= @minimum_password_length %> 文字以上）</em>
+    <% end %><br />
+    <%= f.password_field :password, :placeholder => "パスワード（６文字以上）", autocomplete: "new-password", class: "sign-up-field" %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "パスワード（確認用）" %><span class="mandatory">必須</span><br />
+    <%= f.password_field :password_confirmation, :placeholder => "パスワード（確認用）", autocomplete: "new-password", class: "sign-up-field" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "登録", :class=>"btn btn-outline-dark" %>
+  </div>
+<% end %>

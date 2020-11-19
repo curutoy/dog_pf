@@ -1,2 +1,84 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+li {
+  list-style: none;
+}
+a:hover {
+  text-decoration: none;
+}
+body {
+  background-color: #e1b233;
+}
+/* devise */
+.devise {
+  width: 450px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.sign-in,
+.sign-up,
+.sign-link,
+.devise-edit,
+.account-cancel {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+.sign-in,
+.sign-link,
+.account-cancel {
+  text-align: center;
+}
+.sign-in,
+.sign-up,
+.devise-edit {
+  margin-bottom: 20px;
+}
+.mandatory {
+  background: linear-gradient(transparent 75%, #ff9393 75%);
+  font-weight: bold;
+  margin-left: 5px;
+}
+/* login */
+.sign-in {
+  h3 {
+    padding-bottom: 10px;
+  }
+  .field {
+    padding-bottom: 10px;
+  }
+  .actions {
+    padding-bottom: 10px;
+  }
+}
+/* sign_up */
+.sign-up,
+.devise-edit {
+  .field {
+    padding-bottom: 10px;
+    border-bottom: dotted 2px black;
+    margin-bottom: 10px;
+  }
+  .actions,
+  h3 {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+}
+/* sign_up, edit */
+.sign-up-field,
+.edit-field {
+  width: 100%;
+}
+/*devise_edit*/
+.edit-image {
+  text-align: center;
+}
+.edit-image img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.account-cancel {
+  margin-bottom: 20px;
+}
