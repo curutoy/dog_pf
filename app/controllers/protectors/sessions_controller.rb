@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Protectors::SessionsController < Devise::SessionsController
-  before_action :authenticate_user! || :authenticate_protector!, expect: [:new, :create]
+  before_action :authenticate_user!, expect: [:new, :create]
+  before_action :authenticate_protector!, expect: [:new, :create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
