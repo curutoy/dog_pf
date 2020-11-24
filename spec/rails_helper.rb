@@ -21,6 +21,7 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 require 'devise'
+require 'capybara/rspec'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
@@ -65,4 +66,10 @@ RSpec.configure do |config|
   # config.include RequestSpecHelper, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include FactoryBot::Syntax::Methods
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_chrome_headless
+  end
 end

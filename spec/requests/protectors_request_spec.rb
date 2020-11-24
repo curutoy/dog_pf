@@ -27,7 +27,7 @@ RSpec.describe "Protectors", type: :request do
         sign_in protector
         get protector_path(protector.id)
       end
-  
+
       it "リクエストが成功すること" do
         expect(response).to have_http_status(200)
       end
@@ -37,7 +37,7 @@ RSpec.describe "Protectors", type: :request do
       end
 
       it "@protectorが取得できていること" do
-        expect(assigns :protector).to eq protector
+        expect(assigns(:protector)).to eq protector
       end
     end
   end

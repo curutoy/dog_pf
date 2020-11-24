@@ -28,7 +28,8 @@ ja:
               blank: "が入力されていません。"
               too_short: "は%{count}文字以上に設定して下さい。"
               invalid: "は有効でありません。"
-              confirmation: "が内容とあっていません。"
+            password_confirmation:
+              confirmation: "とパスワードが一致しません。"
         protector:
           attributes:
             name:
@@ -49,7 +50,8 @@ ja:
               blank: "が入力されていません。"
               too_short: "は%{count}文字以上に設定して下さい。"
               invalid: "は有効でありません。"
-              confirmation: "が内容とあっていません。"
+            password_confirmation:
+              confirmation: "とパスワードが一致しません。"
     attributes:
       user:
         current_password: "現在のパスワード"
@@ -65,7 +67,7 @@ ja:
         remember_me: "次回から自動的にログイン"
       protector:
         current_password: "現在のパスワード"
-        name: "名前"
+        name: "保護団体名"
         email: "メールアドレス"
         address: "所在地"
         profile: "紹介文"

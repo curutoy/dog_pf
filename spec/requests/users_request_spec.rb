@@ -27,7 +27,7 @@ RSpec.describe "Users", type: :request do
         sign_in user
         get user_path(user.id)
       end
-  
+
       it "リクエストが成功すること" do
         expect(response).to have_http_status(200)
       end
@@ -37,7 +37,7 @@ RSpec.describe "Users", type: :request do
       end
 
       it "@userが取得できていること" do
-        expect(assigns :user).to eq user
+        expect(assigns(:user)).to eq user
       end
     end
   end
