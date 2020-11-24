@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root 'dogs#index'
 
   devise_for :protectors, controllers: {
     sessions: 'protectors/sessions',
@@ -13,8 +12,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
-
+  
+  root 'dogs#index'
   resources :users, only: [:show]
-
   resources :protectors, only: [:show]
 end

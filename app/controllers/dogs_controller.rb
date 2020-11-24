@@ -1,6 +1,9 @@
 class DogsController < ApplicationController
-  before_action :authenticate_protector!
-  before_action :authenticate_user!
   def index
+    if user_signed_in? || protector_signed_in?
+      render :index
+    else
+      render template: "home/index"
+    end
   end
 end

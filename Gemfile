@@ -53,6 +53,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rubocop-airbnb'
+  gem 'pry-rails'
   # Use mysql as the database for Active Record
   gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 end
