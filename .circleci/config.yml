@@ -98,7 +98,7 @@ jobs:
             heroku config:set S3_BUCKET_NAME=$S3_BUCKET_NAME
             heroku config:set AWS_HOST_NAME=$AWS_HOST_NAME
             heroku config:set AWS_REGION=$AWS_REGION
-            heroku run bin/rails db:migrate
+            heroku run bin/rails db:migrate --app ${HEROKU_APP_NAME}
       - run:
           name: heroku maintenance off
           command: heroku maintenance:off --app ${HEROKU_APP_NAME}
