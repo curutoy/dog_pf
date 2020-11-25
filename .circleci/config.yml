@@ -92,6 +92,14 @@ jobs:
           command: |
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
       - run:
+          name: Run post-deploy tasks
+          command: |
+            heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+            heroku config:set S3_BUCKET_NAME=$S3_BUCKET_NAME
+            heroku config:set AWS_HOST_NAME=$AWS_HOST_NAME
+            heroku config:set AWS_REGION=$AWS_REGION
+            heroku run bin/rails db:migrate
+      - run:
           name: heroku maintenance off
           command: heroku maintenance:off --app ${HEROKU_APP_NAME}
 
