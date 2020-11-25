@@ -1,22 +1,24 @@
 <div class="devise">
-  <div class="sign-in">
-    <h3>ログイン（一般の方）</h3>
-    <div class="login-form">
-    <%= render "users/sessions/login_form" %>
-    </div>
-    <p class="or">または</p>
-    <div class="facebook">
-      <% if devise_mapping.omniauthable? %>
-        <% resource_class.omniauth_providers.each do |provider| %>
-        　 <%= link_to  omniauth_authorize_path(resource_name, provider), :class => "btn btn-outline-dark"  do %>
-            <i class="fab fa-facebook-square"></i>Facebookでログイン
-            <% end %>
+  <div class="devise-container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="sign-in">
+      <h3>ログイン（一般の方）</h3>
+      <div class="login-form">
+      <%= render "users/sessions/login_form" %>
+      </div>
+      <p class="or">または</p>
+      <div class="facebook">
+        <% if devise_mapping.omniauthable? %>
+          <% resource_class.omniauth_providers.each do |provider| %>
+          　 <%= link_to  omniauth_authorize_path(resource_name, provider), :class => "btn btn-outline-dark"  do %>
+              <i class="fab fa-facebook-square"></i>Facebookでログイン
+              <% end %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
-  <div class="sign-link">
-    <div class="devise-container">
+    <div class="sign-link">
       <p>アカウントをお持ちではないですか？</p>
       <%= link_to "登録する",new_user_registration_path, class: "btn btn-outline-dark" %>
     </div>

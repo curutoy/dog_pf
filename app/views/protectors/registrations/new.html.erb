@@ -1,10 +1,12 @@
 <div class="devise">
-  <div class="sign-up">
-    <h3>登録</br>（保護活動家の方）</h3>
-    <%= render "protectors/registrations/signup_form" %>
-  </div>
-  <div class="sign-link">
-    <div class="devise-container">
+  <div class="devise-container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="sign-up">
+      <h3>登録</br>（保護活動家の方）</h3>
+      <%= render "protectors/registrations/signup_form" %>
+    </div>
+    <div class="sign-link">
       <p>アカウントをお持ちですか？</p>
       <%= link_to "ログインする",new_protector_session_path, class: "btn btn-outline-dark" %>
     </div>
