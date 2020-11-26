@@ -11,7 +11,7 @@ class DogsController < ApplicationController
     if @dog.save
       redirect_to root_path
     else
-      render "new"
+      render :new
     end
   end
 
@@ -29,9 +29,16 @@ class DogsController < ApplicationController
   end
 
   def edit
+    @dog = Dog.find(params[:id])
   end
 
   def update
+    @dog = Dog.find(params[:id])
+    if @dog.update(dog_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def destroy

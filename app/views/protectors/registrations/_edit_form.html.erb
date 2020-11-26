@@ -28,8 +28,6 @@
     <%= f.label :url,"Webサイト" %><br />
     <%= f.text_field :url, autofocus: true, class: "form-control", :placeholder => "Webサイト", autocomplete: "url", class: "edit-field" %>
   </div>
-
-
   <div class="field">
     <%= f.label :password, "新パスワード" %>
     <% if @minimum_password_length %>
@@ -38,17 +36,14 @@
     <i>(変更のない場合は入力しないでください)</i><br />
     <%= f.password_field :password, :placeholder => "新パスワード", autocomplete: "new-password", class: "edit-field" %>
   </div>
-
   <div class="field">
     <%= f.label :password_confirmation, "新パスワード（確認用）" %><br />
     <%= f.password_field :password_confirmation, :placeholder => "新パスワード（確認用）", autocomplete: "new-password", class: "edit-field" %>
   </div>
-
   <div class="field">
     <%= f.label :current_password, "現在のパスワード" %><span class="mandatory">必須</span><br/>
     <%= f.password_field :current_password, :placeholder => "現在のパスワード", autocomplete: "current-password", class: "edit-field" %>
   </div>
-
   <div class="actions">
     <%= f.submit "更新", :class=>"btn btn-outline-dark" %>
   </div>
