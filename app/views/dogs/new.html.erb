@@ -1,8 +1,9 @@
 <h1> Dogs#new</h1>
 
 <%= form_for @dog do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div class="field">
-    <%= f.label :image, "アイコン" %><br />
+    <%= f.label :image, "写真" %><br />
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "sign-up-field" %>
   </div>
 

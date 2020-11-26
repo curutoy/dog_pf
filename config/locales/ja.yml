@@ -1,5 +1,42 @@
 ja:
   activerecord:
+    errors:
+      models:
+        dog:
+          attributes:
+            name:
+              blank: "が入力されていません。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+            age:
+              blank: "が入力されていません。"
+            address:
+              blank: "が入力されていません。"
+            gender:
+              blank: "が入力されていません。"
+            size:
+              blank: "が入力されていません。"
+            walking:
+              blank: "が入力されていません。"
+            caretaker:
+              blank: "が入力されていません。"
+            relationsip_dog:
+              blank: "が入力されていません。"
+            relationsip_people:
+              blank: "が入力されていません。"
+            castration:
+              blank: "が入力されていません。"
+            vaccine:
+              blank: "が入力されていません。"
+            microchip:
+              blank: "が入力されていません。"
+            senior:
+              blank: "が入力されていません。"
+            single_people:
+              blank: "が入力されていません。"
+            profile:
+              too_long: "は%{count}文字以下に設定して下さい。"
+            conditions:
+              too_long: "は%{count}文字以下に設定して下さい。"
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -22,6 +59,24 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+      dog:
+        image: 写真
+        name: なまえ
+        age: 年齢
+        address: 所在地
+        gender: 性別
+        size: 大きさ
+        walking: お散歩
+        caretaker: お留守番
+        relationsip_dog: 犬との関わり
+        relationsip_people: 人との関わり
+        castration: 去勢
+        vaccine: ワクチン
+        microchip: マイクロチップ
+        senior: 高齢者応募
+        single_people: 単身者応募
+        profile: 紹介文（応募経緯や性格等）
+        conditions: 応募条件
     models:
       user: ユーザ
       protector: 保護活動家

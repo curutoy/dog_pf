@@ -8,8 +8,11 @@ class DogsController < ApplicationController
   def create
     @dog = Dog.new(dog_params)
     @dog.protector_id = current_protector.id
-    @dog.save
-    redirect_to root_path
+    if @dog.save
+      redirect_to root_path
+    else
+      render "new"
+    end
   end
 
   def index
