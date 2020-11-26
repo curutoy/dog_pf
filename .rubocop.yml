@@ -26,6 +26,7 @@ Layout/IndentFirstHashElement:
   Exclude:
     - "app/models/user.rb"
     - "app/models/protector.rb"
+    - "app/models/dog.rb"
 
 Metrics/LineLength:
   Max: 180

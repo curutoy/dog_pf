@@ -3,6 +3,41 @@ class Dog < ApplicationRecord
 
   belongs_to :protector
 
+  validates :name,               presence: true,
+                                 length: { maximum: 20 }
+  validates :age,                presence: true
+  validates :address,            presence: true
+  validates :gender,             presence: true
+  validates :size,               presence: true
+  validates :walking,            presence: true
+  validates :caretaker,          presence: true
+  validates :relationsip_dog,    presence: true
+  validates :relationsip_people, presence: true
+  validates :castration,         presence: true
+  validates :vaccine,            presence: true
+  validates :microchip,          presence: true
+  validates :single_people,      presence: true
+  validates :senior,             presence: true
+  validates :profile,            length: { maximum: 200 }
+  validates :conditions,         length: { maximum: 200 }
+  validates :image,              content_type: {
+                                   in: %w(image/jpeg image/png),
+                                   message: "jpgまたはpngの画像を添付してください",
+                                 },
+                                 size: {
+                                   less_than: 5.megabytes,
+                                   message: "5MB以下のファイルを選んでください",
+                                 }
+
+  # imageの登録は必須とする
+  validate :image_presence
+
+  def image_presence
+    unless image.attached?
+      errors.add(:image, 'を添付してください')
+    end
+  end
+
   enum age: {
     ３ヶ月未満: 1, ３ヶ月: 2, ４ヶ月: 3, ５ヶ月: 4, ６ヶ月: 5, ７ヶ月: 6, ８ヶ月: 7,
     ９ヶ月: 8, １０ヶ月: 9, １１ヶ月: 10, １歳: 11, ２歳: 12, ３歳: 13, ４歳: 14,
