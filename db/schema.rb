@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_023053) do
+ActiveRecord::Schema.define(version: 2020_11_26_030342) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,24 @@ ActiveRecord::Schema.define(version: 2020_11_16_023053) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "dogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.bigint "protector_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "age"
+    t.integer "address"
+    t.integer "gender"
+    t.integer "size"
+    t.text "profile"
+    t.integer "walking"
+    t.integer "caretaker"
+    t.integer "relationsip_dog"
+    t.integer "relationsip_people"
+    t.index ["protector_id", "created_at"], name: "index_dogs_on_protector_id_and_created_at"
+    t.index ["protector_id"], name: "index_dogs_on_protector_id"
   end
 
   create_table "protectors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,4 +88,5 @@ ActiveRecord::Schema.define(version: 2020_11_16_023053) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "dogs", "protectors"
 end
