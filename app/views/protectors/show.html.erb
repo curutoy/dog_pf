@@ -9,3 +9,10 @@
 <% else %>
   <%= image_tag "protector_default.png", :size => "200x200" %>
 <% end %>
+
+<% if @dogs.present? %>
+  <% @dogs.each do |dog| %>
+    <p>名前 : <%= dog.name %></p>
+    <%= image_tag dog.image.variant(combine_options:{gravity: :center, resize:"200x200^", crop:"200x200+0+0"}).processed %>
+  <% end %>
+<% end %>

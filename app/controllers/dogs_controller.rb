@@ -14,11 +14,11 @@ class DogsController < ApplicationController
 
   def index
     if user_signed_in? || protector_signed_in?
+      @dogs = Dog.all
       render :index
     else
       render template: "home/index"
     end
-    @dogs = Dog.all
   end
 
   def show
@@ -38,7 +38,7 @@ class DogsController < ApplicationController
 
   def dog_params
     params.require(:dog).permit(:protector_id, :name, :age, :address, :gender, :size,
-                                :profile, :walking, :caretaker, :relationsip_dog, :relationsip_prople,
+                                :profile, :walking, :caretaker, :relationsip_dog, :relationsip_people,
                                 :castration, :vaccine, :microchip, :conditions, :single_people, :senior, :image)
   end
 end

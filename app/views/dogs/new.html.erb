@@ -85,7 +85,5 @@
     <%= f.label :conditions, "応募条件" %><br />
     <%= f.text_field :conditions, autofocus: true, class: "form-control", :placeholder => "応募条件", autocomplete: "profile", class: "sign-up-field" %>
   </div>
-  <div class="actions">
-    <%= f.submit "送信", :class=>"btn btn-outline-dark" %>
-  </div>
+  <%= f.submit %>
 <% end %>
