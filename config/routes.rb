@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   root 'dogs#index'
   resources :users, only: [:show]
   resources :protectors, only: [:show]
+  resources :dogs
 end
