@@ -108,10 +108,28 @@ nav {
 .edit-image {
   text-align: center;
 }
-.edit-image img {
-  border-radius: 50%;
-  margin-bottom: 10px;
+.edit-image {
+  img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
 }
 .account-cancel {
   margin-bottom: 20px;
+}
+
+/* dog */
+.dogs_index {
+  text-align: center;
+  width: 80%;
+  padding: 10px;
+  border: dotted 1px black;
+  img {
+    border-radius: 50%;
+    padding-bottom: 10px;
+  }
+}
+
+.dog-img {
+  border-bottom: dotted 1px black;
 }
