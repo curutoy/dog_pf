@@ -45,7 +45,7 @@ RSpec.describe Protector, type: :model do
     end
 
     it "profileが200文字以上の場合エラーが発生すること" do
-      testprotector1.name = "a" * 201
+      testprotector1.profile = "a" * 201
       expect(testprotector1).to be_invalid
     end
 

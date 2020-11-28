@@ -65,7 +65,7 @@ RSpec.describe User, type: :model do
     end
 
     it "profileが200文字以上の場合エラーが発生すること" do
-      testuser1.name = "a" * 201
+      testuser1.profile = "a" * 201
       expect(testuser1).to be_invalid
     end
 

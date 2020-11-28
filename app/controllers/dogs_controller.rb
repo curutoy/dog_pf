@@ -48,7 +48,7 @@ class DogsController < ApplicationController
 
   def dog_params
     params.require(:dog).permit(:protector_id, :name, :age, :address, :gender, :size, :profile,
-                                :walking, :caretaker, :relationsip_dog, :relationsip_people, :health,
+                                :walking, :caretaker, :relationship_dog, :relationship_people, :health,
                                 :castration, :vaccine, :microchip, :conditions, :single_people, :senior, :image)
   end
 end

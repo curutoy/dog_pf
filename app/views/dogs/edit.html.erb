@@ -34,12 +34,12 @@
     <%= f.select :caretaker, Dog.caretakers.keys, {prompt: '選択してください'}, class: 'form-control dogs-new-field' %>
   </div>
   <div class="field">
-    <%= f.label :relationsip_dog, "犬との関わり" %><span class="mandatory">必須</span><br />
-    <%= f.select :relationsip_dog, Dog.relationsip_dogs.keys, {prompt: '選択してください'}, class: 'form-control dogs-new-field' %>
+    <%= f.label :relationship_dog, "犬との関わり" %><span class="mandatory">必須</span><br />
+    <%= f.select :relationship_dog, Dog.relationship_dogs.keys, {prompt: '選択してください'}, class: 'form-control dogs-new-field' %>
   </div>
   <div class="field">
-    <%= f.label :relationsip_people, "人との関わり" %><span class="mandatory">必須</span><br />
-    <%= f.select :relationsip_people, Dog.relationsip_people.keys, {prompt: '選択してください'}, class: 'form-control dogs-new-field' %>
+    <%= f.label :relationship_people, "人との関わり" %><span class="mandatory">必須</span><br />
+    <%= f.select :relationship_people, Dog.relationship_people.keys, {prompt: '選択してください'}, class: 'form-control dogs-new-field' %>
   </div>
   <div class="field">
     <%= f.label :castration, "去勢" %><span class="mandatory">必須</span><br />

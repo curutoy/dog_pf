@@ -3,32 +3,32 @@ class Dog < ApplicationRecord
 
   belongs_to :protector
 
-  validates :name,               presence: true,
-                                 length: { maximum: 20 }
-  validates :age,                presence: true
-  validates :address,            presence: true
-  validates :gender,             presence: true
-  validates :size,               presence: true
-  validates :walking,            presence: true
-  validates :caretaker,          presence: true
-  validates :relationsip_dog,    presence: true
-  validates :relationsip_people, presence: true
-  validates :castration,         presence: true
-  validates :vaccine,            presence: true
-  validates :microchip,          presence: true
-  validates :single_people,      presence: true
-  validates :senior,             presence: true
-  validates :profile,            length: { maximum: 200 }
-  validates :conditions,         length: { maximum: 200 }
-  validates :health,             length: { maximum: 200 }
-  validates :image,              content_type: {
-                                   in: %w(image/jpeg image/png),
-                                   message: "jpgまたはpngの画像を添付してください",
-                                 },
-                                 size: {
-                                   less_than: 5.megabytes,
-                                   message: "5MB以下のファイルを選んでください",
-                                 }
+  validates :name,                presence: true,
+                                  length: { maximum: 20 }
+  validates :age,                 presence: true
+  validates :address,             presence: true
+  validates :gender,              presence: true
+  validates :size,                presence: true
+  validates :walking,             presence: true
+  validates :caretaker,           presence: true
+  validates :relationship_dog,    presence: true
+  validates :relationship_people, presence: true
+  validates :castration,          presence: true
+  validates :vaccine,             presence: true
+  validates :microchip,           presence: true
+  validates :single_people,       presence: true
+  validates :senior,              presence: true
+  validates :profile,             length: { maximum: 200 }
+  validates :conditions,          length: { maximum: 200 }
+  validates :health,              length: { maximum: 200 }
+  validates :image,               content_type: {
+                                    in: %w(image/jpeg image/png),
+                                    message: "jpgまたはpngの画像を添付してください",
+                                  },
+                                  size: {
+                                    less_than: 5.megabytes,
+                                    message: "5MB以下のファイルを選んでください",
+                                  }
 
   # imageの登録は必須とする
   validate :image_presence
@@ -40,10 +40,10 @@ class Dog < ApplicationRecord
   end
 
   enum age: {
-    ３ヶ月未満: 1, ３ヶ月: 2, ４ヶ月: 3, ５ヶ月: 4, ６ヶ月: 5, ７ヶ月: 6, ８ヶ月: 7,
-    ９ヶ月: 8, １０ヶ月: 9, １１ヶ月: 10, １歳: 11, ２歳: 12, ３歳: 13, ４歳: 14,
-    ５歳: 15, ６歳: 16, ７歳: 17, ８歳: 18, ９歳: 19, １０歳: 20,
-    １１歳: 15, １２歳: 16, １３歳: 17, １４歳: 18, １５歳以上: 19,
+    不明: 1, ３ヶ月未満: 2, ３ヶ月: 3, ４ヶ月: 4, ５ヶ月: 5, ６ヶ月: 6, ７ヶ月: 7, ８ヶ月: 8,
+    ９ヶ月: 9, １０ヶ月: 10, １１ヶ月: 11, １歳: 12, ２歳: 13, ３歳: 14, ４歳: 15,
+    ５歳: 16, ６歳: 17, ７歳: 18, ８歳: 19, ９歳: 20, １０歳: 21,
+    １１歳: 22, １２歳: 23, １３歳: 24, １４歳: 25, １５歳以上: 26,
   }
 
   enum address: {
@@ -73,11 +73,11 @@ class Dog < ApplicationRecord
     上手: 1, 勉強中: 2,
   }, _prefix: true
 
-  enum relationsip_dog: {
+  enum relationship_dog: {
     上手: 1, 勉強中: 2,
   }, _prefix: true
 
-  enum relationsip_people: {
+  enum relationship_people: {
     上手: 1, 勉強中: 2,
   }, _prefix: true
 
