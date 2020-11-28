@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_085316) do
+ActiveRecord::Schema.define(version: 2020_11_27_151337) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_11_26_085316) do
     t.text "conditions"
     t.integer "single_people"
     t.integer "senior"
+    t.text "health"
     t.index ["protector_id", "created_at"], name: "index_dogs_on_protector_id_and_created_at"
     t.index ["protector_id"], name: "index_dogs_on_protector_id"
   end

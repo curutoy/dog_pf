@@ -35,7 +35,7 @@ class DogsController < ApplicationController
   def update
     @dog = Dog.find(params[:id])
     if @dog.update(dog_params)
-      redirect_to root_path
+      redirect_to @dog
     else
       render :edit
     end
@@ -47,8 +47,8 @@ class DogsController < ApplicationController
   private
 
   def dog_params
-    params.require(:dog).permit(:protector_id, :name, :age, :address, :gender, :size,
-                                :profile, :walking, :caretaker, :relationsip_dog, :relationsip_people,
+    params.require(:dog).permit(:protector_id, :name, :age, :address, :gender, :size, :profile,
+                                :walking, :caretaker, :relationsip_dog, :relationsip_people, :health,
                                 :castration, :vaccine, :microchip, :conditions, :single_people, :senior, :image)
   end
 end

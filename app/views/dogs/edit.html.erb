@@ -62,11 +62,15 @@
     <%= f.select :single_people, Dog.single_people.keys, {prompt: '選択してください'}, class: 'form-control dogs-new-field' %>
   </div>
   <div class="field">
-    <%= f.label :profile, "紹介文（応募経緯や性格等）" %><br />
+    <%= f.label :profile, "紹介文（応募経緯や性格等）(200文字以内)" %><br />
     <%= f.text_field :profile, autofocus: true, class: "form-control", :placeholder => "自己紹介", autocomplete: "profile", class: "sign-up-field" %>
   </div>
   <div class="field">
-    <%= f.label :conditions, "応募条件" %><br />
+    <%= f.label :health, "健康状態(200文字以内)" %><br />
+    <%= f.text_field :health, autofocus: true, class: "form-control", :placeholder => "健康状態", autocomplete: "profile", class: "sign-up-field" %>
+  </div>
+  <div class="field">
+    <%= f.label :conditions, "応募条件(200文字以内)" %><br />
     <%= f.text_field :conditions, autofocus: true, class: "form-control", :placeholder => "応募条件", autocomplete: "profile", class: "sign-up-field" %>
   </div>
   <div class="actions">

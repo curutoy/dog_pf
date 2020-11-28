@@ -117,8 +117,7 @@ nav {
 .account-cancel {
   margin-bottom: 20px;
 }
-
-/* dog */
+/* dog index*/
 .dogs_index {
   text-align: center;
   width: 80%;
@@ -129,7 +128,74 @@ nav {
     padding-bottom: 10px;
   }
 }
-
 .dog-img {
   border-bottom: dotted 1px black;
+}
+/* dog show */
+.dog-show-top {
+  margin-bottom: 20px;
+}
+.dog-show-img {
+  text-align: center;
+  img {
+    border-radius: 50%;
+  }
+}
+.dog-right-1 {
+  display: flex;
+  margin-bottom: 20px;
+}
+.dog-edit-link {
+  padding-top: 5px;
+}
+.dog-show-info {
+  border-bottom: dotted 1px black;
+  margin-bottom: 10px;
+}
+.dog-show-profile,
+.dog-show-skill,
+.dog-show-health,
+.dog-show-application {
+  margin-bottom: 50px;
+}
+.profile-text,
+.health-text,
+.condition-text {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  border: dotted 1px black;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+.dog-show-skill,
+.dog-show-health,
+.dog-show-application {
+  h2 {
+    margin-bottom: 20px;
+  }
+}
+.skill,
+.health,
+.application {
+  text-align: center;
+  width: 80%;
+  margin: 0auto;
+  border: dotted 1px black;
+  border-radius: 50%;
+  padding: 10px;
+}
+.dog-show-protector {
+  border: dotted 1px black;
+}
+.dog-protector {
+  display: flex;
+}
+.dog-show-protector {
+  width: 80%;
+  margin: auto;
+}
+.dog-show-protector-info {
+  padding: 5px 20px 5px 20px;
 }

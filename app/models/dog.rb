@@ -20,6 +20,7 @@ class Dog < ApplicationRecord
   validates :senior,             presence: true
   validates :profile,            length: { maximum: 200 }
   validates :conditions,         length: { maximum: 200 }
+  validates :health,             length: { maximum: 200 }
   validates :image,              content_type: {
                                    in: %w(image/jpeg image/png),
                                    message: "jpgまたはpngの画像を添付してください",
