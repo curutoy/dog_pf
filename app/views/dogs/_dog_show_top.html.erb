@@ -14,7 +14,9 @@
       </h1>
     </div>
     <div class="dog-edit-link col-3">
-      <% if @dog.protector_id = current_protector.id %>
+      <% if user_signed_in? %>
+        <%= link_to "フォロー", "#", class: "btn btn-outline-dark" %>
+      <% elsif @dog.protector_id == current_protector.id %>
         <%= link_to "編集", edit_dog_path, class: "btn btn-outline-dark" %>
       <% end %>
     </div>

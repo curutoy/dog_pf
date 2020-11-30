@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Dog, type: :model do
-  let(:testdog)  { FactoryBot.build(:dog) }
-  let(:testdog2) { FactoryBot.build(:dog) }
+  let!(:protector) { create(:protector) }
+  let(:testdog)  { FactoryBot.build(:dog, protector_id: protector.id) }
+  let(:testdog2) { FactoryBot.build(:dog, protector_id: protector.id) }
 
   before do
     testdog.image = fixture_file_upload("/files/test.png")

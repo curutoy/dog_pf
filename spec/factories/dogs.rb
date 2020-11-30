@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :dog do
-    association :protector
     name { "testdog" }
     age { "１歳" }
     address { "東京都" }

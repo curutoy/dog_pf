@@ -1,6 +1,6 @@
 class DogsController < ApplicationController
-  before_action :authenticate_any!, except: [:index]
-
+  before_action :authenticate_protector!, except: [:index]
+  before_action :right_protector, only: [:edit, :update, :destroy]
   def new
     @dog = Dog.new
   end
@@ -50,5 +50,24 @@ class DogsController < ApplicationController
     params.require(:dog).permit(:protector_id, :name, :age, :address, :gender, :size, :profile,
                                 :walking, :caretaker, :relationship_dog, :relationship_people, :health,
                                 :castration, :vaccine, :microchip, :conditions, :single_people, :senior, :image)
+  end
+
+  def authenticate_protector!
+    if user_signed_in?
+      redirect_to root_path
+      flash[:alert] = "保護活動家専用のページです"
+    elsif protector_signed_in?
+    else
+      render template: "home/index"
+      flash[:alert] = "ログインまたはアカウント登録を行ってください"
+    end
+  end
+
+  def right_protector
+    @dog = Dog.find(params[:id])
+    if @dog.protector_id != current_protector.id
+      redirect_to root_path
+      flash[:alert] = "投稿者のみ閲覧できるページです。"
+    end
   end
 end

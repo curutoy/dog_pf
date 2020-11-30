@@ -1,13 +1,15 @@
 <div class="dog-protector">
-  <div class="dog-protector-img">
-    <% if @dog.protector.image.attached? %>
-      <%= image_tag @dog.protector.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:"150x150+0+0"}).processed %>
-    <% else %>
-      <%= image_tag "protector_default.png", :size => "200x200" %>
-    <% end %>
-  </div>
-  <div class="dog-show-protector-info">
-    <h2><%= @dog.protector.name %></h2>
-    <p><%= @dog.profile %></p>
-  </div>
+  <%= link_to protector_path(@dog.protector_id) do %>
+    <div class="dog-protector-img">
+      <% if @dog.protector.image.attached? %>
+        <%= image_tag @dog.protector.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:"150x150+0+0"}).processed %>
+      <% else %>
+        <%= image_tag "protector_default.png", :size => "200x200" %>
+      <% end %>
+    </div>
+    <div class="dog-show-protector-info">
+      <h2><%= @dog.protector.name %></h2>
+      <p><%= @dog.profile %></p>
+    </div>
+  <% end %>
 </div>
