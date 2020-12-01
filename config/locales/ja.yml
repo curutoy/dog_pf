@@ -19,9 +19,9 @@ ja:
               blank: "が入力されていません。"
             caretaker:
               blank: "が入力されていません。"
-            relationsip_dog:
+            relationship_dog:
               blank: "が入力されていません。"
-            relationsip_people:
+            relationship_people:
               blank: "が入力されていません。"
             castration:
               blank: "が入力されていません。"
@@ -68,8 +68,8 @@ ja:
         size: 大きさ
         walking: お散歩
         caretaker: お留守番
-        relationsip_dog: 犬との関わり
-        relationsip_people: 人との関わり
+        relationship_dog: 犬との関わり
+        relationship_people: 人との関わり
         castration: 去勢
         vaccine: ワクチン
         microchip: マイクロチップ
