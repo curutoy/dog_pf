@@ -39,7 +39,7 @@ RSpec.describe 'Users', type: :system do
         fill_in 'パスワード（確認用）', with: 'testpassword'
         click_button '登録'
         expect(page).to have_content "エラーが発生しました"
-        expect(page).to have_content "名前 が入力されていません。"
+        expect(page).to have_content "ユーザー名 が入力されていません。"
       end
 
       it "長さに上限のある項目が上限を超えてしまうとエラーとなること" do
@@ -54,7 +54,7 @@ RSpec.describe 'Users', type: :system do
         fill_in 'パスワード（確認用）', with: 'testpassword'
         click_button '登録'
         expect(page).to have_content "エラーが発生しました"
-        expect(page).to have_content "名前 は20文字以下に設定して下さい。"
+        expect(page).to have_content "ユーザー名 は20文字以下に設定して下さい。"
       end
 
       it "長さに下限のある項目が下限に達しないとエラーとなること" do
@@ -148,6 +148,76 @@ RSpec.describe 'Users', type: :system do
       it "登録リンクをクリックするとサインアップページへ遷移すること" do
         click_link '登録する'
         expect(current_path).to eq new_user_registration_path
+      end
+    end
+  end
+
+  describe "edit" do
+    before do
+      testuser1.save
+      visit new_user_session_path
+      fill_in 'Eメールアドレス', with: 'test@example.com'
+      fill_in 'パスワード', with: 'testpassword'
+      click_button 'ログイン'
+      visit edit_user_registration_path
+    end
+
+    context "入力した内容に誤りがない場合" do
+      it "情報の更新が正常に行えること" do
+        fill_in 'ユーザー名', with: 'change_name'
+        fill_in '現在のパスワード', with: 'testpassword'
+        click_button '更新'
+        expect(current_path).to eq user_path testuser1
+      end
+
+      it "必須項目が未入力の場合はエラーとなること" do
+        fill_in 'ユーザー名', with: ''
+        fill_in '現在のパスワード', with: 'testpassword'
+        click_button '更新'
+        expect(page).to have_content "ユーザー名 が入力されていません。"
+      end
+
+      it "長さに上限のある項目が上限を超えてしまうとエラーとなること" do
+        fill_in 'ユーザー名', with: 'a' * 21
+        fill_in '現在のパスワード', with: 'testpassword'
+        click_button '更新'
+        expect(page).to have_content "ユーザー名 は20文字以下に設定して下さい。"
+      end
+
+      it "長さに下限のある項目が上限を超えてしまうとエラーとなること" do
+        fill_in '新パスワード', with: 'a' * 5
+        fill_in '現在のパスワード', with: 'testpassword'
+        click_button '更新'
+        expect(page).to have_content "パスワード は6文字以上に設定して下さい。"
+      end
+
+      it "一意であるべき項目が一意でないとエラーとなること" do
+        testuser2.save
+        fill_in 'Eメールアドレス', with: 'test2@example.com'
+        fill_in '現在のパスワード', with: 'testpassword'
+        click_button '更新'
+        expect(page).to have_content "メールアドレス は既に使用されています。"
+      end
+
+      it "パスワード入力が一致しないとエラーとなること" do
+        fill_in '新パスワード', with: 'changepassword'
+        fill_in '新パスワード（確認用）', with: 'changepassword2'
+        fill_in '現在のパスワード', with: 'testpassword'
+        click_button '更新'
+        expect(page).to have_content "確認用パスワード とパスワードが一致しません。"
+      end
+
+      it "現在のパスワードが未入力の場合はエラーとなること" do
+        fill_in 'ユーザー名', with: 'change_name'
+        click_button '更新'
+        expect(page).to have_content "現在のパスワード が入力されていません。"
+      end
+
+      it "現在のパスワードに誤りがある場合はエラーとなること" do
+        fill_in 'ユーザー名', with: 'change_name'
+        fill_in '現在のパスワード', with: 'password'
+        click_button '更新'
+        expect(page).to have_content "現在のパスワード が間違っています。"
       end
     end
   end

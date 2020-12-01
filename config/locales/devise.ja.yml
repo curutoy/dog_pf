@@ -30,6 +30,9 @@ ja:
               invalid: "は有効でありません。"
             password_confirmation:
               confirmation: "とパスワードが一致しません。"
+            current_password:
+              blank: "が入力されていません。"
+              invalid: "が間違っています。"
         protector:
           attributes:
             name:
@@ -52,10 +55,13 @@ ja:
               invalid: "は有効でありません。"
             password_confirmation:
               confirmation: "とパスワードが一致しません。"
+            current_password:
+              blank: "が入力されていません。"
+              invalid: "が間違っています。"
     attributes:
       user:
         current_password: "現在のパスワード"
-        name: "名前"
+        name: "ユーザー名"
         email: "メールアドレス"
         address: "居住地"
         family_people: "同居家族人数"
