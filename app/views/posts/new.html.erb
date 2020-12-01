@@ -1,0 +1,15 @@
+<h1>Posts#new</h1>
+<%= form_for [@dog, @post] do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <div class="field">
+    <%= f.label :image, "写真" %><span class="mandatory">必須</span><br />
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "sign-up-field" %>
+  </div>
+  <div class="field">
+    <%= f.label :content, "キャプション" %><br />
+    <%= f.text_field :content, autofocus: true, :placeholder => "キャプションを書く", autocomplete: "name", class: "dogs-new-field" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "送信", :class=>"btn btn-outline-dark" %>
+  </div>
+<% end %>

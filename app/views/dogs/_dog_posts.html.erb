@@ -1,0 +1,16 @@
+<h2>
+  <%= dog.name %>
+  <% if dog.gender == "男の子" %>
+    <span>くん</span>
+  <% else %>
+    <span>ちゃん</span>
+  <% end %>
+  <span>の日常（<%= dog.posts.count %>）</span>
+</h2>
+<div class="dog-posts-image row">
+  <% dog.posts.each do |post| %>
+    <div class="post-image col-4">
+      <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:" 300x300+0+0"}).processed %>
+    </div>
+  <% end %>
+</div>

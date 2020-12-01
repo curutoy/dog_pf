@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'posts/new'
+  get 'posts/create'
+  get 'posts/show'
   devise_for :protectors, controllers: {
     sessions: 'protectors/sessions',
     passwords: 'protectors/passwords',
@@ -15,5 +18,7 @@ Rails.application.routes.draw do
   root 'dogs#index'
   resources :users, only: [:show]
   resources :protectors, only: [:show]
-  resources :dogs
+  resources :dogs do
+    resources :posts, only: [:new, :create, :show, :destroy]
+  end
 end

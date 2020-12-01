@@ -27,6 +27,7 @@ Layout/IndentFirstHashElement:
     - "app/models/user.rb"
     - "app/models/protector.rb"
     - "app/models/dog.rb"
+    - "app/models/post.rb"
 
 Metrics/LineLength:
   Max: 180
