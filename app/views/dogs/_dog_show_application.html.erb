@@ -1,8 +1,8 @@
 <h2>応募条件</h2>
 <div class="dog-application-1">
-  <% if @dog.conditions.present? %>
+  <% if dog.conditions.present? %>
     <div class="condition-text">
-      <%= @dog.conditions %>
+      <%= dog.conditions %>
     </div>
   <% end %>
 </div>
@@ -11,13 +11,13 @@
     <div class="dog-application col-6">
       <div class="application">
         <p>高齢者応募</p>
-        <p><%= @dog.senior %></p>
+        <p><%= dog.senior %></p>
       </div>
     </div>
     <div class="dog-health col-6">
       <div class="application">
         <p>単身者応募</p>
-        <p><%= @dog.single_people %></p>
+        <p><%= dog.single_people %></p>
       </div>
     </div>
   </div>

@@ -1,12 +1,12 @@
 <div class="dog-show-img col-6">
-  <%= image_tag @dog.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:" 300x300+0+0"}).processed %>
+  <%= image_tag dog.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:" 300x300+0+0"}).processed, class: "img-fluid" %>
 </div>
 <div class="dog-show-right col-6">
   <div class="dog-right-1 row">
     <div class="dog-name col-9">
       <h1>
-        <%= @dog.name %>
-        <% if @dog.gender == "男の子" %>
+        <%= dog.name %>
+        <% if dog.gender == "男の子" %>
           <span>くん</span>
         <% else %>
           <span>ちゃん</span>
@@ -16,7 +16,7 @@
     <div class="dog-edit-link col-3">
       <% if user_signed_in? %>
         <%= link_to "フォロー", "#", class: "btn btn-outline-dark" %>
-      <% elsif @dog.protector_id == current_protector.id %>
+      <% elsif dog.protector_id == current_protector.id %>
         <%= link_to "編集", edit_dog_path, class: "btn btn-outline-dark" %>
       <% end %>
     </div>
@@ -27,7 +27,7 @@
         <p>年齢</p>
       </div>
       <div class="col-6">
-        <%= @dog.age %>
+        <%= dog.age %>
       </div>
     </div>
     <div class="dog-show-info row">
@@ -35,7 +35,7 @@
         <p>所在地</p>
       </div>
       <div class="col-6">
-        <%= @dog.address %>
+        <%= dog.address %>
       </div>
     </div>
     <div class="dog-show-info row">
@@ -43,7 +43,7 @@
         <p>性別</p>
       </div>
       <div class="col-6">
-        <%= @dog.gender %>
+        <%= dog.gender %>
       </div>
     </div>
     <div class="dog-show-info row">
@@ -51,7 +51,7 @@
         <p>大きさ</p>
       </div>
       <div class="col-6">
-        <%= @dog.size %>
+        <%= dog.size %>
       </div>
     </div>
   </div>

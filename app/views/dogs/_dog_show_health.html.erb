@@ -1,8 +1,8 @@
 <h2>健康状態</h2>
 <div class="dog-health-1">
-  <% if @dog.health.present? %>
+  <% if dog.health.present? %>
     <div class="health-text">
-      <%= @dog.health %>
+      <%= dog.health %>
     </div>
   <% end %>
 </div>
@@ -11,19 +11,19 @@
     <div class="dog-health col-4">
       <div class="health">
         <p>去勢</p>
-        <p><%= @dog.castration %></p>
+        <p><%= dog.castration %></p>
       </div>
     </div>
     <div class="dog-health col-4">
       <div class="health">
         <p>ワクチン</p>
-        <p><%= @dog.vaccine %></p>
+        <p><%= dog.vaccine %></p>
       </div>
     </div>
     <div class="dog-health col-4">
       <div class="health">
         <p>マイクロチップ</p>
-        <p><%= @dog.microchip %></p>
+        <p><%= dog.microchip %></p>
       </div>
     </div>
   </div>

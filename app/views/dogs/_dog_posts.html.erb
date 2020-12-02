@@ -1,16 +1,27 @@
-<h2>
-  <%= dog.name %>
-  <% if dog.gender == "男の子" %>
-    <span>くん</span>
-  <% else %>
-    <span>ちゃん</span>
+<div class="dog-post-top row">
+  <div class="dog-post-name col-8">
+    <h2>
+      <%= dog.name %>
+      <% if dog.gender == "男の子" %>
+        <span>くん</span>
+      <% else %>
+        <span>ちゃん</span>
+      <% end %>
+      <span>の日常（<%= dog.posts.count %>）</span>
+    </h2>
+  </div>
+  <% if dog.protector_id == current_protector.id %>
+    <div class="dog-post-link col-4">
+      <%= link_to new_dog_post_path(dog_id: dog.id) do %>
+        <i class="fas fa-camera-retro fa-3x"></i>
+      <% end %>
+    </div>
   <% end %>
-  <span>の日常（<%= dog.posts.count %>）</span>
-</h2>
+</div>
 <div class="dog-posts-image row">
   <% dog.posts.each do |post| %>
-    <div class="post-image col-4">
-      <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:" 300x300+0+0"}).processed %>
+    <div class="post-image col col-sm-4">
+      <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
     </div>
   <% end %>
 </div>

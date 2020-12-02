@@ -1,11 +1,12 @@
 <div class="devise">
-  <div class="devise-edit">
-    <h3>編集</h3>
-    <%= render "users/registrations/edit_form", user: @user %>
+  <div class="devise-container devise-edit-container">
+    <div class="devise-edit">
+      <%= render "users/registrations/edit_form", user: @user %>
+    </div>
+    <div class="account-cancel">
+      <h4>アカウントを削除する</h4>
+      <%= button_to "削除", user_registration_path, data: { confirm: "本当に削除しますか？" }, method: :delete, class: "btn btn-outline-dark" %>
+    </div>
+    <%= link_to "戻る", :back %>
   </div>
-  <div class="account-cancel">
-    <h4>アカウントを削除する</h4>
-    <%= button_to "削除", cancel_user_registration_path, data: { confirm: "本当に削除しますか？" }, method: :delete, class: "btn btn-outline-dark" %>
-  </div>
-  <%= link_to "戻る", :back %>
 </div>

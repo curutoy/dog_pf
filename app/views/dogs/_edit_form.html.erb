@@ -1,0 +1,81 @@
+<%= form_for dog do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <div class="field edit-image">
+    <%= f.label :image, "写真" %><br />
+    <%= image_tag dog.image.variant(combine_options:{gravity: :center, resize:"100x100^", crop:"100x100+0+0"}).processed %>
+    <div class="image-file">
+      <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :name, "なまえ" %><span class="mandatory">必須</span><br />
+    <%= f.text_field :name, autofocus: true, :placeholder => "なまえ", autocomplete: "name" %>
+  </div>
+  <div class="field">
+    <%= f.label :age, "年齢" %><span class="mandatory">必須</span><br />
+    <%= f.select :age, Dog.ages.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :address, "所在地" %><span class="mandatory">必須</span><br />
+    <%= f.select :address, Dog.addresses.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :gender, "性別" %><span class="mandatory">必須</span><br />
+    <%= f.select :gender, Dog.genders.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :size, "大きさ" %><span class="mandatory">必須</span><br />
+    <%= f.select :size, Dog.sizes.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :walking, "お散歩" %><span class="mandatory">必須</span><br />
+    <%= f.select :walking, Dog.walkings.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :caretaker, "お留守番" %><span class="mandatory">必須</span><br />
+    <%= f.select :caretaker, Dog.caretakers.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :relationship_dog, "犬との関わり" %><span class="mandatory">必須</span><br />
+    <%= f.select :relationship_dog, Dog.relationship_dogs.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :relationship_people, "人との関わり" %><span class="mandatory">必須</span><br />
+    <%= f.select :relationship_people, Dog.relationship_people.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :castration, "去勢" %><span class="mandatory">必須</span><br />
+    <%= f.select :castration, Dog.castrations.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :vaccine, "ワクチン" %><span class="mandatory">必須</span><br />
+    <%= f.select :vaccine, Dog.vaccines.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :microchip, "マイクロチップ" %><span class="mandatory">必須</span><br />
+    <%= f.select :microchip, Dog.microchips.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :senior, "高齢者応募" %><span class="mandatory">必須</span><br />
+    <%= f.select :senior, Dog.seniors.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :single_people, "単身者応募" %><span class="mandatory">必須</span><br />
+    <%= f.select :single_people, Dog.single_people.keys, {prompt: '選択してください'}, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :profile, "紹介文（応募経緯や性格等）(200文字以内)" %><br />
+    <%= f.text_area :profile, autofocus: true, class: "form-control", :placeholder => "自己紹介", autocomplete: "profile" %>
+  </div>
+  <div class="field">
+    <%= f.label :health, "健康状態(200文字以内)" %><br />
+    <%= f.text_area :health, autofocus: true, class: "form-control", :placeholder => "健康状態", autocomplete: "profile" %>
+  </div>
+  <div class="field">
+    <%= f.label :conditions, "応募条件(200文字以内)" %><br />
+    <%= f.text_area :conditions, autofocus: true, class: "form-control", :placeholder => "応募条件", autocomplete: "profile" %>
+  </div>
+  <div class="actions dog-button">
+    <%= f.submit "更新", :class=>"btn btn-outline-dark" %>
+  </div>
+<% end %>

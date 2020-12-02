@@ -38,9 +38,16 @@ nav {
   padding: 80px;
   font-weight: bold;
 }
+/* all edit*/
+.image-file {
+  text-align: center;
+  input {
+    width: 300px;
+  }
+}
 /* devise */
 .devise-container {
-  width: 450px;
+  width: 60%;
   margin: 0 auto;
   p {
     padding-bottom: 20px;
@@ -105,6 +112,9 @@ nav {
   width: 100%;
 }
 /*devise_edit*/
+.devise-edit-container {
+  margin-top: 150px;
+}
 .edit-image {
   text-align: center;
 }
@@ -161,7 +171,7 @@ nav {
 .profile-text,
 .health-text,
 .condition-text {
-  width: 70%;
+  width: 60%;
   margin: auto;
   text-align: center;
   border: dotted 1px black;
@@ -186,6 +196,9 @@ nav {
   border-radius: 50%;
   padding: 10px;
 }
+.dog-posts {
+  margin-bottom: 50px;
+}
 .dog-show-protector {
   border: dotted 1px black;
 }
@@ -199,7 +212,68 @@ nav {
 .dog-show-protector-info {
   padding: 5px 20px 5px 20px;
 }
-
-.dog-posts {
-  margin-bottom: 50px;
+.dog-post-link {
+  text-align: center;
+}
+.dog-post-top {
+  margin-bottom: 20px;
+}
+.fa-camera-retro {
+  color: black;
+}
+.post-image {
+  margin-bottom: 30px;
+}
+/*dog new edit */
+.dogs-container {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+.dog-new,
+.dog-edit {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+.dog-button,
+.post-button {
+  text-align: center;
+}
+.dog-edit {
+  .field {
+    border-bottom: dotted 2px black;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+}
+/* post new */
+.posts-container {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 200px;
+}
+.post-new {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  h1 {
+    margin-bottom: 50px;
+  }
+}
+.post-field {
+  margin-bottom: 20px;
+  label {
+    display: none;
+  }
+  textarea {
+    width: 50%;
+    height: 100px;
+  }
+}
+.post-image-file {
+  input {
+    overflow: hidden;
+  }
 }

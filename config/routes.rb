@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'posts/new'
-  get 'posts/create'
-  get 'posts/show'
   devise_for :protectors, controllers: {
     sessions: 'protectors/sessions',
     passwords: 'protectors/passwords',

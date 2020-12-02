@@ -3,7 +3,7 @@
     <div class="col dogs_index">
       <div class="dog-img">
         <%= link_to dog do %>
-          <%= image_tag dog.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:" 150x150+0+0"}).processed %>
+          <%= image_tag dog.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:" 150x150+0+0"}).processed, class: "img-fluid" %>
         <% end %>
       </div>
       <div class="dog-info">
