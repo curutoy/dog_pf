@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :post do
-    content { "MyText" }
-    dog { nil }
+    content { "post content" }
   end
 end
