@@ -8,10 +8,16 @@ class PostsController < ApplicationController
     @dog = Dog.find(params[:dog_id])
     @post = Post.new(post_params)
     @post.dog_id = @dog.id
-    if @post.save
-      redirect_to dog_path @dog
-    else
-      render 'posts/new'
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to @dog, notice: "投稿しました" }
+        format.json { render :show, status: created, location: @dog }
+        format.js { @status = "success" }
+      else
+        format.html { render :new }
+        format.json { render json: @dog.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
+      end
     end
   end
 

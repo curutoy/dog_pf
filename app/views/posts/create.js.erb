@@ -1,0 +1,7 @@
+<% if @status == 'success' %>
+  $('.dog-posts-image').append("<%= j(render("post_image", post: @post, dog: @dog)) %>");
+  $("#post-count").html('（<%= @dog.posts.count %>）');
+<% elsif @status == 'fail' %>
+  alert('error!');
+<% end %>
+$("#post-new-modal").modal("hide");

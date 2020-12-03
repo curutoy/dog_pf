@@ -251,7 +251,6 @@ nav {
 .posts-container {
   width: 50%;
   margin: 0 auto;
-  margin-top: 200px;
 }
 .post-new {
   background-color: white;
@@ -268,7 +267,7 @@ nav {
     display: none;
   }
   textarea {
-    width: 50%;
+    width: 100%;
     height: 100px;
   }
 }

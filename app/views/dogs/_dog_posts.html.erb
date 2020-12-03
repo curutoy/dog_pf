@@ -7,14 +7,18 @@
       <% else %>
         <span>ちゃん</span>
       <% end %>
-      <span>の日常（<%= dog.posts.count %>）</span>
+      <span>の日常</span>
+      <strong id="post-count">
+        <span>（<%= dog.posts.count %>）</span>
+      </strong>
     </h2>
   </div>
   <% if dog.protector_id == current_protector.id %>
     <div class="dog-post-link col-4">
-      <%= link_to new_dog_post_path(dog_id: dog.id) do %>
+      <%= link_to new_dog_post_path(dog), remote:true do %>
         <i class="fas fa-camera-retro fa-3x"></i>
       <% end %>
+      <div id="post-new-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     </div>
   <% end %>
 </div>
