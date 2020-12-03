@@ -13,7 +13,7 @@
       </strong>
     </h2>
   </div>
-  <% if dog.protector_id == current_protector.id %>
+  <% if protector_signed_in? && dog.protector_id == current_protector.id %>
     <div class="dog-post-link col-4">
       <%= link_to new_dog_post_path(dog), remote:true do %>
         <i class="fas fa-camera-retro fa-3x"></i>

@@ -13,7 +13,7 @@ RSpec.describe "Protectors", type: :request do
         expect(response).to have_http_status(302)
       end
 
-      it "protectorのログインページにリダイレクトされること" do
+      it "ホーム画面にリダイレクトされること" do
         expect(response).to redirect_to root_path
       end
 

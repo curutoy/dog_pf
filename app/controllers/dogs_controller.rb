@@ -1,6 +1,8 @@
 class DogsController < ApplicationController
-  before_action :authenticate_protector!, except: [:index]
+  before_action :authenticate_protector!, except: [:index, :show]
+  before_action :authenticate_any!, only: [:show]
   before_action :right_protector, only: [:edit, :update, :destroy]
+
   def new
     @dog = Dog.new
   end
