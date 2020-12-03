@@ -16,11 +16,16 @@ class PostsController < ApplicationController
   end
 
   def show
+    @dog = Dog.find(params[:dog_id])
     @post = Post.find(params[:id])
   end
 
   def destroy
+    @dog = Dog.find(params[:dog_id])
     @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to dog_path @dog
+    flash[:notice] = "投稿を削除しました"
   end
 
   private

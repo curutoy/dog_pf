@@ -277,3 +277,21 @@ nav {
     overflow: hidden;
   }
 }
+/*post show*/
+.modal-dialog,
+.modal-content {
+  margin-top: 100px;
+}
+.modal-container {
+  padding-left: 0;
+  overflow: scroll;
+}
+.post-modal {
+  padding-top: 10px;
+}
+.post-modal-content {
+  padding-top: 50px;
+}
+.fa-trash-alt {
+  color: black;
+}

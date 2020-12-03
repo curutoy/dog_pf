@@ -24,5 +24,6 @@ module DogPf
         routing_specs: false
     end
     config.autoload_paths += %W(#{config.root}/lib)
+    config.time_zone = 'Asia/Tokyo'
   end
 end

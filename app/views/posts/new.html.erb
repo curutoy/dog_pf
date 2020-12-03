@@ -12,7 +12,7 @@
         </div>
         <div class="field post-field">
           <%= f.label :content, "キャプション" %><br />
-          <%= f.text_area :content, autofocus: true, :placeholder => "キャプションを書く", autocomplete: "name" %>
+          <%= f.text_area :content, autofocus: true, :placeholder => "キャプションを書く（200文字以内）", autocomplete: "name" %>
         </div>
         <div class="actions post-button">
           <%= f.submit "投稿", :class=>"btn btn-outline-dark" %>

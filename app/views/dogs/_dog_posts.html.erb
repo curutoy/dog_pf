@@ -21,7 +21,10 @@
 <div class="dog-posts-image row">
   <% dog.posts.each do |post| %>
     <div class="post-image col col-sm-4">
-      <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
+      <%= link_to dog_post_path(dog, post), remote: true do %>
+        <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
+      <% end %>
+      <div id="post-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     </div>
   <% end %>
 </div>
