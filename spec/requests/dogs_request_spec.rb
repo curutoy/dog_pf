@@ -202,12 +202,12 @@ RSpec.describe "Dogs", type: :request do
         get edit_dog_path dog1
       end
 
-      it "リクエストが成功すること" do
-        expect(response).to have_http_status(200)
+      it "302レスポンスを返すこと" do
+        expect(response).to have_http_status(302)
       end
 
-      it "home/indexテンプレートが表示されること" do
-        expect(response).to render_template "home/index"
+      it "indexへリダイレクトされること" do
+        expect(response).to redirect_to root_path
       end
     end
 

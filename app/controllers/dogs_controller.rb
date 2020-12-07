@@ -1,6 +1,6 @@
 class DogsController < ApplicationController
-  before_action :authenticate_protector!, except: [:index, :show]
-  before_action :authenticate_any!, only: [:show]
+  before_action :authenticate_protector!, only: [:new, :create]
+  before_action :authenticate_any!, only: [:show, :edit, :update, :destroy]
   before_action :right_protector, only: [:edit, :update, :destroy]
 
   def new
@@ -29,6 +29,7 @@ class DogsController < ApplicationController
   def show
     @dog = Dog.find(params[:id])
     @posts = @dog.posts
+    @post = @dog.posts.each
   end
 
   def edit
@@ -68,7 +69,7 @@ class DogsController < ApplicationController
 
   def right_protector
     @dog = Dog.find(params[:id])
-    if @dog.protector_id != current_protector.id
+    if user_signed_in? || @dog.protector_id != current_protector.id
       redirect_to root_path
       flash[:alert] = "投稿者のみ閲覧できるページです。"
     end

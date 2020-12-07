@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :protectors, only: [:show]
   resources :dogs do
-    resources :posts, only: [:new, :create, :show, :destroy]
+    resources :posts, only: [:new, :create, :destroy]
   end
 end

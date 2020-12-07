@@ -4,7 +4,7 @@
       <div class="posts-container">
         <div class="post-new">
           <h1><i class="fas fa-dog"></i>保護犬の日常投稿</h1>
-          <%= form_for([@dog, @post], remote: true) do |f| %>
+          <%= form_for([@dog, @post], remote: true, multipart: true) do |f| %>
             <%= render 'layouts/error_messages', model: f.object %>
             <div class="field post-field">
               <%= f.label :image, "写真" %><br />

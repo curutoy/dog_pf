@@ -25,5 +25,6 @@ module DogPf
     end
     config.autoload_paths += %W(#{config.root}/lib)
     config.time_zone = 'Asia/Tokyo'
+    config.generators.fixture_replacement :factory_bot, dir: 'spec/factories'
   end
 end

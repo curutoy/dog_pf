@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   has_one_attached :image
 
+  belongs_to :protector, optional: true
   belongs_to :dog, optional: true
 
   validates :dog_id,  presence: true

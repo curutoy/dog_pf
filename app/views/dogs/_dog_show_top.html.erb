@@ -17,7 +17,7 @@
       <% if user_signed_in? %>
         <%= link_to "フォロー", "#", class: "btn btn-outline-dark" %>
       <% elsif dog.protector_id == current_protector.id %>
-        <%= link_to "編集", edit_dog_path, class: "btn btn-outline-dark" %>
+        <%= link_to "編集", edit_dog_path(dog.id), class: "btn btn-outline-dark" %>
       <% end %>
     </div>
   </div>
