@@ -1,6 +1,6 @@
 <% dog.posts.each do |post| %>
   <div class="post-image col col-sm-4" id="post-<%= post.id %>">
-    <button type="button" class="btn" data-toggle="modal" data-target="#modal-<%= post.id %>">
+    <button type="button" class="btn" value="post-<%= post.id %>" data-toggle="modal" data-target="#modal-<%= post.id %>">
       <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
     </button>
   </div>
@@ -16,7 +16,7 @@
           <div class="post-modal col-6">
             <div class="modal-header">
               <p class="float-left"><%= l post.created_at, format: :short %></p>
-              <%= link_to dog_post_path(dog, post), data: { confirm: "本当に削除しますか?" }, method: :delete, remote: true, class: "float-right" do %>
+              <%= link_to dog_post_path(dog, post), data: { confirm: "本当に削除しますか?" }, method: :delete, remote: true, class: "float-right post-delete-icon" do %>
                 <i class="fas fa-trash-alt"></i>
               <% end %>
             </div>

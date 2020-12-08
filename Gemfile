@@ -74,6 +74,7 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers'
   gem 'rspec_junit_formatter'
+  gem 'launchy'
 end
 
 group :production do
