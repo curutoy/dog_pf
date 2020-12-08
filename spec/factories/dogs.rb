@@ -39,5 +39,9 @@ FactoryBot.define do
     health { "dog_health_test" }
     conditions { "dog_conditions_test" }
     image { Rack::Test::UploadedFile.new(File.join(Rails.root, "spec/fixtures/files/test.png"), 'image/png') }
+
+    trait :invalid do
+      name { " " }
+    end
   end
 end

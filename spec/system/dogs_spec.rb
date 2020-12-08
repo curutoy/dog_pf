@@ -4,8 +4,8 @@ RSpec.describe 'Dogs', type: :system do
   let!(:user)       { create(:user) }
   let!(:protector)  { create(:protector) }
   let!(:protector2) { create(:protector2) }
-  let(:dog)         { build(:dog, protector_id: protector.id) }
-  let(:dog2)        { build(:dog, protector_id: protector2.id) }
+  let(:dog)         { create(:dog2, protector_id: protector.id) }
+  let(:dog2)        { create(:dog2, protector_id: protector2.id) }
 
   describe "dog_new" do
     before do
@@ -38,6 +38,7 @@ RSpec.describe 'Dogs', type: :system do
         fill_in '応募条件(200文字以内)', with: 'testdog'
         click_button '送信'
         expect(current_path).to eq root_path
+        expect(page).to have_content("testdog")
       end
 
       it "必須項目以外は未入力でも登録を正常に行えること" do
@@ -58,6 +59,7 @@ RSpec.describe 'Dogs', type: :system do
         select '応募可能', from: '単身者応募'
         click_button '送信'
         expect(current_path).to eq root_path
+        expect(page).to have_content "testdog"
       end
     end
 
@@ -104,12 +106,77 @@ RSpec.describe 'Dogs', type: :system do
     end
   end
 
+  describe "dog_show" do
+    context "protectorがサインインした場合", js: true do
+      before do
+        visit new_protector_session_path
+        fill_in 'Eメールアドレス', with: 'protector@example.com'
+        fill_in 'パスワード', with: 'testpassword'
+        click_button 'ログイン'
+      end
+
+      context "自身が登録したページにアクセスした場合" do
+        before do
+          visit dog_path(id: dog.id)
+        end
+
+        it "アクセスができること" do
+          expect(current_path).to eq dog_path(id: dog.id)
+        end
+
+        it "編集リンクが表示されていること" do
+          expect(page).to have_link "編集"
+        end
+
+        it "日常を投稿できるアイコンから新規投稿モーダルを表示できること" do
+          page.evaluate_script('$(".fade").removeClass("fade")')
+          find('.post-new-icon').click
+          sleep 3
+          expect(page).to have_content "写真"
+          expect(page).to have_content "キャプション"
+        end
+      end
+
+      context "自分以外が登録したページ気アクセスした場合" do
+        before do
+          visit dog_path(id: dog2.id)
+        end
+
+        it "アクセスができること" do
+          expect(current_path).to eq dog_path(id: dog2.id)
+        end
+
+        it "編集リンクが表示されていないこと" do
+          expect(page).to have_no_link "編集"
+        end
+
+        it "日常を投稿できるアイコンが表示されていないこと" do
+          expect(page).to have_no_css '.post-new-icon'
+        end
+      end
+    end
+
+    context "userがサインインした場合" do
+      before do
+        visit new_user_session_path
+        fill_in 'Eメールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'testpassword'
+        click_button 'ログイン'
+        visit dog_path(id: dog.id)
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq dog_path(id: dog.id)
+      end
+
+      it "フォローリンクが表示されていること" do
+        expect(page).to have_link "フォロー"
+      end
+    end
+  end
+
   describe "dog_edit" do
     before do
-      dog.image = fixture_file_upload("/files/test.png")
-      dog.save
-      dog2.image = fixture_file_upload("/files/test.png")
-      dog2.save
       visit new_protector_session_path
       fill_in 'Eメールアドレス', with: 'protector@example.com'
       fill_in 'パスワード', with: 'testpassword'
@@ -118,7 +185,7 @@ RSpec.describe 'Dogs', type: :system do
 
     context "自身が登録したdogの編集ページにアクセスした場合" do
       before do
-        visit edit_dog_path dog
+        visit edit_dog_path(id: dog.id)
       end
 
       it "アクセスができること" do
@@ -130,6 +197,7 @@ RSpec.describe 'Dogs', type: :system do
           fill_in 'なまえ', with: 'change_name'
           click_button '更新'
           expect(current_path).to eq dog_path dog
+          expect(page).to have_content "change_name"
         end
       end
 
@@ -150,7 +218,7 @@ RSpec.describe 'Dogs', type: :system do
 
     context "自身が登録したdog以外の編集ページにアクセスした場合" do
       it "アクセスができないこと" do
-        visit edit_dog_path dog2
+        visit edit_dog_path(id: dog2.id)
         expect(current_path).to eq root_path
         expect(page).to have_content "投稿者のみ閲覧できるページです。"
       end

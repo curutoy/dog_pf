@@ -38,7 +38,7 @@ RSpec.describe 'Posts', type: :system do
         expect do
           expect(page.driver.browser.switch_to.alert.text).to eq "投稿内容を確認してください"
           page.driver.browser.switch_to.alert.accept
-        end.to change(Post, :count).by(0)
+        end.not_to change(Post, :count)
       end
     end
   end

@@ -55,6 +55,48 @@ RSpec.describe "Dogs", type: :request do
     end
   end
 
+  describe "Post /create" do
+    before do
+      sign_in protector2
+    end
+
+    context "入力内容に誤りがない場合" do
+      it 'リクエストが成功すること' do
+        post dogs_path, params: { dog: attributes_for(:dog2) }
+        expect(response).to have_http_status(302)
+      end
+
+      it "投稿が成功すること" do
+        expect do
+          post dogs_path, params: { dog: attributes_for(:dog2) }
+        end.to change(Dog, :count).by(1)
+      end
+    end
+
+    context "入力内容に誤りがある場合" do
+      it 'リクエストが成功すること' do
+        post dogs_path, params: { dog: attributes_for(:dog2, :invalid) }
+        expect(response).to have_http_status(200)
+      end
+
+      it "登録が行われないこと" do
+        expect do
+          post dogs_path, params: { dog: attributes_for(:dog2, :invalid) }
+        end.not_to change(Dog, :count)
+      end
+
+      it "newテンプレートが表示されること" do
+        post dogs_path, params: { dog: attributes_for(:dog2, :invalid) }
+        expect(response).to render_template :new
+      end
+
+      it "エラーメッセージが表示されること" do
+        post dogs_path, params: { dog: attributes_for(:dog2, :invalid) }
+        expect(assigns(:dog).errors.any?).to be_truthy
+      end
+    end
+  end
+
   describe "GET /show" do
     before do
       dog1.image = fixture_file_upload("/files/test.png")
