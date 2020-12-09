@@ -54,11 +54,11 @@ class PetsController < ApplicationController
 
   private
 
-  def post_params
+  def pet_params
     params.require(:pet).permit(:user_id, :age, :gender, :character, :image)
   end
 
-  def right_protector
+  def right_user
     @user = User.find(params[:user_id])
     if @user != current_user
       redirect_to @user

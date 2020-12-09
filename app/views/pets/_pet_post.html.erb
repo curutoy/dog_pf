@@ -1,0 +1,6 @@
+<div class="pet-post col col-sm-4" id="pet-post-<%= pet.id %>">
+  <%= image_tag pet.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
+  <p><%= pet.age %></p>
+  <p><%= pet.gender %></p>
+  <p><%= pet.character %></p>
+</div>

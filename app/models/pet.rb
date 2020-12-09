@@ -6,7 +6,7 @@ class Pet < ApplicationRecord
   validates :user_id,   presence: true
   validates :age,       presence: true
   validates :gender,    presence: true
-  validates :character, length: { max_num: 50 }
+  validates :character, length: { maximum: 50 }
   validates :image, content_type: {
     in: %w(image/jpeg image/png),
     message: "jpgまたはpngの画像を添付してください",

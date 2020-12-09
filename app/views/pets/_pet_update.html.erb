@@ -1,0 +1,7 @@
+<%= image_tag pet.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
+<p><%= pet.age %></p>
+<p><%= pet.gender %></p>
+<p><%= pet.character %></p>
+<%= link_to edit_user_pet_path(user_id: @user.id, id: pet.id), remote: true, class: "pet-icon" do %>
+  <i class="far fa-edit"></i>
+<% end %>

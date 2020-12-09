@@ -1,0 +1,8 @@
+<% if @status == 'success' %>
+  $('#pet-<%= @pet.id %>').html("<%= j(render("pet_update", pet: @pet, user: @user)) %>");
+<% elsif @status == 'fail' %>
+  alert('投稿内容を確認してください');
+<% end %>
+$("#pet-edit-modal").modal("hide");
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();

@@ -13,4 +13,36 @@
       <% end %>
     </div>
   </div>
+  <div class="user-pets container">
+    <div class="user-pet-top row">
+      <div class="user-pet-title col-8">
+        <h2>先住動物</h2>
+      </div>
+      <% if user_signed_in? && @user.id == current_user.id %>
+        <div class="det-new-link col-4">
+          <%= link_to new_user_pet_path(@user), remote: true, class: "pet-icon" do %>
+            <i class="fas fa-paw fa-3x"></i>
+          <% end %>
+          <div id="pet-new-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+        </div>
+      <% end %>
+    </div>
+    <div class="pet-posts row">
+      <% @user.pets.each do |pet| %>
+        <div class="pet-post col col-sm-4" id="pet-<%= pet.id %>">
+          <%= image_tag pet.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
+          <p><%= pet.age %></p>
+          <p><%= pet.gender %></p>
+          <p><%= pet.character %></p>
+          <%= link_to edit_user_pet_path(@user, pet), remote: true, class: "pet-icon" do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+          <div id="pet-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+          <%= link_to user_pet_path(@user, pet), data: { confirm: "本当に削除しますか?" }, method: :delete, remote: true do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

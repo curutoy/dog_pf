@@ -1,27 +1,27 @@
 <div class="post-image col col-sm-4" id="post-<%= post.id %>">
-    <button type="button" class="btn" data-toggle="modal" data-target="#modal-<%= post.id %>">
-      <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
-    </button>
-  </div>
-  <!-- モーダル・ダイアログ -->
-  <div class="modal fade" id="modal-<%= post.id %>" tabindex="-1"
-        role="dialog" aria-labelledby="label1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content container modal-container">
-        <div class="row">
-          <div class="post-show-img col-6 ">
-              <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"500x500^", crop:"500x500+0+0"}).processed, class: "img-fluid" %>
+  <button type="button" class="btn" data-toggle="modal" data-target="#modal-<%= post.id %>">
+    <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
+  </button>
+</div>
+<!-- モーダル・ダイアログ -->
+<div class="modal fade" id="modal-<%= post.id %>" tabindex="-1"
+      role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content container modal-container">
+      <div class="row">
+        <div class="post-show-img col-6 ">
+            <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"500x500^", crop:"500x500+0+0"}).processed, class: "img-fluid" %>
+        </div>
+        <div class="post-modal col-6">
+          <div class="modal-header">
+            <p class="float-left"><%= l post.created_at, format: :short %></p>
+            <%= link_to dog_post_path(dog, post), data: { confirm: "本当に削除しますか?" }, method: :delete, remote: true, class: "float-right" do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
           </div>
-          <div class="post-modal col-6">
-            <div class="modal-header">
-              <p class="float-left"><%= l post.created_at, format: :short %></p>
-              <%= link_to dog_post_path(dog, post), data: { confirm: "本当に削除しますか?" }, method: :delete, remote: true, class: "float-right" do %>
-                <i class="fas fa-trash-alt"></i>
-              <% end %>
-            </div>
-              <p class="post-modal-content"><%= post.content %></p>
-          </div>
+            <p class="post-modal-content"><%= post.content %></p>
         </div>
       </div>
     </div>
   </div>
+</div>

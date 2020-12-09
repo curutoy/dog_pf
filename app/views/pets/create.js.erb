@@ -1,0 +1,6 @@
+<% if @status == 'success' %>
+  $('.pet-posts').append("<%= j(render("pet_post", pet: @pet, user: @user)) %>");
+<% elsif @status == 'fail' %>
+  alert('投稿内容を確認してください');
+<% end %>
+$("#pet-new-modal").modal("hide");
