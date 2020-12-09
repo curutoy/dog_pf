@@ -1,8 +1,15 @@
 FactoryBot.define do
   factory :pet do
-    age { 1 }
-    gender { 1 }
-    character { "MyString" }
-    user { nil }
+    age { "１歳" }
+    gender { "男の子" }
+    character { "test character" }
+  end
+
+  factory :pet2, class: "Pet" do
+    association :user
+    age { "１歳" }
+    gender { "男の子" }
+    character { "test character" }
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, "spec/fixtures/files/test.png"), 'image/png') }
   end
 end
