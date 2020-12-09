@@ -1,0 +1,48 @@
+<div class="user-show-img col-6">
+  <% if user.image.attached? %>
+    <%= image_tag user.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed %>
+  <% else %>
+    <%= image_tag "user_default.png", :size => "300x300" %>
+  <% end %>
+</div>
+<div class="user-show-right col-6">
+  <div class="user-right-1 row">
+    <div class="user-name col-9">
+      <h1><%= user.name %></h1>
+    </div>
+    <div class="user-edit-link col-3">
+      <% if user_signed_in? && user == current_user %>
+        <%= link_to "編集", edit_user_registration_path(user.id), class: "btn btn-outline-dark" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="user-right-2">
+    <div class="user-show-info row">
+      <div class="col-6">
+        <p>居住地</p>
+      </div>
+      <div class="col-6">
+        <%= user.address %>
+      </div>
+    </div>
+    <div class="user-show-info row">
+      <div class="col-6">
+        <p>同居人数</p>
+      </div>
+      <div class="col-6">
+        <%= user.family_people %>
+      </div>
+    </div>
+    <div class="user-show-info row">
+      <div class="col-6">
+        <p>お留守番</p>
+      </div>
+      <div class="col-6">
+        <%= user.caretaker%>
+      </div>
+    </div>
+    <div class="user-follow">
+      <p>フォロー人数</p>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,9 @@ p {
 nav {
   background-color: rgba(255, 255, 255, 0.7);
 }
+.head-img img {
+  border-radius: 50%;
+}
 /* home */
 .main-bg {
   background-image: url(home.jpg);
@@ -141,31 +144,37 @@ nav {
 .dog-img {
   border-bottom: dotted 1px black;
 }
-/* dog show */
-.dog-show-top {
+/* dog_show user_show*/
+.dog-show-top,
+.user-show-top {
   margin-bottom: 20px;
 }
-.dog-show-img {
+.dog-show-img,
+.user-show-img {
   text-align: center;
   img {
     border-radius: 50%;
   }
 }
-.dog-right-1 {
+.dog-right-1,
+.user-right-1 {
   display: flex;
   margin-bottom: 20px;
 }
-.dog-edit-link {
+.dog-edit-link,
+.user-edit-link {
   padding-top: 5px;
 }
-.dog-show-info {
+.dog-show-info,
+.user-show-info {
   border-bottom: dotted 1px black;
   margin-bottom: 10px;
 }
 .dog-show-profile,
 .dog-show-skill,
 .dog-show-health,
-.dog-show-application {
+.dog-show-application,
+.user-show-profile {
   margin-bottom: 50px;
 }
 .profile-text,
