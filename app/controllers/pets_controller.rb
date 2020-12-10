@@ -47,7 +47,7 @@ class PetsController < ApplicationController
     @pet = Pet.find(params[:id])
     respond_to do |format|
       @pet.destroy
-      format.html { redirect_to dog_path @dog }
+      format.html { redirect_to user_path @user }
       format.js { @status = "success" }
     end
   end
