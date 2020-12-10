@@ -20,7 +20,7 @@
       </div>
       <% if user_signed_in? && @user.id == current_user.id %>
         <div class="det-new-link col-4">
-          <%= link_to new_user_pet_path(@user), remote: true, class: "pet-icon" do %>
+          <%= link_to new_user_pet_path(@user), remote: true, class: "pet-new-icon" do %>
             <i class="fas fa-paw fa-3x"></i>
           <% end %>
           <div id="pet-new-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
@@ -29,18 +29,22 @@
     </div>
     <div class="pet-posts row">
       <% @user.pets.each do |pet| %>
-        <div class="pet-post col col-sm-4" id="pet-<%= pet.id %>">
+        <div class="pet-post col col-sm-4">
           <%= image_tag pet.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
           <p><%= pet.age %></p>
           <p><%= pet.gender %></p>
           <p><%= pet.character %></p>
-          <%= link_to edit_user_pet_path(@user, pet), remote: true, class: "pet-icon" do %>
-            <i class="far fa-edit"></i>
-          <% end %>
-          <div id="pet-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-          <%= link_to user_pet_path(@user, pet), data: { confirm: "本当に削除しますか?" }, method: :delete, remote: true do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
+          <div class="pet-edit-link">
+            <%= link_to edit_user_pet_path(@user, pet), remote: true, class: "pet-edit-icon" do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+            <div id="pet-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+          </div>
+          <div class="pet-delete-link">
+            <%= link_to user_pet_path(@user, pet), data: { confirm: "本当に削除しますか?" }, method: :delete, remote: true, class: "pet-delete-icon" do %>
+              <i class="fas fa-trash-alt" id="pet-<%= pet.id %>"></i>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
