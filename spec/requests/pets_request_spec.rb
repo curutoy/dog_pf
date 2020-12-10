@@ -37,7 +37,7 @@ RSpec.describe "Pets", type: :request do
     end
   end
 
-  describe "POST /edit" do
+  describe "PUT /update" do
     context "userがログインしている場合" do
       before do
         sign_in user1
@@ -87,7 +87,7 @@ RSpec.describe "Pets", type: :request do
         expect { delete user_pet_path(user_id: user1.id, id: pet2.id) }.to change(Pet, :count).by(-1)
       end
 
-      it "user画面へリダイレクトすること" do
+      it "user画面へ遷移すること" do
         delete user_pet_path(user_id: user1.id, id: pet2.id)
         expect(response).to redirect_to user_path(user1)
       end
