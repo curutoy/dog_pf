@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
-  let(:testuser1) { FactoryBot.build(:user) }
-  let(:testuser2) { FactoryBot.build(:user2) }
+  let(:testuser1) { build(:user) }
+  let(:testuser2) { build(:user2) }
+  let(:testuser3) { build(:user3) }
+  let(:pet1)      { build(:pet2, user: testuser1) }
+  let(:pet2)      { build(:pet2, user: testuser2) }
 
   describe "sign_up" do
     before do
@@ -218,6 +221,103 @@ RSpec.describe 'Users', type: :system do
         fill_in '現在のパスワード', with: 'password'
         click_button '更新'
         expect(page).to have_content "現在のパスワード が間違っています。"
+      end
+    end
+  end
+
+  describe "show" do
+    context "userがサインインした場合", js: true do
+      before do
+        testuser1.save
+        testuser2.save
+        testuser3.save
+        visit new_user_session_path
+        fill_in 'Eメールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'testpassword'
+        click_button 'ログイン'
+        pet1.save
+        pet2.save
+      end
+
+      context "マイページにアクセスした場合" do
+        before do
+          visit user_path(testuser1)
+        end
+
+        it "アクセスができること" do
+          expect(current_path).to eq user_path(testuser1)
+        end
+
+        it "登録した内容が反映されていること" do
+          expect(page).to have_content "testuser"
+          expect(page).to have_content "東京都"
+          expect(page).to have_content "１人"
+          expect(page).to have_content "一戸建て"
+          expect(page).to have_content "test"
+        end
+
+        it "編集リンクが表示されていること" do
+          expect(page).to have_link "編集"
+        end
+
+        it "先住犬を投稿できるアイコンから新規登録モーダルが表示できること" do
+          find('.pet-new-icon').click
+          sleep 3
+          expect(page).to have_content "写真"
+          expect(page).to have_content "年齢"
+          expect(page).to have_content "性別"
+          expect(page).to have_content "性格（50文字以内)"
+        end
+
+        it "登録済みの先住動物欄にeditがありモーダル表示ができること" do
+          page.evaluate_script('$(".fade").removeClass("fade")')
+          find('.pet-edit-icon').click
+          sleep 3
+          expect(page).to have_content "写真"
+          expect(page).to have_content "年齢"
+          expect(page).to have_content "性別"
+          expect(page).to have_content "性格（50文字以内)"
+        end
+
+        it "登録済みの先住動物欄にdeleteのアイコンが表示されていること" do
+          expect(page).to have_css '.pet-delete-icon'
+        end
+      end
+
+      context "他のユーザーのページにアクセスした場合" do
+        before do
+          visit user_path(testuser2)
+        end
+
+        it "アクセスができること" do
+          expect(current_path).to eq user_path(testuser2)
+        end
+
+        it "編集リンクが表示されていないこと" do
+          expect(page).to have_no_link "編集"
+        end
+
+        it "先住動物を登録するアイコンが表示されていないこと" do
+          expect(page).to have_no_css '.pet-new-icon'
+        end
+
+        it "先住動物を編集するアイコンが表示されていないこと" do
+          expect(page).to have_no_css '.pet-edit-icon'
+        end
+
+        it "先住動物を削除するアイコンが表示されていないこと" do
+          expect(page).to have_no_css '.pet-delete-icon'
+        end
+      end
+
+      context "先住犬を登録していないページにアクセスした場合" do
+        before do
+          visit user_path(testuser3)
+        end
+
+        it "先住動物が存在しない旨の文が表示されること" do
+          expect(page).to have_content "先住動物はいません。"
+        end
       end
     end
   end
