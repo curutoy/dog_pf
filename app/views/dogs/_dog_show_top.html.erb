@@ -3,7 +3,7 @@
 </div>
 <div class="dog-show-right col-6">
   <div class="dog-right-1 row">
-    <div class="dog-name col-9">
+    <div class="dog-name col-8">
       <h1>
         <%= dog.name %>
         <% if dog.gender == "男の子" %>
@@ -13,11 +13,20 @@
         <% end %>
       </h1>
     </div>
-    <div class="dog-edit-link col-3">
+    <div class="dog-top-link col-4">
       <% if user_signed_in? %>
         <%= link_to "フォロー", "#", class: "btn btn-outline-dark" %>
       <% elsif dog.protector_id == current_protector.id %>
-        <%= link_to "編集", edit_dog_path(dog.id), class: "btn btn-outline-dark" %>
+        <ul class="dog-edit-destroy">
+          <li class="dog-edit-btn float-left">
+            <%= link_to "編集", edit_dog_path(dog.id), class: "btn btn-outline-dark" %>
+          </li>
+          <li class="dog-destroy-btn float-right">
+            <%= link_to dog_path(dog), data: { confirm: "本当に削除しますか?" }, method: :delete do %>
+              <i class="fas fa-trash-alt fa-2x"></i>
+            <% end %>
+          </li>
+        </ul>
       <% end %>
     </div>
   </div>

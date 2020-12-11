@@ -1,18 +1,19 @@
-<h1>Protector#show</h1>
-<p>名前 : <%= @protector.name %></p>
-<p>メールアドレス : <%= @protector.email %></p>
-<p>プロフィール : <%= @protector.profile %></p>
-<p>所在地 : <%= @protector.address %></p>
-<p>Webサイト: <%= @protector.url %></p>
-<% if @protector.image.attached? %>
-  <%= image_tag @protector.image.variant(combine_options:{gravity: :center, resize:"200x200^", crop:"200x200+0+0"}).processed %>
-<% else %>
-  <%= image_tag "protector_default.png", :size => "200x200" %>
-<% end %>
-
-<% if @dogs.present? %>
-  <% @dogs.each do |dog| %>
-    <p>名前 : <%= dog.name %></p>
-    <%= image_tag dog.image.variant(combine_options:{gravity: :center, resize:"200x200^", crop:"200x200+0+0"}).processed %>
-  <% end %>
-<% end %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<div class="protector-show">
+  <div class="container">
+    <div class="protector-show-top row">
+      <%= render 'protectors/show_top', protector: @protector %>
+    </div>
+    <div class="protector-show-profile">
+      <% if @protector.profile.present? %>
+        <div class="profile-text">
+          <%= @protector.profile %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="protector-dogs container">
+    <%= render 'protector_dogs', protector: @protector %>
+  </div>
+</div>

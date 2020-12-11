@@ -20,6 +20,7 @@ class DogsController < ApplicationController
   def index
     if user_signed_in? || protector_signed_in?
       @dogs = Dog.all
+      @dogs = Dog.page(params[:page]).per(20)
       render :index
     else
       render template: "home/index"
@@ -46,6 +47,9 @@ class DogsController < ApplicationController
   end
 
   def destroy
+    @dog = Dog.find(params[:id])
+    @dog.destroy
+    redirect_to root_path
   end
 
   private

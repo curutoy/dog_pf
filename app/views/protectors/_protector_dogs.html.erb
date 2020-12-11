@@ -1,0 +1,29 @@
+<div class="protector-dog-top row">
+  <h1>保護犬一覧</h1>
+</div>
+<div class="protector-dogs row">
+  <% if protector.dogs.present? %>
+    <% protector.dogs.each do |dog| %>
+      <div class="dog-post col col-sm-4">
+        <div class="box">
+          <div class="dogs_index dog-width">
+            <div class="dog-img">
+              <%= link_to dog do %>
+                <%= image_tag dog.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:" 150x150+0+0"}).processed, class: "img-fluid" %>
+              <% end %>
+            </div>
+            <div class="dog-info">
+              <p><%= dog.name %></p>
+              <p><%= dog.age %></p>
+              <p><%= dog.gender %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="pet-empty">
+      <p>保護犬が登録されていません</p>
+    </div>
+  <% end %>
+</div>

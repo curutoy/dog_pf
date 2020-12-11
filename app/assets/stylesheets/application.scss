@@ -29,6 +29,21 @@ p {
 nav {
   background-color: rgba(255, 255, 255, 0.7);
 }
+.head-right {
+  li {
+    padding: 0 10px 0 10px;
+  }
+}
+.protector-dog-new {
+  text-align: center;
+  i {
+    color: black;
+  }
+  p {
+    font-size: 10px;
+    color: black;
+  }
+}
 .head-img img {
   border-radius: 50%;
 }
@@ -135,8 +150,9 @@ nav {
 .account-cancel {
   margin-bottom: 20px;
 }
-/* user show */
-.user-pet-top {
+/* user_show protector_show */
+.user-pet-top,
+.protector-dog-top {
   margin-bottom: 50px;
 }
 .user-pet-title {
@@ -149,12 +165,16 @@ nav {
   border: solid 1px black;
   border-radius: 10px;
 }
-.pet-post {
+.pet-post,
+.dog-post {
   margin-bottom: 20px;
 }
 .pet-img {
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px 0 20px 0;
+  img {
+    border-radius: 50%;
+  }
 }
 .pet-info {
   width: 80%;
@@ -214,6 +234,9 @@ nav {
   }
 }
 /* dog index*/
+.dog-index-top {
+  margin-bottom: 30px;
+}
 .dogs_index {
   text-align: center;
   width: 80%;
@@ -227,29 +250,61 @@ nav {
 .dog-img {
   border-bottom: dotted 1px black;
 }
-/* dog_show user_show*/
+.dog-width {
+  margin: 0 auto;
+}
+.dog-page {
+  background-color: #ebc94e;
+  text-align: center;
+}
+.pagination {
+  display: inline-block;
+  li {
+    float: left;
+  }
+}
+.pagination > li > a {
+  border: none;
+  color: #696969;
+}
+.pagination > .active > a {
+  border-radius: 15px;
+  background-color: black !important;
+}
+.pagination > li > a:hover {
+  border-radius: 15px;
+}
+/* dog_show user_show protector_show*/
 .dog-show-top,
-.user-show-top {
+.user-show-top,
+.protector-show-top {
   margin-bottom: 20px;
 }
 .dog-show-img,
-.user-show-img {
+.user-show-img,
+.protector-show-img {
   text-align: center;
   img {
     border-radius: 50%;
   }
 }
 .dog-right-1,
-.user-right-1 {
+.user-right-1,
+.protector-right-1 {
   display: flex;
   margin-bottom: 20px;
 }
-.dog-edit-link,
-.user-edit-link {
+.dog-top-link,
+.user-edit-link,
+.protector-edit-link {
   padding-top: 5px;
 }
+.dog-destroy-btn {
+  padding-top: 3px;
+}
 .dog-show-info,
-.user-show-info {
+.user-show-info,
+.protector-show-info {
   border-bottom: dotted 1px black;
   margin-bottom: 10px;
 }
@@ -257,7 +312,8 @@ nav {
 .dog-show-skill,
 .dog-show-health,
 .dog-show-application,
-.user-show-profile {
+.user-show-profile,
+.protector-show-profile {
   margin-bottom: 50px;
 }
 .profile-text,

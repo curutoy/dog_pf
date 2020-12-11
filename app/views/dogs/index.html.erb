@@ -1,8 +1,11 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 <div class="container-md">
-  <h1>保護犬一覧</h1>
+  <div class="dog-index-top">
+    <h1>保護犬一覧</h1>
+  </div>
   <div class ="dog-post row row-cols-4 row-cols-lg-5">
     <%= render "dog_index", dogs: @dogs %>
   </div>
+  <%= paginate @dogs %>
 </div>

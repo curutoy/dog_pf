@@ -15,15 +15,20 @@
             <li class="nav-item">
             </li>
           </ul>
-          <ul class="navbar-nav">
+          <ul class="navbar-nav head-right">
             <li class="nav-item">
               <a class="nav-link active" href="#">ホーム <span class="sr-only">(現位置)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">リンク1</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">リンク2</a>
+            <li class="nav-item protector-dog-new">
+              <% if protector_signed_in? %>
+                <%= link_to new_dog_path do %>
+                  <i class="fas fa-dog fa-2x"></i>
+                  <p>保護犬登録</p>
+                <% end %>
+              <% end %>
             </li>
             <li class="nav-item head-img">
               <% if user_signed_in? %>

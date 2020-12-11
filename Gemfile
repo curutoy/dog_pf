@@ -31,11 +31,12 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Reduces boot times through caching; required in config/boot.rb
+# layout
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
+gem 'kaminari'
 # devise
 gem 'devise'
 gem 'omniauth-facebook'

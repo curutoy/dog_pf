@@ -1,0 +1,42 @@
+<div class="protector-show-img col-6">
+  <% if protector.image.attached? %>
+    <%= image_tag protector.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed %>
+  <% else %>
+    <%= image_tag "protector_default.png", :size => "300x300" %>
+  <% end %>
+</div>
+<div class="protector-show-right col-6">
+  <div class="protector-right-1 row">
+    <div class="protector-name col-9">
+      <h1><%= protector.name %></h1>
+    </div>
+    <div class="protector-edit-link col-3">
+      <% if protector_signed_in? && protector == current_protector %>
+        <%= link_to "編集", edit_protector_registration_path(protector.id), class: "btn btn-outline-dark" %>
+      <% elsif %>
+        <%= link_to "フォロー", "#" , class: "btn btn-outline-dark" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="protector-right-2">
+    <div class="protector-show-info row">
+      <div class="col-6">
+        <p>所在地</p>
+      </div>
+      <div class="col-6">
+        <%= protector.address %>
+      </div>
+    </div>
+    <div class="protector-show-info row">
+      <div class="col-6">
+        <p>Webサイト</p>
+      </div>
+      <div class="col-6">
+        <%= protector.url %>
+      </div>
+    </div>
+    <div class="protector-follow">
+      <p>フォロワー</p>
+    </div>
+  </div>
+</div>
