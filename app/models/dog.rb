@@ -1,7 +1,7 @@
 class Dog < ApplicationRecord
   has_one_attached :image
 
-  has_many :posts, dependent: :destroy
+  has_many :posts, -> { order('id DESC') }, dependent: :destroy
   belongs_to :protector
 
   validates :name,                presence: true,

@@ -138,10 +138,6 @@ RSpec.describe "Dogs", type: :request do
       it "@dogが取得できていること" do
         expect(assigns(:dog)).to eq dog1
       end
-
-      it "@postsが取得できていること" do
-        expect(assigns(:posts)).to eq posts
-      end
     end
 
     context "protectorでログイン状態の場合" do
@@ -158,12 +154,8 @@ RSpec.describe "Dogs", type: :request do
         expect(response).to render_template :show
       end
 
-      it "@dogsが取得できていること" do
+      it "@dogが取得できていること" do
         expect(assigns(:dog)).to eq dog1
-      end
-
-      it "@postsが取得できていること" do
-        expect(assigns(:posts)).to eq posts
       end
     end
   end
@@ -201,7 +193,7 @@ RSpec.describe "Dogs", type: :request do
       end
 
       it "@dogsが取得できていること" do
-        expect(assigns(:dogs)).to eq dogs
+        expect(assigns(:dogs)).to eq dogs.sort.reverse
       end
     end
 
@@ -223,7 +215,7 @@ RSpec.describe "Dogs", type: :request do
       end
 
       it "@dogsが取得できていること" do
-        expect(assigns(:dogs)).to eq dogs
+        expect(assigns(:dogs)).to eq dogs.sort.reverse
       end
     end
   end

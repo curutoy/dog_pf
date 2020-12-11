@@ -19,8 +19,8 @@ class DogsController < ApplicationController
 
   def index
     if user_signed_in? || protector_signed_in?
-      @dogs = Dog.all
-      @dogs = Dog.page(params[:page]).per(20)
+      @dogs = Dog.all.includes(:posts)
+      @dogs = Dog.page(params[:page]).per(20).order('id DESC')
       render :index
     else
       render template: "home/index"
@@ -29,8 +29,6 @@ class DogsController < ApplicationController
 
   def show
     @dog = Dog.find(params[:id])
-    @posts = @dog.posts
-    @post = @dog.posts.each
   end
 
   def edit
