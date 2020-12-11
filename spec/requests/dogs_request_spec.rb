@@ -363,4 +363,32 @@ RSpec.describe "Dogs", type: :request do
       end
     end
   end
+
+  describe "DELETE /destroy" do
+    before do
+      sign_in protector
+      dog1.save
+      dog2.save
+    end
+
+    it "リクエストが成功すること" do
+      delete dog_path(dog1)
+      expect(response).to have_http_status(302)
+    end
+
+    it "削除ができること" do
+      expect { delete dog_path(dog1) }.to change(Dog, :count).by(-1)
+    end
+
+    it "root画面へ遷移すること" do
+      delete dog_path(dog1)
+      expect(response).to redirect_to root_path
+    end
+
+    it "自分以外のdogを削除できないこと" do
+      delete dog_path(dog2)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to root_path
+    end
+  end
 end

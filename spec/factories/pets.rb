@@ -22,7 +22,6 @@ FactoryBot.define do
     age { "２歳" }
     gender { "男の子" }
     character { "test character" }
-    image { Rack::Test::UploadedFile.new(File.join(Rails.root, "spec/fixtures/files/test.png"), 'image/png') }
 
     trait :invalid do
       age { " " }

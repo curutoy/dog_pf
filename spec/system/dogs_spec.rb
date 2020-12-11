@@ -128,6 +128,10 @@ RSpec.describe 'Dogs', type: :system do
           expect(page).to have_link "編集"
         end
 
+        it "削除アイコンが表示されていること" do
+          expect(page).to have_css '.dog-destroy-btn'
+        end
+
         it "日常を投稿できるアイコンから新規投稿モーダルを表示できること" do
           page.evaluate_script('$(".fade").removeClass("fade")')
           find('.post-new-icon').click
@@ -148,6 +152,10 @@ RSpec.describe 'Dogs', type: :system do
 
         it "編集リンクが表示されていないこと" do
           expect(page).to have_no_link "編集"
+        end
+
+        it "削除アイコンが表示されていること" do
+          expect(page).to have_no_css '.dog-destroy-btn'
         end
 
         it "日常を投稿できるアイコンが表示されていないこと" do
@@ -175,7 +183,7 @@ RSpec.describe 'Dogs', type: :system do
     end
   end
 
-  describe "dog_edit" do
+  describe "dog_edit/update" do
     before do
       visit new_protector_session_path
       fill_in 'Eメールアドレス', with: 'protector@example.com'
@@ -221,6 +229,31 @@ RSpec.describe 'Dogs', type: :system do
         visit edit_dog_path(id: dog2.id)
         expect(current_path).to eq root_path
         expect(page).to have_content "投稿者のみ閲覧できるページです。"
+      end
+    end
+  end
+
+  describe "dog_delete" do
+    before do
+      visit new_protector_session_path
+      fill_in 'Eメールアドレス', with: 'protector@example.com'
+      fill_in 'パスワード', with: 'testpassword'
+      click_button 'ログイン'
+    end
+
+    context "自身が登録したdogの編集ページにアクセスした場合", js: true do
+      before do
+        visit dog_path(id: dog.id)
+      end
+
+      it "正常に削除ができること" do
+        find('.dog-destroy-btn').click
+        expect do
+          expect(page.driver.browser.switch_to.alert.text).to eq "本当に削除しますか?"
+          page.driver.browser.switch_to.alert.accept
+          sleep 2
+        end.to change(Dog, :count).by(-1)
+        expect(current_path).to eq root_path
       end
     end
   end
