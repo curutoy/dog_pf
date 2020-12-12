@@ -3,8 +3,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :pets, dependent: :destroy
+  has_many :pets,          dependent: :destroy
   has_many :relationships, dependent: :destroy
+  has_many :protectors, through: :relationships
 
   validates :name,          presence: true,
                             length: { maximum: 20 }

@@ -3,10 +3,11 @@ class Protector < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :dogs,  dependent: :destroy
-  has_many :posts, dependent: :destroy
+  has_many :dogs,          dependent: :destroy
+  has_many :posts,         dependent: :destroy
   has_many :relationships, dependent: :destroy
   has_many :follow_user, through: :relationships, source: :user
+  has_many :users,       through: :relationships
 
   validates :name,    presence: true,
                       length: { maximum: 20 }

@@ -233,6 +233,23 @@ nav {
     width: 100%;
   }
 }
+/* follow modal*/
+.follow-modal {
+  height: 500px;
+  background-color: #efefef;
+  border-radius: 10px;
+}
+.follow-container {
+  background-color: #efefef;
+  border: none;
+  padding: 20px;
+}
+.follow-info {
+  padding-bottom: 10px;
+  border-bottom: dotted 1px black;
+  margin-bottom: 5px;
+  overflow: scroll;
+}
 /* dog index*/
 .dog-index-top {
   margin-bottom: 30px;

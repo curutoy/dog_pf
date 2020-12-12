@@ -3,7 +3,7 @@
 <div class="protector-show">
   <div class="container">
     <div class="protector-show-top row">
-      <%= render 'protectors/show_top', protector: @protector %>
+      <%= render 'protectors/show_top', protector: @protector, relationships: @relationships %>
     </div>
     <div class="protector-show-profile">
       <% if @protector.profile.present? %>
