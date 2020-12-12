@@ -4,6 +4,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook]
 
   has_many :pets, dependent: :destroy
+  has_many :relationships, dependent: :destroy
 
   validates :name,          presence: true,
                             length: { maximum: 20 }

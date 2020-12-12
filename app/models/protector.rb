@@ -5,6 +5,7 @@ class Protector < ApplicationRecord
 
   has_many :dogs,  dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :relationships, dependent: :destroy
 
   validates :name,    presence: true,
                       length: { maximum: 20 }
