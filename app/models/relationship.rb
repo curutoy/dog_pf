@@ -1,5 +1,4 @@
 class Relationship < ApplicationRecord
-
   belongs_to :protector
   belongs_to :user
 

@@ -10,11 +10,11 @@
     <div class="protector-name col-9">
       <h1><%= protector.name %></h1>
     </div>
-    <div class="protector-edit-link col-3">
+    <div class="protector-edit-link col-3" id="protector-<%= protector.id %>">
       <% if protector_signed_in? && protector == current_protector %>
         <%= link_to "編集", edit_protector_registration_path(protector.id), class: "btn btn-outline-dark" %>
       <% elsif %>
-        <%= link_to "フォロー", "#" , class: "btn btn-outline-dark" %>
+        <%= render 'relationships/follow', protector: protector %>
       <% end %>
     </div>
   </div>

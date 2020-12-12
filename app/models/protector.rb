@@ -6,6 +6,7 @@ class Protector < ApplicationRecord
   has_many :dogs,  dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :relationships, dependent: :destroy
+  has_many :follow_user, through: :relationships, source: :user
 
   validates :name,    presence: true,
                       length: { maximum: 20 }
@@ -32,4 +33,16 @@ class Protector < ApplicationRecord
     徳島県: 36, 香川県: 37, 愛媛県: 38, 高知県: 39,
     福岡県: 40, 佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46, 沖縄県: 47,
   }
+
+  def follow(user)
+    relationships.create(user_id: user.id)
+  end
+
+  def unfollow(user)
+    relationships.find_by(user_id: user.id).destroy
+  end
+
+  def follow?(user)
+    follow_user.include?(user)
+  end
 end
