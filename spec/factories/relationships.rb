@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :relationship do
-    protector_id { 1 }
-    user_id { 1 }
+    association :protector
+    association :user
   end
 end
