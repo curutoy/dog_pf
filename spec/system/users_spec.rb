@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
-  let(:testuser1) { build(:user) }
-  let(:testuser2) { build(:user2) }
-  let(:testuser3) { build(:user3) }
-  let(:pet1)      { build(:pet2, user: testuser1) }
-  let(:pet2)      { build(:pet2, user: testuser2) }
+  let(:testuser1)    { build(:user) }
+  let(:testuser2)    { build(:user2) }
+  let(:testuser3)    { build(:user3) }
+  let(:pet1)         { build(:pet2, user: testuser1) }
+  let(:pet2)         { build(:pet2, user: testuser2) }
 
   describe "sign_up" do
     before do
@@ -226,6 +226,9 @@ RSpec.describe 'Users', type: :system do
   end
 
   describe "show" do
+    let!(:protector)   { create(:protector) }
+    let(:relationship) { build(:relationship, protector: protector) }
+
     context "userがサインインした場合", js: true do
       before do
         testuser1.save
@@ -241,6 +244,8 @@ RSpec.describe 'Users', type: :system do
 
       context "マイページにアクセスした場合" do
         before do
+          relationship.user_id = testuser1.id
+          relationship.save
           visit user_path(testuser1)
         end
 
@@ -260,6 +265,12 @@ RSpec.describe 'Users', type: :system do
           expect(page).to have_link "編集"
         end
 
+        it "フォロー人数をクリックするとフォローしているprotectorがモーダル表示されること" do
+          find('.follow-count').click
+          sleep 3
+          expect(page).to have_content protector.name
+        end
+
         it "先住犬を投稿できるアイコンから新規登録モーダルが表示できること" do
           find('.pet-new-icon').click
           sleep 3
@@ -267,6 +278,11 @@ RSpec.describe 'Users', type: :system do
           expect(page).to have_content "年齢"
           expect(page).to have_content "性別"
           expect(page).to have_content "性格（50文字以内)"
+        end
+
+        it "登録済みの先住犬情報が表示されていること" do
+          expect(page).to have_content pet1.age
+          expect(page).to have_content pet1.gender
         end
 
         it "登録済みの先住動物欄にeditがありモーダル表示ができること" do
@@ -286,6 +302,8 @@ RSpec.describe 'Users', type: :system do
 
       context "他のユーザーのページにアクセスした場合" do
         before do
+          relationship.user_id = testuser2.id
+          relationship.save
           visit user_path(testuser2)
         end
 
@@ -297,8 +315,19 @@ RSpec.describe 'Users', type: :system do
           expect(page).to have_no_link "編集"
         end
 
+        it "フォロー人数をクリックするとフォローしているprotectorがモーダル表示されること" do
+          find('.follow-count').click
+          sleep 3
+          expect(page).to have_content protector.name
+        end
+
         it "先住動物を登録するアイコンが表示されていないこと" do
           expect(page).to have_no_css '.pet-new-icon'
+        end
+
+        it "登録済みの先住犬情報が表示されていること" do
+          expect(page).to have_content pet1.age
+          expect(page).to have_content pet1.gender
         end
 
         it "先住動物を編集するアイコンが表示されていないこと" do
@@ -318,6 +347,51 @@ RSpec.describe 'Users', type: :system do
         it "先住動物が存在しない旨の文が表示されること" do
           expect(page).to have_content "先住動物はいません。"
         end
+      end
+    end
+
+    context "protectorがサインインした場合" do
+      before do
+        testuser1.save
+        relationship.user_id = testuser1.id
+        relationship.save
+        visit new_protector_session_path
+        fill_in 'Eメールアドレス', with: 'protector@example.com'
+        fill_in 'パスワード', with: 'testpassword'
+        click_button 'ログイン'
+        pet1.save
+        visit user_path(testuser1)
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq user_path(testuser1)
+      end
+
+      it "編集リンクが表示されていないこと" do
+        expect(page).to have_no_link "編集"
+      end
+
+      it "フォロー人数をクリックするとフォローしているprotectorがモーダル表示されること" do
+        find('.follow-count').click
+        sleep 3
+        expect(page).to have_content protector.name
+      end
+
+      it "先住動物を登録するアイコンが表示されていないこと" do
+        expect(page).to have_no_css '.pet-new-icon'
+      end
+
+      it "登録済みの先住犬情報が表示されていること" do
+        expect(page).to have_content pet1.age
+        expect(page).to have_content pet1.gender
+      end
+
+      it "先住動物を編集するアイコンが表示されていないこと" do
+        expect(page).to have_no_css '.pet-edit-icon'
+      end
+
+      it "先住動物を削除するアイコンが表示されていないこと" do
+        expect(page).to have_no_css '.pet-delete-icon'
       end
     end
   end

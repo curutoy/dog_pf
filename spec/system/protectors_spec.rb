@@ -203,4 +203,152 @@ RSpec.describe 'Protectors', type: :system do
       end
     end
   end
+
+  describe "show" do
+    let!(:user)        { create(:user) }
+    let(:relationship) { build(:relationship, protector: testprotector1, user: user) }
+    let!(:dog)         { build(:dog2, protector: testprotector1) }
+
+    before do
+      testprotector1.save
+    end
+
+    context "protectorがサインインした場合", js: true do
+      before do
+        relationship.save
+        dog.save
+        visit new_protector_session_path
+        fill_in 'Eメールアドレス', with: 'protector@example.com'
+        fill_in 'パスワード', with: 'testpassword'
+        click_button 'ログイン'
+      end
+
+      context "マイページにアクセスした場合" do
+        before do
+          visit protector_path(testprotector1)
+        end
+
+        it "アクセスができること" do
+          expect(current_path).to eq protector_path(testprotector1)
+        end
+
+        it "登録した内容が反映されていること" do
+          expect(page).to have_content "testprotector"
+          expect(page).to have_content "東京都"
+          expect(page).to have_content "test"
+        end
+
+        it "編集リンクが表示されていること" do
+          expect(page).to have_link "編集"
+        end
+
+        it "フォローボタンは表示されていないこと" do
+          expect(page).to have_no_css '.follow-btn'
+        end
+
+        it "フォロワー人数をクリックするとフォローしているuserがモーダル表示されること" do
+          find('.follower-count').click
+          sleep 3
+          expect(page).to have_content user.name
+        end
+
+        it "登録済みのdogが表示されていること" do
+          expect(page).to have_content dog.name
+          expect(page).to have_content dog.age
+          expect(page).to have_content dog.gender
+        end
+
+        it "登録済みの画像をクリックするとdog詳細画面へ遷移すること" do
+          find('.protector-dog-img').click
+          expect(current_path).to eq dog_path(dog)
+        end
+      end
+
+      context "他のprotectorのページにアクセスした場合" do
+        before do
+          testprotector2.save
+          dog.protector_id = testprotector2.id
+          dog.save
+          relationship.protector_id = testprotector2.id
+          relationship.save
+          visit protector_path(testprotector2)
+        end
+
+        it "アクセスができること" do
+          expect(current_path).to eq protector_path(testprotector2)
+        end
+
+        it "編集リンクが表示されていないこと" do
+          expect(page).to have_no_link "編集"
+        end
+
+        it "フォローボタンは表示されていないこと" do
+          expect(page).to have_no_css '.follow-btn'
+        end
+
+        it "フォロー人数をクリックするとフォローしているuserがモーダル表示されること" do
+          find('.follower-count').click
+          sleep 3
+          expect(page).to have_content user.name
+        end
+
+        it "登録済みの画像をクリックするとdog詳細画面へ遷移すること" do
+          find('.protector-dog-img').click
+          expect(current_path).to eq dog_path(dog)
+        end
+      end
+
+      context "dogを登録していないページにアクセスした場合" do
+        before do
+          testprotector2.save
+          visit protector_path(testprotector2)
+        end
+
+        it "先住動物が存在しない旨の文が表示されること" do
+          expect(page).to have_content "保護犬が登録されていません"
+        end
+      end
+    end
+
+    context "userがアクセスした場合", js: true do
+      before do
+        relationship.save
+        dog.save
+        visit new_user_session_path
+        fill_in 'Eメールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'testpassword'
+        click_button 'ログイン'
+        visit protector_path(testprotector1)
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq protector_path(testprotector1)
+      end
+
+      it "編集リンクが表示されていないこと" do
+        expect(page).to have_no_link "編集"
+      end
+
+      it "フォローボタンが表示されること" do
+        expect(page).to have_css '.follow-btn'
+      end
+
+      it "フォロワー人数をクリックするとフォローしているprotectorがモーダル表示されること" do
+        find('.follower-count').click
+        sleep 3
+        expect(page).to have_content user.name
+      end
+
+      it "登録済みのdogが表示されていること" do
+        expect(page).to have_content dog.name
+        expect(page).to have_content dog.age
+        expect(page).to have_content dog.gender
+      end
+
+      it "登録済みの画像をクリックするとdog詳細画面へ遷移すること" do
+        find('.protector-dog-img').click
+        expect(current_path).to eq dog_path(dog)
+      end
+    end
+  end
 end
