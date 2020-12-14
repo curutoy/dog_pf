@@ -16,6 +16,11 @@ RSpec.describe "Relationships", type: :request do
         expect(response).to have_http_status(302)
       end
 
+      it "@protectorの値が取得できていること" do
+        post relationships_path, params: { protector_id: protector.id }
+        expect(assigns(:protector)).to eq protector
+      end
+
       it "フォローが成功すること" do
         expect do
           post relationships_path, params: { protector_id: protector.id }
@@ -39,6 +44,11 @@ RSpec.describe "Relationships", type: :request do
       it "リクエストが成功すること" do
         delete relationship_path(id: relationship.id)
         expect(response).to have_http_status(302)
+      end
+
+      it "@protectorの値が取得できていること" do
+        delete relationship_path(id: relationship.id)
+        expect(assigns(:protector)).to eq protector
       end
 
       it "フォロー解除ができること" do

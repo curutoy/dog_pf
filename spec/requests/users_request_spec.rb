@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  let!(:user) { create(:user) }
+  let!(:user)         { create(:user) }
+  let!(:relationship) { create(:relationship, user: user) }
 
   describe "GET /show" do
     context "ログインしていない場合" do
@@ -38,6 +39,10 @@ RSpec.describe "Users", type: :request do
 
       it "@userが取得できていること" do
         expect(assigns(:user)).to eq user
+      end
+
+      it "@relationshipsが取得できていること" do
+        expect(assigns(:relationships)).to eq [relationship]
       end
     end
   end

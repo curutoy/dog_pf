@@ -31,7 +31,6 @@ RSpec.describe "Pets", type: :request do
 
       it "自分以外のpetを登録できないこと" do
         post user_pets_path(user_id: user2.id), params: { pet: attributes_for(:pet2) }
-        expect(response).to have_http_status(302)
         expect(response).to redirect_to user_path(user2)
       end
     end
@@ -64,7 +63,6 @@ RSpec.describe "Pets", type: :request do
 
       it "自分以外のpetを編集できないこと" do
         put user_pet_path(user_id: user1.id, id: pet1.id), params: { pet: attributes_for(:pet3) }
-        expect(response).to have_http_status(302)
         expect(response).to redirect_to user_path(user1)
       end
     end
@@ -94,7 +92,6 @@ RSpec.describe "Pets", type: :request do
 
       it "自分以外のpetを削除できないこと" do
         delete user_pet_path(user_id: user1.id, id: pet1.id)
-        expect(response).to have_http_status(302)
         expect(response).to redirect_to user_path(user1)
       end
     end

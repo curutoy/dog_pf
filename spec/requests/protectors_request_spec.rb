@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Protectors", type: :request do
-  let!(:protector) { create(:protector) }
+  let!(:protector)    { create(:protector) }
+  let!(:dogs)         { create_list(:dog2, 2, protector_id: protector.id) }
+  let!(:relationship) { create(:relationship, protector: protector) }
 
   describe "GET /show" do
     context "ログインしていない場合" do
@@ -38,6 +40,14 @@ RSpec.describe "Protectors", type: :request do
 
       it "@protectorが取得できていること" do
         expect(assigns(:protector)).to eq protector
+      end
+
+      it "@dogsが取得できていること" do
+        expect(assigns(:dogs)).to eq dogs
+      end
+
+      it "@relationshipsが取得できていること" do
+        expect(assigns(:relationships)).to eq [relationship]
       end
     end
   end
