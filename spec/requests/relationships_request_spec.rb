@@ -4,7 +4,6 @@ RSpec.describe "Relationships", type: :request do
   let!(:protector)    { create(:protector) }
   let!(:user)         { create(:user) }
   let(:relationship)  { build(:relationship, protector: protector, user: user) }
-  let(:relationship2) { build(:relationship, protector: protector, user: user) }
 
   describe "POST /create" do
     context "userがログインしている場合" do

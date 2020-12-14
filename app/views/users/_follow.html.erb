@@ -8,7 +8,11 @@
       <% user.protectors.each do |protector| %>
         <div class="follow-info row">
           <div class="follow-img col-3">
-            <%= image_tag protector.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
+          <% if protector.image.attached? %>
+            <%= image_tag protector.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed %>
+          <% else %>
+            <%= image_tag "protector_default.png", :size => "300x300" %>
+          <% end %>
           </div>
           <div class="follow-name col-9">
             <%= link_to protector_path(protector) do %>
