@@ -6,7 +6,7 @@ class RelationshipsController < ApplicationController
     unless @protector.follow?(current_user)
       @protector.follow(current_user)
       respond_to do |format|
-        format.html { redirect_to request.referrer }
+        format.html { redirect_to @protector }
         format.js
       end
     end
@@ -17,7 +17,7 @@ class RelationshipsController < ApplicationController
     if @protector.follow?(current_user)
       @protector.unfollow(current_user)
       respond_to do |format|
-        format.html { redirect_to request.referrer }
+        format.html { redirect_to @protector }
         format.js
       end
     end
