@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "Favorites", type: :request do
   let!(:user)      { create(:user) }
   let!(:user2)     { create(:user2) }
-  let!(:dog)       { create(:dog2) }
+  let!(:protector) { create(:protector) }
+  let!(:dog)       { create(:dog2, protector: protector) }
   let(:favorite)   { build(:favorite, user: user, dog: dog) }
 
   describe "POST /create" do
@@ -36,6 +37,20 @@ RSpec.describe "Favorites", type: :request do
   end
 
   describe "GET /index" do
+    context "ログインしていない場合" do
+      before do
+        get user_favorites_path(user)
+      end
+
+      it "staus codeは302となること" do
+        expect(response).to have_http_status(302)
+      end
+
+      it "ホーム画面へ遷移すること" do
+        expect(response).to redirect_to root_path
+      end
+    end
+
     context "userがログインしている場合" do
       before do
         sign_in user
@@ -43,7 +58,7 @@ RSpec.describe "Favorites", type: :request do
         get user_favorites_path(user)
       end
 
-      it "リクエストが成功すること" do
+      it "status codeは200となること" do
         expect(response).to have_http_status(200)
       end
 
@@ -55,9 +70,25 @@ RSpec.describe "Favorites", type: :request do
         expect(assigns(:dogs)).to eq [dog]
       end
 
-      it "current_user以外はページへアクセスできないこと画面へリダイレクトすること" do
+      it "current_user以外はページへアクセスできないこと" do
         get user_favorites_path(user2)
-        expect(response).to redirect_to user_path(user)
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "protectorがログインしている場合" do
+      before do
+        favorite.save
+        sign_in protector
+        get user_favorites_path(user)
+      end
+
+      it "status codeは302となること" do
+        expect(response).to have_http_status(302)
+      end
+
+      it "current_user以外はページへアクセスできないこと" do
+        expect(response).to redirect_to root_path
       end
     end
   end

@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_any!
   before_action :right_user, only: [:index]
 
   def create
@@ -32,8 +32,8 @@ class FavoritesController < ApplicationController
 
   def right_user
     @user = User.find(params[:user_id])
-    if @user != current_user
-      redirect_to current_user
+    unless @user == current_user
+      redirect_to root_path
       flash[:alert] = "登録者のみ閲覧できるページです。"
     end
   end
