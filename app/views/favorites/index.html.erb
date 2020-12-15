@@ -9,7 +9,7 @@
           <% if dog.id == favorite.dog_id %>
             <div class="col dogs_index">
               <div class="dog-img">
-                <%= link_to dog do %>
+                <%= link_to dog, class: "dog-like-img" do %>
                   <%= image_tag dog.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:" 150x150+0+0"}).processed, class: "img-fluid" %>
                 <% end %>
               </div>
