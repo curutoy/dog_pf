@@ -49,8 +49,17 @@
         <%= user.caretaker%>
       </div>
     </div>
-    <div class="user-follow">
-      <%= render 'users/follow', user: user, relationships: relationships %>
+    <div class="user-follow-like row">
+      <div class="user-follow col-6">
+        <%= render 'users/follow', user: user, relationships: relationships %>
+      </div>
+      <div class="favorite-show">
+        <% if user == current_user %>
+          <%= link_to user_favorites_path(user) do %>
+            お気に入り一覧
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

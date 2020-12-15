@@ -206,7 +206,7 @@ nav {
     padding-left: 5px;
   }
 }
-.pet-empty {
+.empty {
   width: 70%;
   margin: 0 auto;
   text-align: center;
@@ -216,6 +216,15 @@ nav {
   p {
     padding-top: 35px;
   }
+}
+.user-follow > button {
+  border-bottom: dotted 1px black;
+}
+.favorite-show > a {
+  color: black;
+  border-bottom: dotted 1px black;
+  padding-bottom: 10px;
+  line-height: 38px;
 }
 /* pet modal */
 .pet-new,
@@ -455,4 +464,11 @@ nav {
 }
 .fa-trash-alt {
   color: black;
+}
+/*favorite_index*/
+.dog-like-show {
+  margin-top: 150px;
+}
+.dog-favorite-top {
+  margin-bottom: 50px;
 }
