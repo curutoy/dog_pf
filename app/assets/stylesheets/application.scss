@@ -233,22 +233,25 @@ nav {
     width: 100%;
   }
 }
-/* follow modal*/
-.follow-modal {
-  height: 500px;
+/* follow_modal like_modal*/
+.follow-modal,
+.like-modal {
+  height: 400px;
   background-color: #efefef;
   border-radius: 10px;
+  overflow: scroll;
 }
-.follow-container {
+.follow-container,
+.like-container {
   background-color: #efefef;
   border: none;
   padding: 20px;
 }
-.follow-info {
+.follow-info,
+.like-info {
   padding-bottom: 10px;
   border-bottom: dotted 1px black;
   margin-bottom: 5px;
-  overflow: scroll;
 }
 /* dog index*/
 .dog-index-top {
@@ -437,7 +440,7 @@ nav {
 }
 /*post show*/
 .modal-dialog,
-.modal-content {
+.post-modal-content {
   margin-top: 100px;
 }
 .modal-container {

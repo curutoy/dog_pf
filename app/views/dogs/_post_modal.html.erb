@@ -8,7 +8,7 @@
   <div class="modal fade" id="modal-<%= post.id %>" tabindex="-1"
         role="dialog" aria-labelledby="label1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content container modal-container">
+      <div class="modal-content container modal-container post-modal-content">
         <div class="row">
           <div class="post-show-img col-6 ">
               <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"500x500^", crop:"500x500+0+0"}).processed, class: "img-fluid" %>

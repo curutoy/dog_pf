@@ -1,0 +1,12 @@
+<span class="like">
+  <% if dog.like?(current_user) %>
+    <%= form_for(dog.favorites.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
+       <%= f.submit "お気に入り登録済み", class: "btn btn-dark like-btn" %>
+    <% end %>
+  <% else %>
+    <%= form_for(dog.favorites.build, remote: true) do |f| %>
+      <div><%= hidden_field_tag :dog_id, dog.id %></div>
+       <%= f.submit "お気に入り登録", class: "btn btn-outline-dark like-btn" %>
+    <% end %>
+  <% end %>
+</span>

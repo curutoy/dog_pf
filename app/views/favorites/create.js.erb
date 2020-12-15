@@ -1,0 +1,2 @@
+$("#dog-<%= @dog.id %> .like").html("<%= escape_javascript(render "favorites/like", dog: @dog) %>");
+$("#dog-like").html('<%= @dog.favorites.count %>');

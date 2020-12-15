@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :relationships, dependent: :destroy
   has_many :protectors,    through: :relationships
   has_many :favorites,     dependent: :destroy
+  has_many :dogs,          through: :favorites
 
   validates :name,          presence: true,
                             length: { maximum: 20 }

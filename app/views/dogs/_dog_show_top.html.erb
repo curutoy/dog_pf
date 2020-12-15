@@ -13,9 +13,9 @@
         <% end %>
       </h1>
     </div>
-    <div class="dog-top-link col-4">
+    <div class="dog-top-link col-4" id="dog-<%= dog.id %>">
       <% if user_signed_in? %>
-        <%= link_to "フォロー", "#", class: "btn btn-outline-dark" %>
+        <%= render 'favorites/like', dog: dog %>
       <% elsif dog.protector_id == current_protector.id %>
         <ul class="dog-edit-destroy">
           <li class="dog-edit-btn float-left">
@@ -63,5 +63,6 @@
         <%= dog.size %>
       </div>
     </div>
+    <%= render 'dogs/like', dog: dog, favorites: favorites %>
   </div>
 </div>

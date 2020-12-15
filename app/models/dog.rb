@@ -3,7 +3,9 @@ class Dog < ApplicationRecord
 
   has_many   :posts, -> { order('id DESC') }, dependent: :destroy
   belongs_to :protector
-  has_many   :favorites, dependent: :destroy
+  has_many   :favorites,  dependent: :destroy
+  has_many   :like_users, through: :favorites, source: :user
+  has_many   :users,      through: :favorites
 
   validates :name,                presence: true,
                                   length: { maximum: 20 }
@@ -102,4 +104,16 @@ class Dog < ApplicationRecord
   enum single_people: {
     応募可能: 1, 応募不可: 2,
   }, _prefix: true
+
+  def like(user)
+    favorites.create(user_id: user.id)
+  end
+
+  def unlike(user)
+    favorites.find_by(user_id: user.id).destroy
+  end
+
+  def like?(user)
+    like_users.include?(user)
+  end
 end

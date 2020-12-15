@@ -1,0 +1,31 @@
+<i class="fas fa-heart"></i>
+<% if dog.protector == current_protector %>
+  <button type="button" class="btn btn-outline-dark like-count" data-toggle="modal" data-target="#dogs-like">
+    <span id="dog-like"><%= favorites.count %></span>
+  </button>
+<% else %>
+  <span id="dog-like"><%= favorites.count %></span>
+<% end %>
+<div class="modal fade" id="dogs-like" tabindex="-1"
+      role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-sm like-modal" role="document">
+    <div class="modal-content container like-container">
+      <% dog.users.each do |user| %>
+        <div class="like-info row">
+          <div class="like-img col-3">
+          <% if user.image.attached? %>
+            <%= image_tag user.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
+          <% else %>
+            <%= image_tag "user_default.png", :size => "40x40" %>
+          <% end %>
+          </div>
+          <div class="like-name col-9">
+            <%= link_to user_path(user) do %>
+              <p><%= user.name %></p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

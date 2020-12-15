@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
   get 'relationships/create'
   get 'relationships/destroy'
   devise_for :protectors, controllers: {
@@ -19,9 +21,10 @@ Rails.application.routes.draw do
     resources :pets, only: [:new, :create, :edit, :update, :destroy]
     get :relationships
   end
-  resources :protectors, only: [:show] 
+  resources :protectors, only: [:show]
   resources :dogs do
     resources :posts, only: [:new, :create, :destroy]
   end
   resources :relationships, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 end
