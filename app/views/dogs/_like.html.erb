@@ -1,10 +1,18 @@
 <i class="fas fa-heart"></i>
 <% if dog.protector == current_protector %>
   <button type="button" class="btn btn-outline-dark like-count" data-toggle="modal" data-target="#dogs-like">
-    <span id="dog-like"><%= favorites.count %></span>
+    <% if dog.favorites.present? %>
+      <span id="dog-like"><%= favorites.count %></span>
+    <% else %>
+      <span id="dog-like">0</span>
+    <% end %>
   </button>
 <% else %>
-  <span id="dog-like"><%= favorites.count %></span>
+  <% if dog.favorites.present? %>
+    <span id="dog-like"><%= favorites.count %></span>
+  <% else %>
+    <span id="dog-like">0</span>
+  <% end %>
 <% end %>
 <div class="modal fade" id="dogs-like" tabindex="-1"
       role="dialog" aria-labelledby="label1" aria-hidden="true">
