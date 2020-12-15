@@ -28,6 +28,11 @@
                   <i class="fas fa-dog fa-2x"></i>
                   <p>保護犬登録</p>
                 <% end %>
+              <% else %>
+                <%= link_to user_favorites_path(current_user) do %>
+                  <i class="fab fa-gratipay fa-2x"></i>
+                  <p>お気に入り</p>
+                <% end %>
               <% end %>
             </li>
             <li class="nav-item head-img">
