@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Relationships', type: :system do
   let!(:user)      { create(:user) }
-  let!(:user2)     { create(:user2) }
-  let!(:protector) { create(:protector) }
-  let!(:dog)       { create(:dog2, protector: protector) }
+  let!(:dog)       { create(:dog2) }
   let(:favorite)   { build(:favorite, user: user, dog: dog) }
 
   describe "post_create" do

@@ -228,6 +228,8 @@ RSpec.describe 'Users', type: :system do
   describe "show" do
     let!(:protector)   { create(:protector) }
     let(:relationship) { build(:relationship, protector: protector) }
+    let!(:dog)         { create(:dog2, protector: protector) }
+    let(:favorite)     { build(:favorite, user: testuser1, dog: dog) }
 
     context "userがサインインした場合", js: true do
       before do
@@ -269,6 +271,11 @@ RSpec.describe 'Users', type: :system do
           find('.follow-count').click
           sleep 3
           expect(page).to have_content protector.name
+        end
+
+        it "お気に入り一覧ページへのリンクが表示されており、クリックすると遷移すること" do
+          click_link 'お気に入り一覧'
+          expect(current_path).to eq user_favorites_path(user_id: testuser1.id)
         end
 
         it "先住犬を投稿できるアイコンから新規登録モーダルが表示できること" do
@@ -313,6 +320,10 @@ RSpec.describe 'Users', type: :system do
 
         it "編集リンクが表示されていないこと" do
           expect(page).to have_no_link "編集"
+        end
+
+        it "お気に入り一覧ページへのリンクが表示されていないこと" do
+          expect(page).to have_no_link "お気に入り一覧"
         end
 
         it "フォロー人数をクリックするとフォローしているprotectorがモーダル表示されること" do
@@ -369,6 +380,10 @@ RSpec.describe 'Users', type: :system do
 
       it "編集リンクが表示されていないこと" do
         expect(page).to have_no_link "編集"
+      end
+
+      it "お気に入り一覧ページへのリンクが表示されていないこと" do
+        expect(page).to have_no_link "お気に入り一覧"
       end
 
       it "フォロー人数をクリックするとフォローしているprotectorがモーダル表示されること" do

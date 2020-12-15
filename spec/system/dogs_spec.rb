@@ -128,6 +128,10 @@ RSpec.describe 'Dogs', type: :system do
           expect(page).to have_link "編集"
         end
 
+        it 'お気に入りのカウントがボタン表示となっていること' do
+          expect(page).to have_css '.like-count'
+        end
+
         it "削除アイコンが表示されていること" do
           expect(page).to have_css '.dog-destroy-btn'
         end
@@ -154,6 +158,10 @@ RSpec.describe 'Dogs', type: :system do
           expect(page).to have_no_link "編集"
         end
 
+        it 'お気に入りのカウントがボタン表示ではないこと' do
+          expect(page).to have_no_css '.like-count-btn'
+        end
+
         it "削除アイコンが表示されていること" do
           expect(page).to have_no_css '.dog-destroy-btn'
         end
@@ -177,8 +185,12 @@ RSpec.describe 'Dogs', type: :system do
         expect(current_path).to eq dog_path(id: dog.id)
       end
 
-      it "フォローリンクが表示されていること" do
-        expect(page).to have_link "フォロー"
+      it "お気に入り登録ボタンが表示されていること" do
+        expect(page).to have_css '.like-btn'
+      end
+
+      it 'お気に入りのカウントがボタン表示ではないこと' do
+        expect(page).to have_no_css '.like-count-btn'
       end
     end
   end
