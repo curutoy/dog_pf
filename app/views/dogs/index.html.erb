@@ -4,6 +4,11 @@
   <div class="dog-index-top">
     <h1>保護犬一覧</h1>
   </div>
+  <div class="accordion" id="accordion-4">
+    <div class="dog-search">
+      <%= render 'search', search_params: @search_params %>
+    </div>
+  </div>
   <div class ="dog-post row row-cols-4 row-cols-lg-5">
     <%= render "dog_index", dogs: @dogs %>
   </div>

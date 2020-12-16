@@ -19,8 +19,8 @@ class DogsController < ApplicationController
 
   def index
     if user_signed_in? || protector_signed_in?
-      @dogs = Dog.all.includes(:posts)
-      @dogs = Dog.page(params[:page]).per(20).order('id DESC')
+      @search_params = dogs_search_params
+      @dogs = Dog.search(@search_params).includes(:protector).paginate(params).per(20).order('id DESC')
       render :index
     else
       render template: "home/index"
@@ -57,6 +57,10 @@ class DogsController < ApplicationController
     params.require(:dog).permit(:protector_id, :name, :age, :address, :gender, :size, :profile,
                                 :walking, :caretaker, :relationship_dog, :relationship_people, :health,
                                 :castration, :vaccine, :microchip, :conditions, :single_people, :senior, :image)
+  end
+
+  def dogs_search_params
+    params.fetch(:search, {}).permit(:address, :gender, :size)
   end
 
   def authenticate_protector!

@@ -116,4 +116,18 @@ class Dog < ApplicationRecord
   def like?(user)
     like_users.include?(user)
   end
+
+  scope :paginate, -> (p) { page(p[:page]) }
+
+  scope :search, -> (search_params) do
+    return if search_params.blank?
+
+    address_select(search_params[:address]).
+      gender_select(search_params[:gender]).
+      size_select(search_params[:size])
+  end
+
+  scope :address_select, -> (address) { where(address: address) if address.present? }
+  scope :gender_select, -> (gender) { where(gender: gender) if gender.present? }
+  scope :size_select, -> (size) { where(size: size) if size.present? }
 end

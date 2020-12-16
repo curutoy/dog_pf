@@ -266,6 +266,25 @@ nav {
 .dog-index-top {
   margin-bottom: 30px;
 }
+.search-top {
+  margin-bottom: 10px;
+  button {
+    padding: 4px 12px 8px 12px;
+  }
+}
+.search-result {
+  padding-left: 20px;
+}
+.search-form {
+  background-color: #efefef;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.search-submit {
+  text-align: center;
+  line-height: 56px;
+}
 .dogs_index {
   text-align: center;
   width: 80%;

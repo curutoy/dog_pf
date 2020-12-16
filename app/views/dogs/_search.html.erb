@@ -1,0 +1,41 @@
+<div class="search-top">
+  <button class="btn" type="button"
+      data-toggle="collapse" data-target="#card-4a"
+      aria-expanded="true" aria-controls="card-4a">
+    <i class="fas fa-search"></i>検索
+  </button>
+  <span class="search-result">表示内容：</span>
+  <% if search_params[:address].blank? && search_params[:gender].blank? && search_params[:size].blank? %>
+    <span>全て</span>
+  <% else %>
+    <span><%= search_params[:address]%></span>
+    <span><%= search_params[:gender]%></span>
+    <span><%= search_params[:size]%></span>
+  <% end %>
+</div>
+<div id="card-4a" class="collapse"
+    aria-labelledby="header-4a" data-parent="#accordion-4">
+  <div class="search-form">
+    <%= form_with(scope: :search, url: dogs_path, method: :get, local: true) do |f| %>
+      <div class="container">
+        <div class="row">
+          <div class="field col-3">
+            <%= f.label :address, "所在地" %><br />
+            <%= f.select :address, Dog.addresses.keys, include_blank: '選択', selected: search_params[:address], class: 'search-field', value: search_params[:address] %>
+          </div>
+          <div class="field col-3">
+            <%= f.label :gender, "性別" %><br />
+            <%= f.select :gender, Dog.genders.keys, include_blank: '選択', class: 'search-field', value: search_params[:gender] %>
+          </div>
+          <div class="field col-3">
+            <%= f.label :size, "大きさ" %><br />
+            <%= f.select :size, Dog.sizes.keys, include_blank: '選択', class: 'search-field', value: search_params[:size] %>
+          </div>
+          <div class="search-submit col-3">
+            <%= submit_tag '検索', class: "btn btn-dark" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
