@@ -1,5 +1,5 @@
 <div class="search-top">
-  <button class="btn" type="button"
+  <button class="btn search-collapse" type="button"
       data-toggle="collapse" data-target="#card-4a"
       aria-expanded="true" aria-controls="card-4a">
     <i class="fas fa-search"></i>検索
@@ -32,7 +32,7 @@
             <%= f.select :size, Dog.sizes.keys, include_blank: '選択', class: 'search-field', value: search_params[:size] %>
           </div>
           <div class="search-submit col-3">
-            <%= submit_tag '検索', class: "btn btn-dark" %>
+            <%= submit_tag '検索', class: "btn btn-dark dog-search-btn" %>
           </div>
         </div>
       </div>

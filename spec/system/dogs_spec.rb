@@ -4,8 +4,8 @@ RSpec.describe 'Dogs', type: :system do
   let!(:user)       { create(:user) }
   let!(:protector)  { create(:protector) }
   let!(:protector2) { create(:protector2) }
-  let(:dog)         { create(:dog2, protector_id: protector.id) }
-  let(:dog2)        { create(:dog2, protector_id: protector2.id) }
+  let!(:dog)         { create(:dog2, protector_id: protector.id) }
+  let!(:dog2)        { build(:dog2, protector_id: protector2.id) }
 
   describe "dog_new" do
     before do
@@ -106,6 +106,80 @@ RSpec.describe 'Dogs', type: :system do
     end
   end
 
+  describe "dog_index" do
+    context "protectorがサインインした場合" do
+      before do
+        visit new_protector_session_path
+        fill_in 'Eメールアドレス', with: 'protector@example.com'
+        fill_in 'パスワード', with: 'testpassword'
+        click_button 'ログイン'
+        visit root_path
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq root_path
+      end
+
+      it "「表示内容」が「全て」と表示されていること" do
+        expect(page).to have_content "全て"
+      end
+
+      it "全てのdogが表示されていること" do
+        expect(page).to have_content dog.name
+      end
+
+      it "検索を行うと「表示内容」が検索内容に変わること" do
+        select '東京都', from: '所在地'
+        find('.dog-search-btn').click
+        expect(page).to have_content "東京都"
+      end
+
+      it "検索が正常に行われること" do
+        select '東京都', from: '所在地'
+        find('.dog-search-btn').click
+        expect(page).to have_content dog.name
+      end
+
+      it "dogの画像をクリックするとdog詳細ページへ遷移すること" do
+        find('.dog-show-link').click
+        expect(current_path).to eq dog_path(dog)
+      end
+    end
+
+    context "userがサインインした場合" do
+      before do
+        visit new_user_session_path
+        fill_in 'Eメールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'testpassword'
+        click_button 'ログイン'
+        visit root_path
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq root_path
+      end
+
+      it "「表示内容」が「全て」と表示されていること" do
+        expect(page).to have_content "全て"
+      end
+
+      it "全てのdogが表示されていること" do
+        expect(page).to have_content dog.name
+      end
+
+      it "検索を行うと「表示内容」が検索内容に変わること" do
+        select '東京都', from: '所在地'
+        find('.dog-search-btn').click
+        expect(page).to have_content "東京都"
+      end
+
+      it "dogの画像をクリックするとdog詳細ページへ遷移すること" do
+        find('.dog-show-link').click
+        expect(current_path).to eq dog_path(dog)
+      end
+    end
+  end
+
   describe "dog_show" do
     context "protectorがサインインした場合", js: true do
       before do
@@ -147,6 +221,7 @@ RSpec.describe 'Dogs', type: :system do
 
       context "自分以外が登録したページ気アクセスした場合" do
         before do
+          dog2.save
           visit dog_path(id: dog2.id)
         end
 
@@ -238,6 +313,7 @@ RSpec.describe 'Dogs', type: :system do
 
     context "自身が登録したdog以外の編集ページにアクセスした場合" do
       it "アクセスができないこと" do
+        dog2.save
         visit edit_dog_path(id: dog2.id)
         expect(current_path).to eq root_path
         expect(page).to have_content "投稿者のみ閲覧できるページです。"
