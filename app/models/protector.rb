@@ -6,8 +6,10 @@ class Protector < ApplicationRecord
   has_many :dogs,          dependent: :destroy
   has_many :posts,         dependent: :destroy
   has_many :relationships, dependent: :destroy
-  has_many :follow_user, through: :relationships, source: :user
-  has_many :users,       through: :relationships
+  has_many :follow_user,   through: :relationships, source: :user
+  has_many :users,         through: :relationships
+  has_many :entries,       dependent: :destroy
+  has_many :messages,      dependent: :destroy
 
   validates :name,    presence: true,
                       length: { maximum: 20 }
