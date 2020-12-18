@@ -53,13 +53,24 @@
       <div class="user-follow col-6">
         <%= render 'users/follow', user: user, relationships: relationships %>
       </div>
-      <div class="favorite-show">
-        <% if user == current_user %>
-          <%= link_to user_favorites_path(user) do %>
-            お気に入り一覧
+      <% if user == current_user %>
+        <div class="favorite-show">
+          <%= link_to "お気に入り一覧", user_favorites_path(user) %>
+        </div>
+      <% elsif protector_signed_in? %>
+        <div class="user-message">
+          <% if @isroom == true %>
+            <%= link_to "メッセージ画面へ", room_path(@roomid) %>
+          <% else %>
+            <%= form_for @room, url: rooms_path(id: @room.id), method: :post do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :user_id, value: @user.id %>
+              <% end %>
+              <%= f.submit "メッセージを送る" %>
+            <% end %> 
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

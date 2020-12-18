@@ -1,10 +1,9 @@
 class Message < ApplicationRecord
-  belongs_to :user
-  belongs_to :protector
+  belongs_to :user,      optional: true
+  belongs_to :protector, optional: true
   belongs_to :room
 
-  validates :user_id,      presence: true
-  validates :protector_id, presence: true
   validates :room_id,      presence: true
-  validates :content,      length: { maximum: 100 }
+  validates :content,      presence: true,
+                           length: { maximum: 100 }
 end

@@ -3,29 +3,31 @@ class MessagesController < ApplicationController
 
   def create
     if protector_signed_in?
-      if Entry.where(protector_id: current_protector.id, room_id: params[:message][:room_id]).present?
-        @message = Message.create(params_message_protector)
+      @message = Message.new(params_message_protector)
+      if @message.save
+        redirect_to room_path(@message.room_id)
       else
         flash[:alert] = "メッセージ送信に失敗しました"
+        redirect_to room_path(@message.room_id)
       end
-      redirect_to "/rooms/#{@message.room_id}"
     else
-      if Entry.where(user_id: current_user.id, room_id: params[:message][:room_id]).present?
-        @message = Message.create(params_message_user)
+      @message = Message.new(params_message_user)
+      if @message.save
+        redirect_to room_path(@message.room_id)
       else
         flash[:alert] = "メッセージ送信に失敗しました"
+        redirect_to room_path(@message.room_id)
       end
-      redirect_to "/rooms/#{@message.room_id}"
     end
   end
 
   private
 
   def params_message_protector
-    params.require(:message).permit(:protector_id, :user_id, :content, :room_id).merge(protector_id: current_protector.id)
+    params.require(:message).permit(:protector_id, :content, :room_id).merge(protector_id: current_protector.id)
   end
 
   def params_message_user
-    params.require(:message).permit(:protector_id, :user_id, :content, :room_id).merge(user_id: current_user.id)
+    params.require(:message).permit(:user_id, :content, :room_id).merge(user_id: current_user.id)
   end
 end
