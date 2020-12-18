@@ -16,11 +16,11 @@
             </li>
           </ul>
           <ul class="navbar-nav head-right">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">ホーム <span class="sr-only">(現位置)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">リンク1</a>
+            <li class="nav-item protector-dog-new">
+              <%= link_to rooms_path do %>
+                <i class="fas fa-comments fa-2x"></i>
+                <p>メッセージ</p>
+              <% end %>
             </li>
             <li class="nav-item protector-dog-new">
               <% if protector_signed_in? %>
