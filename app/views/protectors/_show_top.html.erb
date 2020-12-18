@@ -35,22 +35,24 @@
         <%= protector.url %>
       </div>
     </div>
-    <div class="protector-follow">
-      <%= render 'protectors/follower', protector: protector, relationships: relationships %>
-    </div>
-    <% if user_signed_in? %>
-      <div class="user-message">
-        <% if @isroom == true %>
-          <%= link_to "メッセージ画面へ", room_path(@roomid) %>
-        <% else %>
-          <%= form_for @room, url: rooms_path(id: @room.id), method: :post do |f| %>
-            <%= fields_for @entry do |e| %>
-              <%= e.hidden_field :protector_id, value: @protector.id %>
-            <% end %>
-            <%= f.submit "メッセージを送る" %>
-          <% end %> 
-        <% end %>
+    <div class="follow-message row">
+      <div class="protector-follow col-6">
+        <%= render 'protectors/follower', protector: protector, relationships: relationships %>
       </div>
-    <% end %>
+      <% if user_signed_in? %>
+        <div class="message-link col-6">
+          <% if @isroom == true %>
+            <%= link_to "メッセージ画面へ", room_path(@roomid), class: "btn btn-outline-dark" %>
+          <% else %>
+            <%= form_for @room, url: rooms_path(id: @room.id), method: :post do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :protector_id, value: @protector.id %>
+              <% end %>
+              <%= f.submit "メッセージを送る", class: "btn btn-outline-dark" %>
+            <% end %> 
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
