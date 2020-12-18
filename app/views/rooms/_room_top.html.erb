@@ -1,0 +1,20 @@
+<% entries.each do |e| %>
+  <p>
+    <%= link_to protector_path(e.protector.id) do %>
+      <% if e.protector.image.attached? %> 
+        <%= image_tag e.protector.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
+      <% else %>
+        <%= image_tag "protector_default.png", :size => "40x40" %>
+      <% end %>
+      <%= e.protector.name %>
+    <% end %>
+    <%= link_to user_path(e.user.id) do %>
+      <% if e.user.image.attached? %>
+        <%= image_tag e.user.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
+      <% else %>
+        <%= image_tag "user_default.png", :size => "40x40" %>
+      <% end %>
+      <%= e.user.name %>
+    <% end %>
+  </p>
+<% end %>

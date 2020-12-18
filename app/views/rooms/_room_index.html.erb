@@ -1,0 +1,39 @@
+<% if protector_signed_in? %>
+  <% entries.each do |e| %>
+    <% if e.protector_id == current_protector.id %>
+      <div class="partner col-4">
+        <%= link_to room_path(e.room_id) do %>
+          <div class="partner-img">
+            <% if e.user.image.attached? %>
+              <%= image_tag e.user.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:"150x150+0+0"}).processed %>
+            <% else %>
+              <%= image_tag "user_default.png", :size => "150x150" %>
+            <% end %>
+          </div>
+          <div class="partner-name">
+            <strong><%= e.user.name %></strong>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <% entries.each do |e| %>
+    <% if e.user_id == current_user.id %>
+      <div class="partner col-4">
+        <%= link_to room_path(e.room_id) do %>
+          <div class="partner-img">
+            <% if e.protector.image.attached? %> 
+              <%= image_tag e.protector.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:"150x150+0+0"}).processed %>
+            <% else %>
+              <%= image_tag "protector_default.png", :size => "150x150" %>
+            <% end %>
+          </div>
+          <div class="partner-name">
+            <strong><%= e.protector.name %></strong>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

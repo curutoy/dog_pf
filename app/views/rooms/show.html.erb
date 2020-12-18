@@ -2,63 +2,10 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <div class="dm-top">
-    <% @entries.each do |e| %>
-      <p>
-        <%= link_to protector_path(e.protector.id) do %>
-          <% if e.protector.image.attached? %> 
-            <%= image_tag e.protector.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
-          <% else %>
-            <%= image_tag "protector_default.png", :size => "40x40" %>
-          <% end %>        
-          <%= e.protector.name %>
-        <% end %>
-        <%= link_to user_path(e.user.id) do %>
-          <% if e.user.image.attached? %>
-            <%= image_tag e.user.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
-          <% else %>
-            <%= image_tag "user_default.png", :size => "40x40" %>
-          <% end %>
-          <%= e.user.name %>
-        <% end %>
-      </p>
-    <% end %>
+    <%= render 'rooms/room_top', entries: @entries %>
   </div>
   <div class="dm-message">
-    <% if @messages.present? %>
-      <% @messages.each do |m| %>
-        <% if m.user_id == nil %>
-          <div class="message">
-            <div class="protector-message">
-              <p><%= l m.created_at %></p>
-              <p class="dm-content"><%= m.content %></p>
-              <div class="dm-image">
-                <% if m.protector.image.attached? %> 
-                  <%= image_tag m.protector.image.variant(combine_options:{gravity: :center, resize:"30x30^", crop:"30x30+0+0"}).processed %>
-                <% else %>
-                  <%= image_tag "protector_default.png", :size => "40x40" %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% else %>
-          <div class="message">
-            <div class="user-message">
-              <p><%= l m.created_at %></p>
-              <p class="dm-content"><%= m.content %></p>
-              <span class="dm-image">
-                <% if m.user.image.attached? %> 
-                  <%= image_tag m.user.image.variant(combine_options:{gravity: :center, resize:"30x30^", crop:"30x30+0+0"}).processed %>
-                <% else %>
-                  <%= image_tag "user_default.png", :size => "40x40" %>
-                <% end %>
-              </span>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    <% else %>
-      <h3 class="text-center">メッセージはまだありません</h3>
-    <% end %>
+    <%= render 'rooms/message', messages: @messages %>
   </div>
   <div class="dm-footer fixed-bottom">
     <%= form_for @message do |f| %>

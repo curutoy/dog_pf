@@ -12,6 +12,10 @@ class RoomsController < ApplicationController
     end
   end
 
+  def index
+    @entries = Entry.all.includes(:room)
+  end
+
   def show
     @room = Room.find(params[:id])
     if protector_signed_in?
