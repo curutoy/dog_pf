@@ -278,6 +278,10 @@ RSpec.describe 'Users', type: :system do
           expect(current_path).to eq user_favorites_path(user_id: testuser1.id)
         end
 
+        it "メッセージに関することが表示されていないこと" do
+          expect(page).to have_no_button "メッセージを送る"
+        end
+
         it "先住犬を投稿できるアイコンから新規登録モーダルが表示できること" do
           find('.pet-new-icon').click
           sleep 3
@@ -324,6 +328,10 @@ RSpec.describe 'Users', type: :system do
 
         it "お気に入り一覧ページへのリンクが表示されていないこと" do
           expect(page).to have_no_link "お気に入り一覧"
+        end
+
+        it "メッセージに関することが表示されていないこと" do
+          expect(page).to have_no_button "メッセージを送る"
         end
 
         it "フォロー人数をクリックするとフォローしているprotectorがモーダル表示されること" do
@@ -384,6 +392,10 @@ RSpec.describe 'Users', type: :system do
 
       it "お気に入り一覧ページへのリンクが表示されていないこと" do
         expect(page).to have_no_link "お気に入り一覧"
+      end
+
+      it "メッセージに関する表示があること" do
+        expect(page).to have_button "メッセージを送る"
       end
 
       it "フォロー人数をクリックするとフォローしているprotectorがモーダル表示されること" do

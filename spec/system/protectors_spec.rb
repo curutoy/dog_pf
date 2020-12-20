@@ -252,6 +252,10 @@ RSpec.describe 'Protectors', type: :system do
           expect(page).to have_content user.name
         end
 
+        it "メッセージに関することが表示されていないこと" do
+          expect(page).to have_no_button "メッセージを送る"
+        end
+
         it "登録済みのdogが表示されていること" do
           expect(page).to have_content dog.name
           expect(page).to have_content dog.age
@@ -290,6 +294,10 @@ RSpec.describe 'Protectors', type: :system do
           find('.follower-count').click
           sleep 3
           expect(page).to have_content user.name
+        end
+
+        it "メッセージに関することが表示されていないこと" do
+          expect(page).to have_no_button "メッセージを送る"
         end
 
         it "登録済みの画像をクリックするとdog詳細画面へ遷移すること" do
@@ -337,6 +345,10 @@ RSpec.describe 'Protectors', type: :system do
         find('.follower-count').click
         sleep 3
         expect(page).to have_content user.name
+      end
+
+      it "メッセージに関する表示があること" do
+        expect(page).to have_button "メッセージを送る"
       end
 
       it "登録済みのdogが表示されていること" do
