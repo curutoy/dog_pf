@@ -9,9 +9,9 @@
   </div>
   <div class="dm-footer fixed-bottom">
     <%= form_for @message do |f| %>
-      <%= f.text_field :content, :placeholder => "メッセージを入力して下さい(100文字以内)" , :size => 70 %>
-      <%= f.hidden_field :room_id, :value => @room.id %>
-      <%= f.submit "投稿する", class: "btn btn-dark" %>
+      <%= f.text_field :content, placeholder: "メッセージを入力して下さい(100文字以内)" , id: "message-content", size: 70 %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.submit "送信", class: "btn btn-dark" %>
     <% end %>
   </div>
 </div>
