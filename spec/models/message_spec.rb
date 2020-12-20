@@ -4,7 +4,7 @@ RSpec.describe Message, type: :model do
   let!(:user)      { create(:user) }
   let!(:protector) { create(:protector) }
   let!(:room)      { create(:room) }
-  let(:message) { build(:message, user: user, protector: protector, room: room) }
+  let(:message)    { build(:message, user: user, protector: protector, room: room) }
 
   describe "validate" do
     it "全ての値が存在する場合はエラーが発生しないこと" do
