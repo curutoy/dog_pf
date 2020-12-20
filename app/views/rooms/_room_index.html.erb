@@ -2,7 +2,7 @@
   <% entries.each do |e| %>
     <% if e.protector_id == current_protector.id %>
       <div class="partner col-4">
-        <%= link_to room_path(e.room_id) do %>
+        <%= link_to room_path(e.room_id), class: "room-partner-img" do %>
           <div class="partner-img">
             <% if e.user.image.attached? %>
               <%= image_tag e.user.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:"150x150+0+0"}).processed %>
@@ -21,7 +21,7 @@
   <% entries.each do |e| %>
     <% if e.user_id == current_user.id %>
       <div class="partner col-4">
-        <%= link_to room_path(e.room_id) do %>
+        <%= link_to room_path(e.room_id), class: "room-partner-img" do %>
           <div class="partner-img">
             <% if e.protector.image.attached? %> 
               <%= image_tag e.protector.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:"150x150+0+0"}).processed %>

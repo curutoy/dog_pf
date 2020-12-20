@@ -1,6 +1,6 @@
 <% entries.each do |e| %>
   <p>
-    <%= link_to protector_path(e.protector.id) do %>
+    <%= link_to protector_path(e.protector.id), class: "m-protector" do %>
       <% if e.protector.image.attached? %> 
         <%= image_tag e.protector.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
       <% else %>
@@ -8,7 +8,7 @@
       <% end %>
       <%= e.protector.name %>
     <% end %>
-    <%= link_to user_path(e.user.id) do %>
+    <%= link_to user_path(e.user.id), class: "m-user" do %>
       <% if e.user.image.attached? %>
         <%= image_tag e.user.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
       <% else %>
