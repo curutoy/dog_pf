@@ -1,0 +1,36 @@
+<div class="event">
+  <div class="event-container">
+    <div class="event-new">
+      <%= form_for @event do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        <div class="field">
+          <%= f.label :due_on, "日にち" %><span class="mandatory">必須</span><br />
+          <%= f.date_select :due_on, {}, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :start_at, "開始時刻" %><span class="mandatory">必須</span><br />
+          <%= f.time_select :start_at, class: 'form-contro' %>
+        </div>
+        <div class="field">
+          <%= f.label :finish_at, "終了時刻" %><span class="mandatory">必須</span><br />
+          <%= f.time_select :finish_at, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :prefecture, "開催地（都道府県）" %><span class="mandatory">必須</span><br />
+          <%= f.select :prefecture, Event.prefectures.keys, {prompt: '選択してください'}, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :address, "開催地（住所）" %><span class="mandatory">必須</span><br />
+          <%= f.text_field :address, autofocus: true, class: "form-control", placeholder: "開催地住所", autocomplete: "address" %>
+        </div>
+        <div class="field">
+          <%= f.label :content, "説明（200文字以内)" %><br />
+          <%= f.text_area :content, autofocus: true, class: "form-control", placeholder: "説明", autocomplete: "content" %>
+        </div>
+        <div class="actions dog-button">
+          <%= f.submit "送信", :class=>"btn btn-outline-dark" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

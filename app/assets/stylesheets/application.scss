@@ -424,14 +424,16 @@ nav {
 .post-image {
   margin-bottom: 30px;
 }
-/*dog new edit */
-.dogs-container {
+/*dog.event new edit */
+.dogs-container,
+.event-container {
   width: 70%;
   margin: 0 auto;
   margin-top: 150px;
 }
 .dog-new,
-.dog-edit {
+.dog-edit,
+.event-new {
   background-color: white;
   border-radius: 10px;
   padding: 20px;
