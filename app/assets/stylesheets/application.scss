@@ -34,8 +34,9 @@ nav {
     padding: 0 10px 0 10px;
   }
 }
-.protector-dog-new {
+.head-icon {
   text-align: center;
+  margin-top: 8px;
   i {
     color: black;
   }
@@ -46,6 +47,9 @@ nav {
 }
 .head-img img {
   border-radius: 50%;
+}
+.head-img-link::after {
+  display: none;
 }
 /* home */
 .main-bg {
