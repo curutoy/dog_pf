@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_030350) do
+ActiveRecord::Schema.define(version: 2020_12_21_123944) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,23 @@ ActiveRecord::Schema.define(version: 2020_12_17_030350) do
     t.index ["room_id"], name: "index_entries_on_room_id"
     t.index ["user_id", "protector_id"], name: "index_entries_on_user_id_and_protector_id", unique: true
     t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "protector_id"
+    t.date "due_on"
+    t.time "start_at"
+    t.time "finish_at"
+    t.integer "prefecture"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address"], name: "index_events_on_address"
+    t.index ["due_on"], name: "index_events_on_due_on"
+    t.index ["protector_id"], name: "index_events_on_protector_id"
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
