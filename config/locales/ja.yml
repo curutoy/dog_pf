@@ -27,7 +27,7 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
-      short: "%Y/%m/%d"
+      short: "%H時%M分"
   activerecord:
     errors:
       models:
