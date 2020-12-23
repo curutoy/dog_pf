@@ -1,0 +1,63 @@
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td>開催日</td>
+      <td><%= @event.due_on %></td>
+    </tr>
+    <tr>
+      <td>開始時刻</td>
+      <td><%= @event.start_at %></td>
+    </tr>
+    <tr>
+      <td>終了時刻</td>
+      <td><%= @event.finish_at %></td>
+    </tr>
+    <tr>
+      <td>開催地住所</td>
+      <td>
+        <%= @event.address %>
+        <div id="map">
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>イベント説明</td>
+      <td><%= @event.content %></td>
+    </tr>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  function initMap() {
+    var test ={lat: <%= @event.latitude %>, lng: <%= @event.longitude %>};
+    var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 15, 
+              center: test
+              });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    var contentString = '開催地住所：<%= @event.address %>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+                  position:test,
+                  map: map,
+                  title: contentString
+                 });
+
+     marker.addListener('click', function() {
+       infowindow.open(map, marker);
+     });
+  }
+</script>
+
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIo8Vb1yFgjJ4d7jjzhhl4zwpSIRTi4qk&callback=initMap">
+</script>
+<style type="text/css">
+  #map { height: 200px;
+         width: 70%;}
+</style>

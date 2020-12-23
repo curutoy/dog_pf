@@ -1056,6 +1056,7 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     ffi (1.13.1)
+    geocoder (1.6.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (4.1.0)
@@ -1304,6 +1305,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
+  geocoder
   jbuilder (~> 2.5)
   jquery-rails
   kaminari

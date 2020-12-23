@@ -32,4 +32,11 @@ class EventsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:protector_id, :due_on, :start_at, :finish_at,
+                                  :prefecture, :address, :latitude, :longitude, :content)
+  end
 end
