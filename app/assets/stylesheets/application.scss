@@ -593,9 +593,11 @@ nav {
 .event-index-top {
   margin-bottom: 30px;
 }
-.search-column,
-.search-select {
-  padding-left: 100px;
+.event-new-link {
+  text-align: center;
+  a {
+    color: black;
+  }
 }
 .events-info {
   height: 102px;
@@ -606,4 +608,8 @@ nav {
   color: black;
   text-align: center;
   padding-top: 15px;
+}
+/* event-edit*/
+.events-container {
+  padding: 20px;
 }

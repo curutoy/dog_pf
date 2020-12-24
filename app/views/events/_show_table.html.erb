@@ -1,48 +1,50 @@
-<table class="table table-bordered event-table container">
-      <tbody>
-        <tr>
-          <td>開催日</td>
-          <td><%= l event.due_on, format: :long %></td>
-        </tr>
-        <tr>
-          <td>開始時刻</td>
-          <td><%= l event.start_at, format: :short %></td>
-        </tr>
-        <tr>
-          <td>終了時刻</td>
-          <td><%= l event.finish_at, format: :short %></td>
-        </tr>
-        <tr>
-          <td>開催地住所</td>
-          <td>
-            <%= event.address %>
-            <div id="map">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>イベント説明</td>
-          <td><%= event.content %></td>
-        </tr>
-        <tr>
-          <td>主催団体</td>
-          <td>
-            <div class="event-protector row">
-              <div class="event-protector-img col-4">
-                <%= link_to protector_path(event.protector_id) do %>
-                  <% if event.protector.image.attached? %>
-                    <%= image_tag event.protector.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:"150x150+0+0"}).processed %>
-                  <% else %>
-                    <%= image_tag "protector_default.png", :size => "200x200" %>
-                  <% end %>
+<div id="event-<%= event.id %>">
+  <table class="table table-bordered event-table container">
+    <tbody>
+      <tr>
+        <td>開催日</td>
+        <td><%= l event.due_on, format: :long %></td>
+      </tr>
+      <tr>
+        <td>開始時刻</td>
+        <td><%= l event.start_at, format: :short %></td>
+      </tr>
+      <tr>
+        <td>終了時刻</td>
+        <td><%= l event.finish_at, format: :short %></td>
+      </tr>
+      <tr>
+        <td>開催地住所</td>
+        <td>
+          <%= event.address %>
+          <div id="map">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>イベント説明</td>
+        <td><%= event.content %></td>
+      </tr>
+      <tr>
+        <td>主催団体</td>
+        <td>
+          <div class="event-protector row">
+            <div class="event-protector-img col-4">
+              <%= link_to protector_path(event.protector_id) do %>
+                <% if event.protector.image.attached? %>
+                  <%= image_tag event.protector.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:"150x150+0+0"}).processed %>
+                <% else %>
+                  <%= image_tag "protector_default.png", :size => "200x200" %>
                 <% end %>
-              </div>
-              <div class="event-protector-info col-8">
-                <h2><%= event.protector.name %></h2>
-                <p><%= event.protector.profile %></p>
-              </div>
+              <% end %>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <div class="event-protector-info col-8">
+              <h2><%= event.protector.name %></h2>
+              <p><%= event.protector.profile %></p>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

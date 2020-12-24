@@ -17,6 +17,12 @@
           </ul>
           <ul class="navbar-nav head-right">
             <li class="nav-item head-icon">
+              <%= link_to events_path do %>
+                <i class="fas fa-paw fa-2x"></i>
+                <p>イベント</p>
+              <% end %>
+            </li>
+            <li class="nav-item head-icon">
               <%= link_to rooms_path do %>
                 <i class="fas fa-comments fa-2x"></i>
                 <p>メッセージ</p>

@@ -1,8 +1,8 @@
 <% if @status == 'success' %>
-  $('#pets-<%= @pet.id %>').html("<%= j(render("pet_update", pet: @pet, user: @user)) %>");
+  $('#event-<%= @event.id %>').html("<%= j(render("show_table", event: @event)) %>");
 <% elsif @status == 'fail' %>
   alert('変更内容を確認してください');
 <% end %>
-$("#pet-edit-modal").modal("hide");
+$("#event-edit-modal").modal("hide");
 $('body').removeClass('modal-open');
 $('.modal-backdrop').remove();

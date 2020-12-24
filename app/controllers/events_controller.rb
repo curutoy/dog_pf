@@ -29,9 +29,23 @@ class EventsController < ApplicationController
   end
 
   def update
+    @event = Event.find(params[:id])
+    respond_to do |format|
+      if @event.update(event_params)
+        format.html { redirect_to @event }
+        format.js { @status = "success" }
+      else
+        format.html { render 'events/show' }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
+      end
+    end
   end
 
   def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_path
   end
 
   private

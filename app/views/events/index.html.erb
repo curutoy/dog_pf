@@ -1,6 +1,16 @@
 <div class="event-index container">
-  <div class="event-index-top">
-    <h1>イベント一覧</h1>
+  <div class="event-index-top row">
+    <div class="event-index-title col-8">
+      <h1>イベント一覧</h1>
+    </div>
+    <% if protector_signed_in? %>
+      <div class="event-new-link col-4">
+        <%= link_to new_event_path do %>
+          <i class="fas fa-clipboard-list fa-2x"></i>
+          <p>イベント登録</p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <div class="accordion" id="accordion-4">
     <div class="dog-search">
