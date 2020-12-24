@@ -1,0 +1,43 @@
+<div class="search-top">
+  <button class="btn search-collapse" type="button"
+      data-toggle="collapse" data-target="#card-4a"
+      aria-expanded="true" aria-controls="card-4a">
+    <i class="fas fa-search"></i>検索
+  </button>
+  <span class="search-result">表示内容：</span>
+  <% if search_params[:prefecture].blank? && search_params[:due_on_from].blank? && search_params[:due_on_to].blank? %>
+    <span>全て</span>
+  <% else %>
+    <span><%= search_params[:prefecture] %></span>
+    <span><%= search_params[:due_on_from] %>~<%= search_params[:due_on_to] %></span>
+  <% end %>
+</div>
+<div id="card-4a" class="collapse"
+    aria-labelledby="header-4a" data-parent="#accordion-4">
+  <div class="search-form">
+    <%= form_with(scope: :search, url: events_path, method: :get, local: true) do |f| %>
+      <div class="container">
+        <div class="field row">
+          <div class="search-column col-3">
+            <%= f.label :prefecture, "開催地（都道府県）" %>
+          </div>
+          <div class="search-select col-9">
+            <%= f.select :prefecture, Event.prefectures.keys, include_blank: '選択', selected: search_params[:prefecture], class: 'search-field', value: search_params[:prefecture] %>
+          </div>
+        </div>
+        <div class="field row">
+          <div class="search-column col-3">
+            <%= f.label :due_on, "開催日" %>
+          </div>
+          <div class="search-select col-9">
+            <%= f.date_field :due_on_from, value: @search_params[:due_on_from] %> ~
+            <%= f.date_field :due_on_to, value: @search_params[:due_on_to] %> 
+          </div>
+        </div>
+        <div class="search-submit">
+          <%= submit_tag '検索', class: "btn btn-dark dog-search-btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

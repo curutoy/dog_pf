@@ -22,4 +22,18 @@ class Event < ApplicationRecord
     徳島県: 36, 香川県: 37, 愛媛県: 38, 高知県: 39,
     福岡県: 40, 佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46, 沖縄県: 47,
   }
+
+  scope :paginate, -> (p) { page(p[:page]) }
+
+  scope :search, -> (search_params) do
+    return if search_params.blank?
+
+    prefecture_select(search_params[:prefecture]).
+      due_on_from(search_params[:due_on_from]).
+      due_on_to(search_params[:due_on_to])
+  end
+
+  scope :prefecture_select, -> (prefecture) { where(prefecture: prefecture) if prefecture.present? }
+  scope :due_on_from, -> (from) { where('? <= due_on', from) if from.present? }
+  scope :due_on_to, -> (to) { where('due_on <= ?', to) if to.present? }
 end

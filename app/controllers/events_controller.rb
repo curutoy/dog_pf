@@ -16,7 +16,8 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    @search_params = events_search_params
+    @events = Event.search(@search_params).includes(:protector).paginate(params).per(18).order('id DESC')
   end
 
   def show
@@ -38,5 +39,9 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:protector_id, :due_on, :start_at, :finish_at,
                                   :prefecture, :address, :latitude, :longitude, :content)
+  end
+
+  def events_search_params
+    params.fetch(:search, {}).permit(:prefecture, :due_on_from, :due_on_to)
   end
 end

@@ -575,7 +575,8 @@ nav {
   margin-bottom: 20px;
 }
 /* event_show */
-.event-show {
+.event-show,
+.event-index {
   margin-top: 120px;
 }
 .event-show-table {
@@ -587,4 +588,22 @@ nav {
   td {
     border: 1px solid black;
   }
+}
+/* event_index */
+.event-index-top {
+  margin-bottom: 30px;
+}
+.search-column,
+.search-select {
+  padding-left: 100px;
+}
+.events-info {
+  height: 102px;
+  border: 1px solid black;
+  margin: 0px 20px 40px 20px;
+}
+.event-daytime {
+  color: black;
+  text-align: center;
+  padding-top: 15px;
 }
