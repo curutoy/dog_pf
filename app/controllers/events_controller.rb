@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_action :authenticate_any!
+  before_action :authenticate_any!, only: [:show, :index]
+  before_action :authenticate_protector!, only: [:new, :create]
+  before_action :right_protector, only: [:edit, :update, :destroy]
 
   def new
     @event = Event.new
@@ -57,5 +59,24 @@ class EventsController < ApplicationController
 
   def events_search_params
     params.fetch(:search, {}).permit(:prefecture, :due_on_from, :due_on_to)
+  end
+
+  def authenticate_protector!
+    if user_signed_in?
+      redirect_to root_path
+      flash[:alert] = "保護活動家専用のページです"
+    elsif protector_signed_in?
+    else
+      render template: "home/index"
+      flash[:alert] = "ログインまたはアカウント登録を行ってください"
+    end
+  end
+
+  def right_protector
+    @event = Event.find(params[:id])
+    if user_signed_in? || @event.protector_id != current_protector.id
+      redirect_to root_path
+      flash[:alert] = "投稿者のみ閲覧できるページです。"
+    end
   end
 end

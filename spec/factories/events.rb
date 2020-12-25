@@ -12,4 +12,18 @@ FactoryBot.define do
       address { " " }
     end
   end
+
+  factory :event2, class: "Event" do
+    association :protector
+    due_on { Date.today }
+    start_at { DateTime.now }
+    finish_at { DateTime.now }
+    prefecture { "千葉県" }
+    address { "東京都新宿区新宿３丁目３８" }
+    content { "test content" }
+
+    trait :invalid do
+      prefecture { " " }
+    end
+  end
 end

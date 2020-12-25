@@ -66,6 +66,20 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
             conditions:
               too_long: "は%{count}文字以下に設定して下さい。"
+        event:
+          attributes:
+            due_on:
+              blank: "が入力されていません。"
+            start_at:
+              blank: "が入力されていません。"
+            finish_at:
+              blank: "が入力されていません。"
+            prefecture:
+              blank: "が入力されていません。"
+            address:
+              blank: "が入力されていません。"
+            content:
+              too_long: "は%{count}文字以下に設定して下さい。"
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -106,9 +120,17 @@ ja:
         single_people: 単身者応募
         profile: 紹介文（応募経緯や性格等）
         conditions: 応募条件
+      event:
+        due_on: 開催日
+        start_at: 開始時間
+        finish_at: 終了時間
+        prefecture: 開催地（都道府県）
+        address: 開催地（住所）
+        content: 説明
     models:
       user: ユーザ
       protector: 保護活動家
+      events: イベント
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
