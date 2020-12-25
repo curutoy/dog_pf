@@ -2,7 +2,7 @@
   <div class="modal-content">
     <div class="events-container">
       <div class="event-edit">
-        <%= form_for @event do |f| %>
+        <%= form_for @event, remote: true do |f| %>
           <%= render 'layouts/error_messages', model: f.object %>
           <div class="field event-field">
             <%= f.label :due_on, "開催日" %><span class="mandatory">必須</span><br />

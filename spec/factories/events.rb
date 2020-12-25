@@ -19,7 +19,7 @@ FactoryBot.define do
     start_at { DateTime.now }
     finish_at { DateTime.now }
     prefecture { "千葉県" }
-    address { "東京都新宿区新宿３丁目３８" }
+    address { "千葉県千葉市" }
     content { "test content" }
 
     trait :invalid do

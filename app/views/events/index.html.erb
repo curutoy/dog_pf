@@ -5,7 +5,7 @@
     </div>
     <% if protector_signed_in? %>
       <div class="event-new-link col-4">
-        <%= link_to new_event_path do %>
+        <%= link_to new_event_path, class: "event-link-icon" do %>
           <i class="fas fa-clipboard-list fa-2x"></i>
           <p>イベント登録</p>
         <% end %>
@@ -22,7 +22,7 @@
       <div class="events-index col">
         <div class="events-info">
           <div class="event-info-img float-left">
-            <%= link_to event_path(event) do %>
+            <%= link_to event_path(event), class: "event-show-link" do %>
               <% if event.protector.image.attached? %>
                 <%= image_tag event.protector.image.variant(combine_options:{gravity: :center, resize:"100x100^", crop:"100x100+0+0"}).processed %>
               <% else %>
