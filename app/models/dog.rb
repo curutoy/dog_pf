@@ -3,9 +3,10 @@ class Dog < ApplicationRecord
 
   has_many   :posts, -> { order('id DESC') }, dependent: :destroy
   belongs_to :protector
-  has_many   :favorites,  dependent: :destroy
-  has_many   :like_users, through: :favorites, source: :user
-  has_many   :users,      through: :favorites
+  has_many   :favorites,     dependent: :destroy
+  has_many   :like_users,    through: :favorites, source: :user
+  has_many   :users,         through: :favorites
+  has_many   :notifications, dependent: :destroy
 
   validates :name,                presence: true,
                                   length: { maximum: 20 }

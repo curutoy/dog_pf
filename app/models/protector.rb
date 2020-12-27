@@ -11,6 +11,8 @@ class Protector < ApplicationRecord
   has_many :entries,       dependent: :destroy
   has_many :messages,      dependent: :destroy
   has_many :events,        dependent: :destroy
+  has_many :active_notifications,  class_name: 'Notification', foreign_key: 'visitor_protector_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_protector_id', dependent: :destroy
 
   validates :name,    presence: true,
                       length: { maximum: 20 }
