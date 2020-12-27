@@ -26,7 +26,7 @@
               <% if event.protector.image.attached? %>
                 <%= image_tag event.protector.image.variant(combine_options:{gravity: :center, resize:"100x100^", crop:"100x100+0+0"}).processed %>
               <% else %>
-                <%= image_tag "protector_default.png", :size => "200x200" %>
+                <%= image_tag "protector_default.png", :size => "100x100" %>
               <% end %>
             <% end %>
           </div>
