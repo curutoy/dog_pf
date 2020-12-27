@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_21_123944) do
+ActiveRecord::Schema.define(version: 2020_12_27_113119) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -107,6 +107,25 @@ ActiveRecord::Schema.define(version: 2020_12_21_123944) do
     t.index ["protector_id"], name: "index_messages_on_protector_id"
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "visitor_protector_id"
+    t.integer "visited_protector_id"
+    t.integer "visitor_user_id"
+    t.integer "visited_user_id"
+    t.integer "dog_id"
+    t.integer "message_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dog_id"], name: "index_notifications_on_dog_id"
+    t.index ["message_id"], name: "index_notifications_on_message_id"
+    t.index ["visited_protector_id"], name: "index_notifications_on_visited_protector_id"
+    t.index ["visited_user_id"], name: "index_notifications_on_visited_user_id"
+    t.index ["visitor_protector_id"], name: "index_notifications_on_visitor_protector_id"
+    t.index ["visitor_user_id"], name: "index_notifications_on_visitor_user_id"
   end
 
   create_table "pets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
