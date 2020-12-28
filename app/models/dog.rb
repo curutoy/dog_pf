@@ -131,4 +131,16 @@ class Dog < ApplicationRecord
   scope :address_select, -> (address) { where(address: address) if address.present? }
   scope :gender_select, -> (gender) { where(gender: gender) if gender.present? }
   scope :size_select, -> (size) { where(size: size) if size.present? }
+
+  def create_notification_like!(current_user)
+    temp = Notification.where(["visitor_user_id = ? and visited_protector_id = ? and dog_id = ? and action = ? ", current_user.id, protector_id, id, 'like'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        dog_id: id,
+        visited_protector_id: protector_id,
+        action: 'like'
+      )
+      notification.save if notification.valid?
+    end
+  end
 end
