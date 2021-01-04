@@ -6,6 +6,7 @@ class FavoritesController < ApplicationController
     @dog = Dog.find(params[:dog_id])
     unless @dog.like?(current_user)
       @dog.like(current_user)
+      @dog.create_notification_like!(current_user)
       respond_to do |format|
         format.html { redirect_to @dog }
         format.js

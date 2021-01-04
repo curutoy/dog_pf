@@ -60,4 +60,15 @@ class User < ApplicationRecord
   enum caretaker: {
     無: 1, ３時間未満: 2, ３時間以上５時間未満: 3, ５時間以上８時間未満: 4, ８時間以上: 5,
   }
+
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_user_id = ? and visited_protector_id = ? and action = ? ", current_user.id, protector_id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_protector_id: protector_id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
 end
