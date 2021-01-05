@@ -10,14 +10,10 @@ class MessagesController < ApplicationController
         notification = current_protector.active_notifications.new(
           room_id: @room.id,
           message_id: @message.id,
-          visited_user_id: @theid.user_id,
-          visited_protector_id: @theid.protector_id,
-          visitor_protector_id: current_protector.id,
+          visited_user_id: @entryroom.user_id,
           action: 'dm'
         )
-        if notification.visitor_protector_id == notification.visited_protector_id
-          notification.checked = true
-        end
+        notification.checked = true
         notification.save if notification.valid?
         redirect_to room_path(@message.room_id)
       else
@@ -32,14 +28,10 @@ class MessagesController < ApplicationController
         notification = current_user.active_notifications.new(
           room_id: @room.id,
           message_id: @message.id,
-          visited_protector_id: @theid.protector_id,
-          visited_user_id: @theid.user_id,
-          visitor_user_id: current_user.id,
+          visited_protector_id: @entryroom.protector_id,
           action: 'dm'
         )
-        if notification.visitor_user_id == notification.visited_user_id
-          notification.checked = true
-        end
+        notification.checked = true
         notification.save if notification.valid?
         redirect_to room_path(@message.room_id)
       else

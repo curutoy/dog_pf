@@ -1,0 +1,52 @@
+<div class="notification">
+  <h3 class="text-center">通知</h3>
+  <div class="notification-article">
+    <% if @notifications.present? %> 
+      <% if protector_signed_in? %>
+        <div class="users-index container">
+          <% @notifications.each do |notification| %>
+            <% visitor = notification.visitor_user %>
+            <% dog = notification.dog %>
+            <div class="row">
+              <div class="user-view-left col-2">
+                <% if visitor.image.attached? %>
+                  <%= image_tag visitor.image.variant(combine_options:{gravity: :center, resize:"50x50^", crop:"50x50+0+0"}).processed %>
+                <% else %>
+                  <%= image_tag "user_default.png", :size => "50x50" %>
+                <% end %>
+              </div>
+              <div class="user-view-right col-10">
+                <!-- notification_formをnotifications_helper.rbで定義　-->
+                <%= notification_form(notification) %>
+                <span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="users-index container">
+          <% @notifications.each do |notification| %>
+            <% visitor = notification.visitor_protector %>
+            <% dog = notification.dog %>
+            <div class="row">
+              <div class="user-view-left col-2">
+                <% if visitor.image.attached? %>
+                  <%= image_tag visitor.image.variant(combine_options:{gravity: :center, resize:"50x50^", crop:"50x50+0+0"}).processed %>
+                <% else %>
+                  <%= image_tag "protector_default.png", :size => "50x50" %>
+                <% end %>
+              </div>
+              <div class="user-view-right col-10">
+                <!-- notification_formをnotifications_helper.rbで定義　-->
+                <%= notification_form(notification) %>
+                <span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="notification-none">通知はありません</p>
+    <% end %>
+  </div>
+</div>
