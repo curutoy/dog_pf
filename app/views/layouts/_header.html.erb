@@ -41,6 +41,15 @@
                 <% end %>
               <% end %>
             </li>
+            <li class="nav-item head-icon">
+              <%= link_to notifications_path, class: "notification-icon" do %>
+                <i class="fas fa-bell fa-2x"></i>
+                <p>お知らせ</p>
+                <% if unchecked_notifications.any? %>
+                  <i class="fa fa-circle notification-circle"></i>
+                <% end %>
+              <% end %>
+            </li>
             <li class="nav-item head-img dropdown">
               <% if user_signed_in? %>
                 <a href="#" class="nav-link dropdown-toggle head-img-link" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">

@@ -13,7 +13,6 @@ class MessagesController < ApplicationController
           visited_user_id: @entryroom.user_id,
           action: 'dm'
         )
-        notification.checked = true
         notification.save if notification.valid?
         redirect_to room_path(@message.room_id)
       else
@@ -31,7 +30,6 @@ class MessagesController < ApplicationController
           visited_protector_id: @entryroom.protector_id,
           action: 'dm'
         )
-        notification.checked = true
         notification.save if notification.valid?
         redirect_to room_path(@message.room_id)
       else

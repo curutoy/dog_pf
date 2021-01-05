@@ -45,6 +45,16 @@ nav {
     color: black;
   }
 }
+.notification-icon {
+  position: relative;
+}
+.notification-circle {
+  position: absolute;
+  bottom: 2px;
+}
+.notification-circle::before {
+  color: red;
+}
 .head-img img {
   border-radius: 50%;
 }
