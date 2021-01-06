@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Favorites", type: :request do
-  let!(:user)      { create(:user) }
-  let!(:user2)     { create(:user2) }
-  let!(:protector) { create(:protector) }
-  let!(:dog)       { create(:dog2, protector: protector) }
-  let(:favorite)   { build(:favorite, user: user, dog: dog) }
+  let!(:user)        { create(:user) }
+  let!(:user2)       { create(:user2) }
+  let!(:protector)   { create(:protector) }
+  let!(:dog)         { create(:dog2, protector: protector) }
+  let(:favorite)     { build(:favorite, user: user, dog: dog) }
 
   describe "POST /create" do
     context "userがログインしている場合" do
@@ -27,6 +27,12 @@ RSpec.describe "Favorites", type: :request do
         expect do
           post favorites_path, params: { dog_id: dog.id }
         end.to change(Favorite, :count).by(1)
+      end
+
+      it "notificationが登録されること" do
+        expect do
+          post favorites_path, params: { dog_id: dog.id }
+        end.to change(Notification, :count).by(1)
       end
 
       it "dog画面へリダイレクトすること" do

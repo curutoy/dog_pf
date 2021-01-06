@@ -27,6 +27,12 @@ RSpec.describe "Relationships", type: :request do
         end.to change(Relationship, :count).by(1)
       end
 
+      it "notificationが登録されること" do
+        expect do
+          post relationships_path, params: { protector_id: protector.id }
+        end.to change(Notification, :count).by(1)
+      end
+
       it "protector画面へリダイレクトすること" do
         post relationships_path, params: { protector_id: protector.id }
         expect(response).to redirect_to protector_path(protector)

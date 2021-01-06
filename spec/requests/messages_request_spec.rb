@@ -4,6 +4,9 @@ RSpec.describe "Messages", type: :request do
   let!(:user)      { create(:user) }
   let!(:protector) { create(:protector) }
   let!(:room)      { create(:room) }
+  let!(:entry)     { create(:entry, user: user, protector: protector, room: room) }
+  let!(:message)   { build(:message, user: user, protector: protector, room: room) }
+
 
   describe "GET /create" do
     context "userがサインインしている場合" do
@@ -29,6 +32,19 @@ RSpec.describe "Messages", type: :request do
               content: "test content",
             } }
           end.to change(Message, :count).by(1)
+        end
+
+        it "notificationが作成されること" do
+          expect do
+            post messages_path, params: { message: {
+              protector_id: protector.id,
+              room_id: room.id,
+              content: "test content",
+              message_id: message.id,
+              visited_protector_id: protector.id,
+              action: 'dm'
+            } }
+          end.to change(Notification, :count).by(1)
         end
 
         it "room画面へリダイレクトすること" do
@@ -95,6 +111,19 @@ RSpec.describe "Messages", type: :request do
               content: "test content",
             } }
           end.to change(Message, :count).by(1)
+        end
+
+        it "notificationが作成されること" do
+          expect do
+            post messages_path, params: { message: {
+              user_id: user.id,
+              room_id: room.id,
+              content: "test content",
+              message_id: message.id,
+              visited_user_id: user.id,
+              action: 'dm'
+            } }
+          end.to change(Notification, :count).by(1)
         end
 
         it "room画面へリダイレクトすること" do
