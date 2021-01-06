@@ -5,7 +5,7 @@ class RelationshipsController < ApplicationController
     @protector = Protector.find(params[:protector_id])
     unless @protector.follow?(current_user)
       @protector.follow(current_user)
-      current_user.create_notification_follow!(current_user)
+      @protector.create_notification_follow!(current_user)
       respond_to do |format|
         format.html { redirect_to @protector }
         format.js
