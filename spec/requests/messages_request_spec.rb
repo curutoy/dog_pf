@@ -7,7 +7,6 @@ RSpec.describe "Messages", type: :request do
   let!(:entry)     { create(:entry, user: user, protector: protector, room: room) }
   let!(:message)   { build(:message, user: user, protector: protector, room: room) }
 
-
   describe "GET /create" do
     context "userがサインインしている場合" do
       before do
@@ -42,7 +41,7 @@ RSpec.describe "Messages", type: :request do
               content: "test content",
               message_id: message.id,
               visited_protector_id: protector.id,
-              action: 'dm'
+              action: 'dm',
             } }
           end.to change(Notification, :count).by(1)
         end
@@ -121,7 +120,7 @@ RSpec.describe "Messages", type: :request do
               content: "test content",
               message_id: message.id,
               visited_user_id: user.id,
-              action: 'dm'
+              action: 'dm',
             } }
           end.to change(Notification, :count).by(1)
         end

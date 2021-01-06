@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Relationships', type: :system do
   let!(:user)      { create(:user) }
-  let!(:dog)       { create(:dog2) }
+  let!(:protector) { create(:protector) }
+  let!(:dog)       { create(:dog2, protector: protector) }
   let(:favorite)   { build(:favorite, user: user, dog: dog) }
 
   describe "post_create" do
@@ -31,6 +32,13 @@ RSpec.describe 'Relationships', type: :system do
       click_button 'お気に入り登録'
       sleep 1
       expect(page).to have_button "お気に入り登録済み"
+    end
+
+    it "お気に入り登録を行うと、notificationも登録されること" do
+      expect do
+        click_button 'お気に入り登録'
+        visit current_path
+      end.to change(Notification, :count).by(1)
     end
   end
 

@@ -32,6 +32,13 @@ RSpec.describe 'Relationships', type: :system do
       visit user_path(user.id)
       expect(page).to have_content "フォロー1人"
     end
+
+    it "フォローを行うとnotificationも登録されること", js: true do
+      expect do
+        click_button 'フォローする'
+        visit current_path
+      end.to change(Notification, :count).by(1)
+    end
   end
 
   describe "post_delete" do

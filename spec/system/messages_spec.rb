@@ -28,6 +28,14 @@ RSpec.describe 'Messages', type: :system do
         expect(current_path).to eq room_path(room.id)
         expect(page).to have_content "メッセージ送信に失敗しました"
       end
+
+      it "メッセージを入力して送信した場合、notificationが登録されること" do
+        expect do
+          fill_in 'message-content', with: 'test message'
+          click_on '送信'
+          visit current_path
+        end.to change(Notification, :count).by(1)
+      end
     end
 
     context "protectorがログインしている場合" do
@@ -49,6 +57,14 @@ RSpec.describe 'Messages', type: :system do
         click_on '送信'
         expect(current_path).to eq room_path(room.id)
         expect(page).to have_content "メッセージ送信に失敗しました"
+      end
+
+      it "メッセージを入力して送信した場合、notificationが登録されること" do
+        expect do
+          fill_in 'message-content', with: 'test message'
+          click_on '送信'
+          visit current_path
+        end.to change(Notification, :count).by(1)
       end
     end
   end

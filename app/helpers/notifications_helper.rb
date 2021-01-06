@@ -4,14 +4,14 @@ module NotificationsHelper
       visitor = notification.visitor_user
       case notification.action
       when "follow"
-        tag.a(visitor.name, href: user_path(visitor), style: "font-weight: bold;") + "があなたをフォローしました"
+        tag.a(visitor.name, href: user_path(visitor), style: "font-weight: bold;", class: "notification-follow") + "があなたをフォローしました"
       when "like"
-        tag.a(visitor.name, href: user_path(visitor), style: "font-weight: bold;") + "が" +
+        tag.a(visitor.name, href: user_path(visitor), style: "font-weight: bold;", class: "notification-like") + "が" +
           tag.a('保護犬', href: dog_path(notification.dog_id), style: "font-weight: bold;") + "をお気に入りに登録しました"
       when "dm"
         unless visitor.nil?
           tag.a(visitor.name, href: user_path(visitor), style: "font-weight: bold;") + "から" +
-            tag.a('メッセージ', href: room_path(notification.room_id), style: "font-weight: bold;") + "が届いています"
+            tag.a('メッセージ', href: room_path(notification.room_id), style: "font-weight: bold;", class: "notification_message") + "が届いています"
         end
       end
     else
@@ -19,8 +19,8 @@ module NotificationsHelper
       case notification.action
       when "dm"
         unless visitor.nil?
-          tag.a(visitor.name, href: user_path(visitor), style: "font-weight: bold;") + "から" +
-            tag.a('メッセージ', href: room_path(notification.room_id), style: "font-weight: bold;") + "が届いています"
+          tag.a(visitor.name, href: protector_path(visitor), style: "font-weight: bold;") + "から" +
+            tag.a('メッセージ', href: room_path(notification.room_id), style: "font-weight: bold;", class: "notification_message") + "が届いています"
         end
       end
     end
