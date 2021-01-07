@@ -1,3 +1,4 @@
+<% provide(:title, "イベント詳細") %>
 <div class="event-show">
   <% if protector_signed_in? && @event.protector == current_protector %>
     <div class="event-current clearfix container">
