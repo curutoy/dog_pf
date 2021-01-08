@@ -61,6 +61,7 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%H時%M分"
+      date: "%Y/%m/%d"
   activerecord:
     errors:
       models:

@@ -481,19 +481,36 @@ nav {
   }
 }
 /*post show*/
-.modal-dialog,
-.post-modal-content {
-  margin-top: 100px;
+.modal-dialog {
+  margin-top: 70px;
 }
-.modal-container {
-  padding-left: 0;
+.post-modal-all {
+  width: 400px;
   overflow: scroll;
+  padding: 0;
+}
+.post-modal-row {
+  width: 400px;
+  margin: 0;
+}
+.post-show-img {
+  padding: 0;
+  width: 400px;
 }
 .post-modal {
-  padding-top: 10px;
+  max-height: 300px;
+  overflow: scroll;
+}
+.post-modal-right {
+  height: 250px;
 }
 .post-modal-content {
-  padding-top: 30px;
+  padding-top: 20px;
+  height: 200px;
+  overflow: scroll;
+}
+.modal-footer {
+  height: 50px;
 }
 .fa-trash-alt {
   color: black;

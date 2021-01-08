@@ -8,19 +8,19 @@
   <div class="modal fade" id="modal-<%= post.id %>" tabindex="-1"
         role="dialog" aria-labelledby="label1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content container modal-container post-modal-content">
-        <div class="row">
-          <div class="post-show-img col-6 ">
-              <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"500x500^", crop:"500x500+0+0"}).processed, class: "img-fluid" %>
+      <div class="modal-content container modal-container post-modal-all">
+        <div class="row post-modal-row">
+          <div class="post-show-img col-12">
+              <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"400x400^", crop:"400x400+0+0"}).processed, class: "img-fluid" %>
           </div>
-          <div class="post-modal col-6">
-            <div class="modal-header">
-              <p class="float-left"><%= l post.created_at, format: :short %></p>
+          <div class="post-modal-right col-12">
+            <p class="post-modal-content"><%= safe_join(post.content.split("\n"),tag(:br)) %></p>
+            <div class="modal-footer">
+              <p class="float-left"><%= l post.created_at, format: :date %></p>
               <%= link_to dog_post_path(dog, post), data: { confirm: "本当に削除しますか?" }, method: :delete, remote: true, class: "float-right post-delete-icon" do %>
                 <i class="fas fa-trash-alt"></i>
               <% end %>
             </div>
-              <p class="post-modal-content"><%= post.content %></p>
           </div>
         </div>
       </div>
