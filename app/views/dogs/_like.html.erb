@@ -8,7 +8,7 @@
     <% end %>
   </button>
 <% else %>
-  <% if dog.favorites.present? %>
+  <% if favorites.present? %>
     <span id="dog-like"><%= favorites.count %></span>
   <% else %>
     <span id="dog-like">0</span>
@@ -18,18 +18,18 @@
       role="dialog" aria-labelledby="label1" aria-hidden="true">
   <div class="modal-dialog modal-sm like-modal" role="document">
     <div class="modal-content container like-container">
-      <% dog.users.each do |user| %>
+      <% favorites.each do |favorite| %>
         <div class="like-info row">
           <div class="like-img col-3">
-          <% if user.image.attached? %>
-            <%= image_tag user.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
+          <% if favorite.user.image.attached? %>
+            <%= image_tag favorite.user.image.variant(combine_options:{gravity: :center, resize:"40x40^", crop:"40x40+0+0"}).processed %>
           <% else %>
             <%= image_tag "user_default.png", :size => "40x40" %>
           <% end %>
           </div>
           <div class="like-name col-9">
-            <%= link_to user_path(user) do %>
-              <p><%= user.name %></p>
+            <%= link_to user_path(favorite.user) do %>
+              <p><%= favorite.user.name %></p>
             <% end %>
           </div>
         </div>

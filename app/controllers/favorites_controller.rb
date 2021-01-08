@@ -15,7 +15,9 @@ class FavoritesController < ApplicationController
   end
 
   def index
-    @dogs = Dog.all
+    @favorites = Favorite.
+      includes(dog: [image_attachment: :blob]).
+      where(user_id: current_user.id)
   end
 
   def destroy

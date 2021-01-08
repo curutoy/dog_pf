@@ -13,14 +13,18 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @entries = Entry.all.includes(:room)
+    if protector_signed_in?
+      @entries = Entry.all.includes(user: [image_attachment: :blob])
+    else
+      @entries = Entry.all.includes(protector: [image_attachment: :blob])
+    end
   end
 
   def show
     @room = Room.find(params[:id])
     if protector_signed_in?
       if Entry.where(protector_id: current_protector.id, room_id: @room.id).present?
-        @messages = @room.messages
+        @messages = @room.messages.includes(:user, :protector).references(:message)
         @message = Message.new
         @entries = @room.entries
       else
@@ -28,7 +32,7 @@ class RoomsController < ApplicationController
       end
     else
       if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-        @messages = @room.messages
+        @messages = @room.messages.includes(:user, :protector).references(:message)
         @message = Message.new
         @entries = @room.entries
       else

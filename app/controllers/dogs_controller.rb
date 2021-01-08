@@ -20,7 +20,12 @@ class DogsController < ApplicationController
   def index
     if user_signed_in? || protector_signed_in?
       @search_params = dogs_search_params
-      @dogs = Dog.search(@search_params).includes(:protector).paginate(params).per(20).order('id DESC')
+      @dogs = Dog.
+        search(@search_params).
+        includes(image_attachment: :blob).
+        paginate(params).
+        per(20).
+        order('id DESC')
       render :index
     else
       render template: "home/index"
@@ -29,7 +34,7 @@ class DogsController < ApplicationController
 
   def show
     @dog = Dog.find(params[:id])
-    @favorites = @dog.favorites
+    @favorites = @dog.favorites.includes(user: [image_attachment: :blob]).references(:favorite)
   end
 
   def edit

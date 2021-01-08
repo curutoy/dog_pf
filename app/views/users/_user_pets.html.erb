@@ -12,8 +12,8 @@
   <% end %>
 </div>
 <div class="pet-posts row">
-  <% if user.pets.present? %>
-    <% user.pets.each do |pet| %>
+  <% if pets.present? %>
+    <% pets.each do |pet| %>
       <div class="pet-post col col-sm-4" id="pets-<%= pet.id %>">
         <div class="box pet-box">
           <div class="pet-img">

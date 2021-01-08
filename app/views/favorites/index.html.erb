@@ -3,25 +3,21 @@
   <div class="dog-favorite-top">
     <h1>お気に入り<span>（<%= current_user.favorites.count %>）</span></h1>
   </div>
-  <% if current_user.favorites.present? %>
+  <% if @favorites.present? %>
     <div class="favorite-dogs row row-cols-4 row-cols-lg-5">
-      <% current_user.favorites.each do |favorite| %>
-        <% @dogs.each do |dog| %>
-          <% if dog.id == favorite.dog_id %>
-            <div class="col dogs_index">
-              <div class="dog-img">
-                <%= link_to dog, class: "dog-like-img" do %>
-                  <%= image_tag dog.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:" 150x150+0+0"}).processed, class: "img-fluid" %>
-                <% end %>
-              </div>
-              <div class="dog-info">
-                <p><%= dog.name %></p>
-                <p><%= dog.address %></p>
-                <p><%= dog.gender %></p>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+      <% @favorites.each do |favorite| %>
+        <div class="col dogs_index">
+          <div class="dog-img">
+            <%= link_to favorite.dog, class: "dog-like-img" do %>
+              <%= image_tag favorite.dog.image.variant(combine_options:{gravity: :center, resize:"150x150^", crop:" 150x150+0+0"}).processed, class: "img-fluid" %>
+            <% end %>
+          </div>
+          <div class="dog-info">
+            <p><%= favorite.dog.name %></p>
+            <p><%= favorite.dog.address %></p>
+            <p><%= favorite.dog.gender %></p>
+          </div>
+        </div>
       <% end %>
     </div>
   <% else %>

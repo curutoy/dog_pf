@@ -3,8 +3,8 @@ class ProtectorsController < ApplicationController
 
   def show
     @protector = Protector.find(params[:id])
-    @dogs = @protector.dogs
-    @relationships = @protector.relationships
+    @dogs = @protector.dogs.includes(image_attachment: :blob)
+    @relationships = @protector.relationships.includes(user: [image_attachment: :blob]).references(:relationship)
     if user_signed_in?
       @entryuser = Entry.where(user_id: current_user.id)
       @entryprotector = Entry.where(protector_id: @protector.id)
