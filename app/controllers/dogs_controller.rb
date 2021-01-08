@@ -35,6 +35,7 @@ class DogsController < ApplicationController
   def show
     @dog = Dog.find(params[:id])
     @favorites = @dog.favorites.includes(user: [image_attachment: :blob]).references(:favorite)
+    @posts = @dog.posts.includes(image_attachment: :blob).references(:post).order('posts.id DESC')
   end
 
   def edit

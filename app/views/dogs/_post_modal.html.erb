@@ -1,4 +1,4 @@
-<% dog.posts.each do |post| %>
+<% posts.each do |post| %>
   <div class="post-image col col-sm-4" id="post-<%= post.id %>">
     <button type="button" class="btn" value="post-<%= post.id %>" data-toggle="modal" data-target="#modal-<%= post.id %>">
       <%= image_tag post.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
