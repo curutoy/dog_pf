@@ -2,7 +2,7 @@
 <div class="dog-application-1">
   <% if dog.conditions.present? %>
     <div class="condition-text">
-      <%= dog.conditions %>
+      <%= safe_join(dog.conditions.split("\n"),tag(:br)) %>
     </div>
   <% end %>
 </div>

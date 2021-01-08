@@ -8,14 +8,14 @@
             <% visitor = notification.visitor_user %>
             <% dog = notification.dog %>
             <div class="row notification-list">
-              <div class="notification-left col-3">
+              <div class="notification-left col-2">
                 <% if visitor.image.attached? %>
                   <%= image_tag visitor.image.variant(combine_options:{gravity: :center, resize:"50x50^", crop:"50x50+0+0"}).processed %>
                 <% else %>
                   <%= image_tag "user_default.png", :size => "50x50" %>
                 <% end %>
               </div>
-              <div class="notification-right col-9">
+              <div class="notification-right col-10">
                 <!-- notification_formをnotifications_helper.rbで定義　-->
                 <%= notification_form(notification) %>
                 <span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
@@ -28,7 +28,7 @@
           <% @notifications.each do |notification| %>
             <% visitor = notification.visitor_protector %>
             <% dog = notification.dog %>
-            <div class="row">
+            <div class="row notification-list">
               <div class="notification-left col-2">
                 <% if visitor.image.attached? %>
                   <%= image_tag visitor.image.variant(combine_options:{gravity: :center, resize:"50x50^", crop:"50x50+0+0"}).processed %>

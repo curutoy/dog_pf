@@ -2,7 +2,7 @@
 <div class="dog-health-1">
   <% if dog.health.present? %>
     <div class="health-text">
-      <%= dog.health %>
+      <%= safe_join(dog.health.split("\n"),tag(:br)) %>
     </div>
   <% end %>
 </div>

@@ -23,7 +23,7 @@
       </tr>
       <tr>
         <td>イベント説明</td>
-        <td><%= event.content %></td>
+        <td><%= safe_join(event.content.split("\n"),tag(:br)) %></td>
       </tr>
       <tr>
         <td>主催団体</td>

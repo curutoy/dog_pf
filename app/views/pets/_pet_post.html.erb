@@ -9,7 +9,7 @@
         <p><%= pet.gender %></p>
       </div>
       <div class="pet-info-2">
-        <p><%= pet.character %></p>
+        <p><%= safe_join(pet.character.split("\n"),tag(:br)) %></p>
       </div>
     </div>
     <% if user_signed_in? && user.id == current_user.id %>

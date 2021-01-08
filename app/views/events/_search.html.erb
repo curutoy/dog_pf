@@ -30,8 +30,8 @@
             <%= f.label :due_on, "開催日" %>
           </div>
           <div class="search-select col-9">
-            <%= f.date_field :due_on_from, value: @search_params[:due_on_from] %> ~
-            <%= f.date_field :due_on_to, value: @search_params[:due_on_to] %> 
+            <%= f.date_field :due_on_from, value: search_params[:due_on_from] %> ~
+            <%= f.date_field :due_on_to, value: search_params[:due_on_to] %> 
           </div>
         </div>
         <div class="search-submit">

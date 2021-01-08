@@ -9,7 +9,7 @@
     <div class="protector-show-profile">
       <% if @protector.profile.present? %>
         <div class="profile-text">
-          <%= @protector.profile %>
+          <%= safe_join(@protector.profile.split("\n"),tag(:br)) %>
         </div>
       <% end %>
     </div>

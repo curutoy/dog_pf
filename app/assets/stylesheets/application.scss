@@ -25,6 +25,9 @@ p {
     overflow: hidden;
   }
 }
+.main-wrapper {
+  padding-bottom: 300px;
+}
 /* header */
 nav {
   background-color: rgba(255, 255, 255, 0.7);
@@ -421,6 +424,15 @@ nav {
 }
 .dog-show-protector-info {
   padding: 5px 20px 5px 20px;
+  height: 200px;
+}
+.dog-show-protector-name {
+  height: 30px;
+}
+.dog-show-protector-profile {
+  margin-top: 20px;
+  height: 140px;
+  overflow: scroll;
 }
 .dog-post-link {
   text-align: center;
@@ -613,6 +625,9 @@ nav {
   td {
     border: 1px solid black;
   }
+}
+.fa-edit {
+  color: black;
 }
 /* event_index */
 .event-index-top {

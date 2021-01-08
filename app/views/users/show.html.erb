@@ -9,7 +9,7 @@
     <div class="user-show-profile">
       <% if @user.profile.present? %>
         <div class="profile-text">
-          <%= @user.profile %>
+          <%= safe_join(@user.profile.split("\n"),tag(:br)) %>
         </div>
       <% end %>
     </div>
