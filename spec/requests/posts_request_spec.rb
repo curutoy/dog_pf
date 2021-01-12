@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
-  let!(:protector) { create(:protector2) }
-  let!(:dog)       { create(:dog2, protector: protector) }
+  let!(:protector)   { create(:protector2) }
+  let!(:dog)         { create(:dog2, protector: protector) }
   let!(:delete_post) { build(:post2, dog: dog) }
 
   describe "POST /create" do

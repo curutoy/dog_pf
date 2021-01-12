@@ -18,7 +18,7 @@ RSpec.describe "Favorites", type: :request do
         expect(response).to have_http_status(302)
       end
 
-      it "@dogの値が取得できていること" do
+      it "@favoritesの値が取得できていること" do
         post favorites_path, params: { dog_id: dog.id }
         expect(assigns(:dog)).to eq dog
       end
@@ -72,8 +72,8 @@ RSpec.describe "Favorites", type: :request do
         expect(response).to render_template :index
       end
 
-      it "@dogsの値が取得できていること" do
-        expect(assigns(:dogs)).to eq [dog]
+      it "@favoritesの値が取得できていること" do
+        expect(assigns(:favorites)).to eq [favorite]
       end
 
       it "current_user以外はページへアクセスできないこと" do

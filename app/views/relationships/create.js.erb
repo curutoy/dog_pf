@@ -1,2 +1,2 @@
 $("#protector-<%= @protector.id %> .follow").html("<%= escape_javascript(render "relationships/follow", protector: @protector) %>");
-$("#protector-follower").html('<%= @protector.relationships.count %>');
+$(".follower-count").html("<%= escape_javascript(render "relationships/count", protector: @protector) %>");

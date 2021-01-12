@@ -357,16 +357,6 @@ RSpec.describe 'Users', type: :system do
           expect(page).to have_no_css '.pet-delete-icon'
         end
       end
-
-      context "先住犬を登録していないページにアクセスした場合" do
-        before do
-          visit user_path(testuser3)
-        end
-
-        it "先住動物が存在しない旨の文が表示されること" do
-          expect(page).to have_content "先住動物はいません。"
-        end
-      end
     end
 
     context "protectorがサインインした場合" do

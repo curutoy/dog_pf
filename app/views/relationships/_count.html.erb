@@ -1,0 +1,5 @@
+<% if protector.relationships.present? %>
+  <p>フォロワー<span id="protector-follower"><%= protector.relationships.count %></span>人</p>
+<% else %>
+  <p>フォロワー0人</p>
+<% end %>

@@ -11,12 +11,14 @@ class PostsController < ApplicationController
     @dog = Dog.find(params[:dog_id])
     @post = Post.new(post_params)
     @post.dog_id = @dog.id
+    @favorites = Favorite.where(dog_id: @dog.id).includes(dog: [image_attachment: :blob])
+    @posts = Post.where(dog_id: @dog.id).includes(dog: [image_attachment: :blob])
     respond_to do |format|
       if @post.save
         format.html { redirect_to @dog }
         format.js { @status = "success" }
       else
-        format.html { render 'dogs/show' }
+        format.html { render 'dogs/show', favorites: @favorites, posts: @posts }
         format.json { render json: @dog.errors, status: :unprocessable_entity }
         format.js { @status = "fail" }
       end
