@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  before_action :authenticate_any!, only: [:show, :index]
   before_action :authenticate_protector!, only: [:new, :create]
   before_action :right_protector, only: [:edit, :update, :destroy]
 

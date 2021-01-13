@@ -84,6 +84,50 @@ RSpec.describe 'Events', type: :system do
   end
 
   describe "event_index" do
+    context "ログインしていない場合" do
+      before do
+        event2.save
+        visit events_path
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq events_path
+      end
+
+      it "「表示内容」が「全て」と表示されていること" do
+        expect(page).to have_content "全て"
+      end
+
+      it "全てのeventが表示されていること" do
+        event1.save
+        expect(page).to have_content event1.prefecture
+        expect(page).to have_content event2.prefecture
+      end
+
+      it "検索を行うと「表示内容」が検索内容に変わること" do
+        select '東京都', from: '開催地（都道府県）'
+        find('.event-search-btn').click
+        expect(page).to have_content "表示内容： 東京都"
+      end
+
+      it "検索が正常に行われること" do
+        event1.save
+        select '東京都', from: '開催地（都道府県）'
+        find('.event-search-btn').click
+        expect(page).to have_content event1.prefecture
+        expect(page).to have_no_content("千葉県", count: 2)
+      end
+
+      it "イベント投稿のアイコンが表示されていないこと" do
+        expect(page).to have_no_css('event-new-icon')
+      end
+
+      it "protectorの画像をクリックするとevent詳細ページへ遷移すること" do
+        find('.event-show-link').click
+        expect(current_path).to eq event_path(event2)
+      end
+    end
+
     context "protectorがサインインした場合" do
       before do
         event2.save
@@ -183,6 +227,29 @@ RSpec.describe 'Events', type: :system do
   end
 
   describe "event_show" do
+    context "ログインしていない場合" do
+      before do
+        event1.save
+        visit event_path(event1)
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq event_path(event1)
+      end
+
+      it "編集アイコンが表示されていないこと" do
+        expect(page).to have_no_css '.event-edit-icon'
+      end
+
+      it '削除アイコンが表示されいないこと' do
+        expect(page).to have_no_css '.event-delete-icon'
+      end
+
+      it "登録されている内容が表示されていること" do
+        expect(page).to have_content "東京都新宿区新宿３丁目３８"
+      end
+    end
+
     context "protectorがサインインした場合", js: true do
       before do
         event1.save

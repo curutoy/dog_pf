@@ -102,12 +102,16 @@ RSpec.describe "Events", type: :request do
         get events_path
       end
 
-      it "status codeが302となること" do
-        expect(response).to have_http_status(302)
+      it "status codeが200となること" do
+        expect(response).to have_http_status(200)
       end
 
-      it "home画面（ログイン前）へリダイレクトすること" do
-        expect(response).to redirect_to root_path
+      it "indexテンプレートが表示されること" do
+        expect(response).to render_template :index
+      end
+
+      it "@eventsが取得できていること" do
+        expect(assigns(:events)).to eq events.sort.reverse
       end
     end
 
