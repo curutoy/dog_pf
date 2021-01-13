@@ -16,7 +16,7 @@
     <div class="dog-top-link col-4" id="dog-<%= dog.id %>">
       <% if user_signed_in? %>
         <%= render 'favorites/like', dog: dog %>
-      <% elsif dog.protector_id == current_protector.id %>
+      <% elsif protector_signed_in? && dog.protector_id == current_protector.id %>
         <ul class="dog-edit-destroy">
           <li class="dog-edit-btn float-left">
             <%= link_to "編集", edit_dog_path(dog.id), class: "btn btn-outline-dark" %>

@@ -211,6 +211,24 @@ RSpec.describe 'Dogs', type: :system do
   end
 
   describe "dog_show" do
+    context "ログインしていない場合" do
+      before do
+        visit dog_path(id: dog.id)
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq dog_path(id: dog.id)
+      end
+
+      it "お気に入り登録ボタンが表示されていないこと" do
+        expect(page).to have_no_css '.like-btn'
+      end
+
+      it 'お気に入りのカウントがボタン表示ではないこと' do
+        expect(page).to have_no_css '.like-count-btn'
+      end
+    end
+
     context "protectorがサインインした場合", js: true do
       before do
         visit new_protector_session_path

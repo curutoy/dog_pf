@@ -112,12 +112,16 @@ RSpec.describe "Dogs", type: :request do
         get dog_path dog1
       end
 
-      it "リクエストはエラーが発生すること" do
-        expect(response).to have_http_status(302)
+      it "status codeは200となること" do
+        expect(response).to have_http_status(200)
       end
 
-      it "ホーム画面にリダイレクトされること" do
-        expect(response).to redirect_to root_path
+      it "showテンプレートが表示されること" do
+        expect(response).to render_template :show
+      end
+
+      it "@dogが取得できていること" do
+        expect(assigns(:dog)).to eq dog1
       end
     end
 
@@ -127,7 +131,7 @@ RSpec.describe "Dogs", type: :request do
         get dog_path dog1
       end
 
-      it "リクエストが成功すること" do
+      it "status codeは200となること" do
         expect(response).to have_http_status(200)
       end
 
@@ -146,7 +150,7 @@ RSpec.describe "Dogs", type: :request do
         get dog_path dog1
       end
 
-      it "リクエストが成功すること" do
+      it "status codeは200となること" do
         expect(response).to have_http_status(200)
       end
 
@@ -163,15 +167,22 @@ RSpec.describe "Dogs", type: :request do
   describe "GET /index" do
     context "ログインしていない場合" do
       before do
+        dogs.each do |dog|
+          dog.save
+        end
         get root_path
       end
 
-      it "リクエストが成功すること" do
+      it "status codeは200となること" do
         expect(response).to have_http_status(200)
       end
 
       it "indexテンプレートが表示されること" do
         expect(response).to render_template :index
+      end
+
+      it "@dogsが取得できていること" do
+        expect(assigns(:dogs)).to eq dogs.sort.reverse
       end
     end
 
@@ -184,7 +195,7 @@ RSpec.describe "Dogs", type: :request do
         get root_path
       end
 
-      it "リクエストが成功すること" do
+      it "status codeは200となること" do
         expect(response).to have_http_status(200)
       end
 
@@ -206,7 +217,7 @@ RSpec.describe "Dogs", type: :request do
         get root_path
       end
 
-      it "リクエストが成功すること" do
+      it "status codeは200となること" do
         expect(response).to have_http_status(200)
       end
 
@@ -231,7 +242,7 @@ RSpec.describe "Dogs", type: :request do
         get edit_dog_path dog1
       end
 
-      it "302レスポンスを返すこと" do
+      it "status codeは302となること" do
         expect(response).to have_http_status(302)
       end
 
@@ -246,7 +257,7 @@ RSpec.describe "Dogs", type: :request do
         get edit_dog_path dog1
       end
 
-      it "302レスポンスを返すこと" do
+      it "status codeは302となること" do
         expect(response).to have_http_status(302)
       end
 
@@ -265,7 +276,7 @@ RSpec.describe "Dogs", type: :request do
           get edit_dog_path dog2
         end
 
-        it "302レスポンスを返すこと" do
+        it "status codeは302となること" do
           expect(response).to have_http_status(302)
         end
 
@@ -279,7 +290,7 @@ RSpec.describe "Dogs", type: :request do
           get edit_dog_path dog1
         end
 
-        it "リクエストは成功すること" do
+        it "status codeは200となること" do
           expect(response).to have_http_status(200)
         end
 
@@ -302,7 +313,7 @@ RSpec.describe "Dogs", type: :request do
     end
 
     context "入力内容に誤りがない場合" do
-      it 'リクエストが成功すること' do
+      it 'status codeは302となること' do
         put dog_path(id: dog2.id), params: { dog: attributes_for(:dog3) }
         expect(response).to have_http_status(302)
       end
@@ -315,7 +326,7 @@ RSpec.describe "Dogs", type: :request do
     end
 
     context "入力内容に誤りがある場合" do
-      it 'リクエストが成功すること' do
+      it 'status codeは200となること' do
         put dog_path(dog2.id), params: { dog: attributes_for(:dog3, :invalid) }
         expect(response).to have_http_status(200)
       end
@@ -363,7 +374,7 @@ RSpec.describe "Dogs", type: :request do
       dog2.save
     end
 
-    it "リクエストが成功すること" do
+    it "status codeは302となること" do
       delete dog_path(dog1)
       expect(response).to have_http_status(302)
     end
@@ -379,7 +390,6 @@ RSpec.describe "Dogs", type: :request do
 
     it "自分以外のdogを削除できないこと" do
       delete dog_path(dog2)
-      expect(response).to have_http_status(302)
       expect(response).to redirect_to root_path
     end
   end
