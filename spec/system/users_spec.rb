@@ -231,6 +231,55 @@ RSpec.describe 'Users', type: :system do
     let!(:dog)         { create(:dog2, protector: protector) }
     let(:favorite)     { build(:favorite, user: testuser1, dog: dog) }
 
+    context "ログインしていない場合" do
+      before do
+        testuser1.save
+        relationship.user_id = testuser1.id
+        relationship.save
+        pet1.save
+        visit user_path(testuser1)
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq user_path(testuser1)
+      end
+
+      it "編集リンクが表示されていないこと" do
+        expect(page).to have_no_link "編集"
+      end
+
+      it "お気に入り一覧ページへのリンクが表示されていないこと" do
+        expect(page).to have_no_link "お気に入り一覧"
+      end
+
+      it "メッセージに関する表示がないこと" do
+        expect(page).to have_no_button "メッセージを送る"
+      end
+
+      it "フォロー人数をクリックするとフォローしているprotectorがモーダル表示されること" do
+        find('.follow-count').click
+        sleep 3
+        expect(page).to have_content protector.name
+      end
+
+      it "先住動物を登録するアイコンが表示されていないこと" do
+        expect(page).to have_no_css '.pet-new-icon'
+      end
+
+      it "登録済みの先住犬情報が表示されていること" do
+        expect(page).to have_content pet1.age
+        expect(page).to have_content pet1.gender
+      end
+
+      it "先住動物を編集するアイコンが表示されていないこと" do
+        expect(page).to have_no_css '.pet-edit-icon'
+      end
+
+      it "先住動物を削除するアイコンが表示されていないこと" do
+        expect(page).to have_no_css '.pet-delete-icon'
+      end
+    end
+
     context "userがサインインした場合", js: true do
       before do
         testuser1.save

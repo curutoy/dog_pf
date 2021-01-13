@@ -13,16 +13,20 @@ RSpec.describe "Users", type: :request do
         get user_path(user.id)
       end
 
-      it "リクエストはエラーが発生すること" do
-        expect(response).to have_http_status(302)
+      it "status codeが200となること" do
+        expect(response).to have_http_status(200)
       end
 
-      it "ホーム画面にリダイレクトされること" do
-        expect(response).to redirect_to root_path
+      it "showテンプレートが表示されること" do
+        expect(response).to render_template :show
       end
 
-      it "メッセージが表示されること" do
-        expect(flash[:alert]).to eq "アカウント登録もしくはログインしてください。"
+      it "@userが取得できていること" do
+        expect(assigns(:user)).to eq user
+      end
+
+      it "@relationshipsが取得できていること" do
+        expect(assigns(:relationships)).to eq [relationship]
       end
     end
 
@@ -32,7 +36,7 @@ RSpec.describe "Users", type: :request do
         get user_path(user.id)
       end
 
-      it "リクエストが成功すること" do
+      it "status codeが200となること" do
         expect(response).to have_http_status(200)
       end
 
@@ -55,7 +59,7 @@ RSpec.describe "Users", type: :request do
         get user_path(user.id)
       end
 
-      it "リクエストが成功すること" do
+      it "status codeが200となること" do
         expect(response).to have_http_status(200)
       end
 
