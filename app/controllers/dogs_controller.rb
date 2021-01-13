@@ -18,18 +18,14 @@ class DogsController < ApplicationController
   end
 
   def index
-    if user_signed_in? || protector_signed_in?
-      @search_params = dogs_search_params
-      @dogs = Dog.
-        search(@search_params).
-        includes(image_attachment: :blob).
-        paginate(params).
-        per(20).
-        order('id DESC')
-      render :index
-    else
-      render template: "home/index"
-    end
+    @search_params = dogs_search_params
+    @dogs = Dog.
+      search(@search_params).
+      includes(image_attachment: :blob).
+      paginate(params).
+      per(20).
+      order('id DESC')
+    render :index
   end
 
   def show

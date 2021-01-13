@@ -107,6 +107,36 @@ RSpec.describe 'Dogs', type: :system do
   end
 
   describe "dog_index" do
+    context "ログインしていない場合" do
+      before do
+        visit root_path
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq root_path
+      end
+
+      it "「表示内容」が「全て」と表示されていること" do
+        expect(page).to have_content "全て"
+      end
+
+      it "全てのdogが表示されていること" do
+        expect(page).to have_content dog.name
+      end
+
+      it "検索を行うと「表示内容」が検索内容に変わること" do
+        select '東京都', from: '所在地'
+        find('.dog-search-btn').click
+        expect(page).to have_content "東京都"
+      end
+
+      it "検索が正常に行われること" do
+        select '東京都', from: '所在地'
+        find('.dog-search-btn').click
+        expect(page).to have_content dog.name
+      end
+    end
+
     context "protectorがサインインした場合" do
       before do
         visit new_protector_session_path

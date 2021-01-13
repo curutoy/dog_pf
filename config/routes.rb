@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'favorites/create'
-  get 'favorites/destroy'
-  get 'relationships/create'
-  get 'relationships/destroy'
   devise_for :protectors, controllers: {
     sessions: 'protectors/sessions',
     passwords: 'protectors/passwords',
@@ -26,6 +22,7 @@ Rails.application.routes.draw do
   resources :dogs do
     resources :posts, only: [:new, :create, :destroy]
   end
+
   resources :relationships, only: [:create, :destroy]
   resources :favorites,     only: [:create, :destroy]
   resources :messages,      only: [:create]
