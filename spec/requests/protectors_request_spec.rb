@@ -14,16 +14,24 @@ RSpec.describe "Protectors", type: :request do
         get protector_path(protector.id)
       end
 
-      it "リクエストはエラーが発生すること" do
-        expect(response).to have_http_status(302)
+      it "status codeが200となること" do
+        expect(response).to have_http_status(200)
       end
 
-      it "ホーム画面にリダイレクトされること" do
-        expect(response).to redirect_to root_path
+      it "showテンプレートが表示されること" do
+        expect(response).to render_template :show
       end
 
-      it "メッセージが表示されること" do
-        expect(flash[:alert]).to eq "アカウント登録もしくはログインしてください。"
+      it "@protectorが取得できていること" do
+        expect(assigns(:protector)).to eq protector
+      end
+
+      it "@dogsが取得できていること" do
+        expect(assigns(:dogs)).to eq dogs
+      end
+
+      it "@relationshipsが取得できていること" do
+        expect(assigns(:relationships)).to eq [relationship]
       end
     end
 
@@ -33,7 +41,7 @@ RSpec.describe "Protectors", type: :request do
         get protector_path(protector.id)
       end
 
-      it "リクエストが成功すること" do
+      it "status codeが200となること" do
         expect(response).to have_http_status(200)
       end
 
@@ -60,7 +68,7 @@ RSpec.describe "Protectors", type: :request do
         get protector_path(protector.id)
       end
 
-      it "リクエストが成功すること" do
+      it "status codeが200となること" do
         expect(response).to have_http_status(200)
       end
 

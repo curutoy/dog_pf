@@ -213,6 +213,47 @@ RSpec.describe 'Protectors', type: :system do
       testprotector1.save
     end
 
+    context "ログインしていない場合", js: true do
+      before do
+        relationship.save
+        dog.save
+        visit protector_path(testprotector1)
+      end
+
+      it "アクセスができること" do
+        expect(current_path).to eq protector_path(testprotector1)
+      end
+
+      it "編集リンクが表示されていないこと" do
+        expect(page).to have_no_link "編集"
+      end
+
+      it "フォローボタンが表示されないこと" do
+        expect(page).to have_no_css '.follow-btn'
+      end
+
+      it "フォロワー人数をクリックするとフォローしているprotectorがモーダル表示されること" do
+        find('.follower-count').click
+        sleep 3
+        expect(page).to have_content user.name
+      end
+
+      it "メッセージに関する表示がないこと" do
+        expect(page).to have_no_button "メッセージを送る"
+      end
+
+      it "登録済みのdogが表示されていること" do
+        expect(page).to have_content dog.name
+        expect(page).to have_content dog.age
+        expect(page).to have_content dog.gender
+      end
+
+      it "登録済みの画像をクリックするとdog詳細画面へ遷移すること" do
+        find('.protector-dog-img').click
+        expect(current_path).to eq dog_path(dog)
+      end
+    end
+
     context "protectorがサインインした場合", js: true do
       before do
         relationship.save
