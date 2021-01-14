@@ -39,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by(name: "testuser") do |user|
+    find_or_create_by(name: "里親希望者(テスト)") do |user|
       user.email =  "testuser@example.com"
       user.password = "testpassword"
       user.address = "北海道"

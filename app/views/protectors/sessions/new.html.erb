@@ -6,6 +6,8 @@
     <div class="sign-in">
       <h3>ログイン</br>（保護活動家の方）</h3>
       <%= render "protectors/sessions/login_form" %>
+      <p class="or">または</p>
+      <%= link_to 'テストユーザーとしてログイン', protectors_guest_sign_in_path, class: "btn btn-outline-dark test-login", method: :post %>
     </div>
     <div class="sign-link">
       <p>アカウントをお持ちではないですか？</p>

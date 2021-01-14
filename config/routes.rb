@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     registrations: 'protectors/registrations',
   }
 
+  devise_scope :user do
+    post 'protectors/guest_sign_in', to: 'protectors/sessions#new_guest'
+  end
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',

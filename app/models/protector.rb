@@ -62,4 +62,14 @@ class Protector < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+
+  def self.guest
+    find_or_create_by(name: "保護活動家(テスト)") do |protector|
+      protector.email =  "testprotector@example.com"
+      protector.password = "testpassword"
+      protector.address = "北海道"
+      protector.url = "１人"
+      protector.profile = "保健所から引き出しています。１頭でも多く幸せな犬を増やすために活動しています。"
+    end
+  end
 end

@@ -3,22 +3,12 @@
 class Protectors::SessionsController < Devise::SessionsController
   before_action :authenticate_user!, expect: [:new, :create]
   before_action :authenticate_protector!, expect: [:new, :create]
-  # before_action :configure_sign_in_params, only: [:create]
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
-
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
-
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def new_guest
+    protector = Protector.guest
+    sign_in protector
+    redirect_to root_path, notice: "テストユーザーとしてログインしました。"
+  end
 
   protected
 
