@@ -66,7 +66,7 @@ class EventsController < ApplicationController
       flash[:alert] = "保護活動家専用のページです"
     elsif protector_signed_in?
     else
-      render template: "home/index"
+      render template: "homes/index"
       flash[:alert] = "ログインまたはアカウント登録を行ってください"
     end
   end

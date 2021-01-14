@@ -19,8 +19,8 @@ RSpec.describe "Dogs", type: :request do
         expect(response).to have_http_status(200)
       end
 
-      it "home/indexテンプレートが表示されること" do
-        expect(response).to render_template "home/index"
+      it "homes/indexテンプレートが表示されること" do
+        expect(response).to render_template "homes/index"
       end
     end
 

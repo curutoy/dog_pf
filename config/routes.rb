@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   }
 
   root 'dogs#index'
+  resources :homes, only: [:index]
   resources :users, only: [:show] do
     resources :pets,      only: [:new, :create, :edit, :update, :destroy]
     resources :favorites, only: [:index]

@@ -69,7 +69,7 @@ nav {
 .main-bg {
   background-image: url(home.jpg);
   background-size: cover;
-  height: 1000px;
+  height: 700px;
 }
 .home-explanation {
   background-color: #efefef;
@@ -78,6 +78,21 @@ nav {
   text-align: center;
   padding: 80px;
   font-weight: bold;
+  margin-bottom: 100px;
+}
+.home-login {
+  text-align: center;
+}
+.home-login-inside {
+  padding: 20px;
+  h4 {
+    font-weight: bold;
+    padding-bottom: 10px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 30px;
+  }
 }
 /* all edit*/
 .image-file {
