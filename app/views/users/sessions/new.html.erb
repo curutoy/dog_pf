@@ -9,6 +9,8 @@
       <%= render "users/sessions/login_form" %>
       </div>
       <p class="or">または</p>
+      <%= link_to 'テストユーザーとしてログイン', users_guest_sign_in_path, class: "btn btn-outline-dark test-login", method: :post %>
+      <p class="or">または</p>
       <div class="facebook">
         <% if devise_mapping.omniauthable? %>
           <% resource_class.omniauth_providers.each do |provider| %>
