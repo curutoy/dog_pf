@@ -15,28 +15,30 @@
       <p>そんな想いでWith Dogというサイトを作りました。</p>
     </div>
   </div>
-  <div class="home-logins container">
-    <div class="row">
-      <div class="home-login col-6">
-        <%= link_to new_user_registration_path, class: "btn btn-outline-dark" do %>
-          <div class="home-login-inside">
-            <h4>里親希望者</h4>
-            <p>保護犬のお気に入り登録や</p>
-            <p>保護活動家をフォロー、</p>
-            <p>保護活動家と連絡が取れます。</p>
-          </div>
-        <% end %>
-      </div>
-      <div class="home-login col-6">
-        <%= link_to new_protector_registration_path, class: "btn btn-outline-dark" do %>
-          <div class="home-login-inside">
-            <h4>保護活動家</h4>
-            <p>保護犬の登録や</p>
-            <p>イベントの登録、</p>
-            <p>里親希望者と連絡が取れます。</p>
-          </div>
-        <% end %>
+  <% unless user_signed_in? || protector_signed_in? %>
+    <div class="home-logins container">
+      <div class="row">
+        <div class="home-login col-6">
+          <%= link_to new_user_registration_path, class: "btn btn-outline-dark" do %>
+            <div class="home-login-inside">
+              <h4>里親希望者</h4>
+              <p>保護犬のお気に入り登録や</p>
+              <p>保護活動家をフォロー、</p>
+              <p>保護活動家と連絡が取れます。</p>
+            </div>
+          <% end %>
+        </div>
+        <div class="home-login col-6">
+          <%= link_to new_protector_registration_path, class: "btn btn-outline-dark" do %>
+            <div class="home-login-inside">
+              <h4>保護活動家</h4>
+              <p>保護犬の登録や</p>
+              <p>イベントの登録、</p>
+              <p>里親希望者と連絡が取れます。</p>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
