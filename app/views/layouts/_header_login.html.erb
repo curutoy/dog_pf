@@ -1,0 +1,67 @@
+<li class="nav-item head-icon">
+  <%= link_to homes_path do %>
+    <i class="fas fa-bone fa-2x"></i>
+    <p>サイト概要</p>
+  <% end %>
+</li>
+<li class="nav-item head-icon">
+  <%= link_to events_path do %>
+    <i class="fas fa-paw fa-2x"></i>
+    <p>イベント</p>
+  <% end %>
+</li>
+<li class="nav-item head-icon">
+  <%= link_to rooms_path do %>
+    <i class="fas fa-comments fa-2x"></i>
+    <p>メッセージ</p>
+  <% end %>
+</li>
+<li class="nav-item head-icon">
+  <% if protector_signed_in? %>
+    <%= link_to new_dog_path do %>
+      <i class="fas fa-dog fa-2x"></i>
+      <p>保護犬登録</p>
+    <% end %>
+  <% else %>
+    <%= link_to user_favorites_path(current_user) do %>
+      <i class="fab fa-gratipay fa-2x"></i>
+      <p>お気に入り</p>
+    <% end %>
+  <% end %>
+</li>
+<li class="nav-item head-icon">
+  <%= link_to notifications_path, class: "notification-icon" do %>
+    <i class="fas fa-bell fa-2x"></i>
+    <p>お知らせ</p>
+    <% if unchecked_notifications.any? %>
+      <i class="fa fa-circle notification-circle"></i>
+    <% end %>
+  <% end %>
+</li>
+<li class="nav-item head-img dropdown">
+  <% if user_signed_in? %>
+    <a href="#" class="nav-link dropdown-toggle head-img-link" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+      <% if current_user.image.attached? %>
+        <%= image_tag current_user.image.variant(combine_options:{gravity: :center, resize:"50x50^", crop:"50x50+0+0"}).processed %>
+      <% else %>
+        <%= image_tag "user_default.png", :size => "50x50" %>
+      <% end %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <%= link_to "マイページ", user_path(current_user), class: "dropdown-item" %>
+      <%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item" %>
+    </div>
+  <% else %>
+    <a href="#" class="nav-link dropdown-toggle head-img-link" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+      <% if current_protector.image.attached? %>
+        <%= image_tag current_protector.image.variant(combine_options:{gravity: :center, resize:"50x50^", crop:"50x50+0+0"}).processed %>
+      <% else %>
+        <%= image_tag "protector_default.png", :size => "50x50" %>
+      <% end %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <%= link_to "マイページ", protector_path(current_protector), class: "dropdown-item" %>
+      <%= link_to "ログアウト", destroy_protector_session_path, class: "dropdown-item" %>
+    </div>
+  <% end %>
+</li>

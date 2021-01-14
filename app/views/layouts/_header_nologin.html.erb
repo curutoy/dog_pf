@@ -1,0 +1,34 @@
+<li class="nav-item head-icon head-icon-h">
+  <%= link_to events_path do %>
+    <i class="fas fa-paw fa-2x"></i>
+    <p>イベント</p>
+  <% end %>
+</li>
+<li class="nav-item head-icon head-icon-h">
+  <%= link_to homes_path do %>
+    <i class="fas fa-bone fa-2x"></i>
+    <p>サイト概要</p>
+  <% end %>
+</li>
+<li class="nav-item dropdown head-icon">
+  <a href="#" class="nav-link dropdown-toggle head-img-link" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-sign-in-alt fa-2x"></i>
+    <p>ログイン</p>
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    <%= link_to "一般の方", new_user_session_path, class: "dropdown-item" %>
+    <%= link_to "保護活動家", new_protector_session_path, class: "dropdown-item" %>
+    <%= link_to 'テスト（一般の方）', users_guest_sign_in_path, class: "dropdown-item", method: :post %>
+    <%= link_to 'テスト（保護活動家の方）', protectors_guest_sign_in_path, class: "dropdown-item", method: :post %>
+  </div>
+</li>
+<li class="nav-item dropdown head-icon">
+  <a href="#" class="nav-link dropdown-toggle head-img-link" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-user-plus fa-2x"></i>
+    <p>新規登録</p>
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    <%= link_to "一般の方", new_user_registration_path, class: "dropdown-item" %>
+    <%= link_to "保護活動家", new_protector_registration_path, class: "dropdown-item" %>
+  </div>
+</li>
