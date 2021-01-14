@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Homes", type: :request do
+  let!(:user)       { create(:user) }
+  let!(:protector)  { create(:protector) }
+
   describe "GET /index" do
     context "ログインしていない場合" do
       before do
@@ -18,6 +21,7 @@ RSpec.describe "Homes", type: :request do
 
     context "userでログイン状態の場合" do
       before do
+        sign_in user
         get homes_path
       end
 
@@ -32,6 +36,7 @@ RSpec.describe "Homes", type: :request do
 
     context "protectorでログイン状態の場合" do
       before do
+        sign_in protector
         get homes_path
       end
 
