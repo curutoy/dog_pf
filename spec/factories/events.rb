@@ -9,7 +9,7 @@ FactoryBot.define do
     content { "test content" }
 
     trait :invalid do
-      address { " " }
+      prefecture { " " }
     end
   end
 

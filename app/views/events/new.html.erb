@@ -17,11 +17,11 @@
           <%= f.time_select :finish_at, class: 'form-control' %>
         </div>
         <div class="field event-field">
-          <%= f.label :prefecture, "開催地（都道府県）" %><span class="mandatory">必須</span><br />
+          <%= f.label :prefecture, "開催地（都道府県）" %><span>（オンラインで開催の場合は最後の【Web】を選択してください）</span><span class="mandatory">必須</span><br />
           <%= f.select :prefecture, Event.prefectures.keys, {prompt: '選択してください'}, class: 'form-control' %>
         </div>
         <div class="field event-field">
-          <%= f.label :address, "開催地（住所）" %><span class="mandatory">必須</span><br />
+          <%= f.label :address, "開催地（住所）" %><br />
           <%= f.text_field :address, class: "form-control", placeholder: "例：東京都新宿区新宿３丁目３８", autocomplete: "address" %>
         </div>
         <div class="field event-field">

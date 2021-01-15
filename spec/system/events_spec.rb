@@ -59,11 +59,10 @@ RSpec.describe 'Events', type: :system do
         find('#event_start_at_5i').find("option[value='00']").select_option
         find('#event_finish_at_4i').find("option[value='00']").select_option
         find('#event_finish_at_5i').find("option[value='00']").select_option
-        select '東京都', from: '開催地（都道府県）'
-        fill_in '開催地（住所）', with: ''
+        fill_in '開催地（住所）', with: '東京都新宿区新宿３丁目３８'
         fill_in '説明（200文字以内)', with: 'test content'
         click_button '送信'
-        expect(page).to have_content("開催地（住所） が入力されていません。")
+        expect(page).to have_content("開催地（都道府県） が入力されていません。")
       end
 
       it "長さに上限のある項目が上限を超えてしまうとエラーとなること" do

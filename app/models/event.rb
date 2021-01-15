@@ -6,7 +6,6 @@ class Event < ApplicationRecord
   validates :start_at,     presence: true
   validates :finish_at,    presence: true
   validates :prefecture,   presence: true
-  validates :address,      presence: true
   validates :content,      length: { maximum: 200 }
 
   geocoded_by :address
@@ -20,7 +19,7 @@ class Event < ApplicationRecord
     滋賀県: 25, 京都府: 26, 大阪府: 27, 兵庫県: 28, 奈良県: 29, 和歌山県: 30,
     鳥取県: 31, 島根県: 32, 岡山県: 33, 広島県: 34, 山口県: 35,
     徳島県: 36, 香川県: 37, 愛媛県: 38, 高知県: 39,
-    福岡県: 40, 佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46, 沖縄県: 47,
+    福岡県: 40, 佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46, 沖縄県: 47, Web: 48,
   }
 
   scope :paginate, -> (p) { page(p[:page]) }

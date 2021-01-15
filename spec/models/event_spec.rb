@@ -24,8 +24,8 @@ RSpec.describe Event, type: :model do
       expect(event).to be_invalid
     end
 
-    it "addressが空白の場合エラーが発生すること" do
-      event.address = ""
+    it "prefectureが空白の場合エラーが発生すること" do
+      event.prefecture = ""
       expect(event).to be_invalid
     end
 

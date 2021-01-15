@@ -14,13 +14,21 @@
         <td><%= l event.finish_at, format: :short %></td>
       </tr>
       <tr>
-        <td>開催地住所</td>
+        <td>開催地</td>
         <td>
-          <%= event.address %>
-          <div id="map">
-          </div>
+          <%= event.prefecture %>
         </td>
       </tr>
+      <% if event.address.present? %>
+        <tr>
+          <td>開催地住所</td>
+          <td>
+            <%= event.address %>
+            <div id="map">
+            </div>
+          </td>
+        </tr>
+      <% end %>
       <tr>
         <td>イベント説明</td>
         <td><%= safe_join(event.content.split("\n"),tag(:br)) %></td>
