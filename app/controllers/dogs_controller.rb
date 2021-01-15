@@ -19,12 +19,7 @@ class DogsController < ApplicationController
 
   def index
     @search_params = dogs_search_params
-    @dogs = Dog.
-      search(@search_params).
-      includes(image_attachment: :blob).
-      paginate(params).
-      per(20).
-      order('id DESC')
+    @dogs = Dog.search(@search_params).includes(image_attachment: :blob).paginate(params).per(20).sorted
     render :index
   end
 

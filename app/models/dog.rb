@@ -119,6 +119,7 @@ class Dog < ApplicationRecord
   end
 
   scope :paginate, -> (p) { page(p[:page]) }
+  scope :sorted, -> { order('id DESC') }
 
   scope :search, -> (search_params) do
     return if search_params.blank?

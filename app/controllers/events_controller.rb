@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 
   def index
     @search_params = events_search_params
-    @events = Event.search(@search_params).includes(protector: :image_attachment).paginate(params).per(18).order('id DESC')
+    @events = Event.search(@search_params).includes(protector: :image_attachment).paginate(params).per(18).sorted
   end
 
   def show
