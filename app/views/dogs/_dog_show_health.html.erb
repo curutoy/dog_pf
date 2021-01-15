@@ -1,12 +1,5 @@
 <h2>健康状態</h2>
 <div class="dog-health-1">
-  <% if dog.health.present? %>
-    <div class="health-text">
-      <%= safe_join(dog.health.split("\n"),tag(:br)) %>
-    </div>
-  <% end %>
-</div>
-<div class="dog-health-2">
   <div class="dog-health-s row">
     <div class="dog-health col-4">
       <div class="health">
@@ -27,4 +20,11 @@
       </div>
     </div>
   </div>
+</div>
+<div class="dog-health-2">
+  <% if dog.health.present? %>
+    <div class="health-text">
+      <%= safe_join(dog.health.split("\n"),tag(:br)) %>
+    </div>
+  <% end %>
 </div>

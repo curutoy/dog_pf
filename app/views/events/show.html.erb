@@ -1,24 +1,26 @@
 <% provide(:title, "イベント詳細") %>
-<div class="event-show">
-  <% if protector_signed_in? && @event.protector == current_protector %>
-    <div class="event-current clearfix container">
-      <div class="float-right">
-        <div class="event-edit-link float-left">
-          <%= link_to edit_event_path(@event), remote: true, class: "event-edit-icon" do %>
-            <i class="far fa-edit fa-lg"></i>
-          <% end %>
-          <div id="event-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-        </div>
-        <div class="pet-delete-link float-right">
-          <%= link_to event_path(@event), data: { confirm: "本当に削除しますか?" }, method: :delete, class: "event-delete-icon" do %>
-            <i class="fas fa-trash-alt fa-lg"></i>
-          <% end %>
+<div class="event-show-all">
+  <div class="event-show">
+    <% if protector_signed_in? && @event.protector == current_protector %>
+      <div class="event-current clearfix container">
+        <div class="float-right">
+          <div class="event-edit-link float-left">
+            <%= link_to edit_event_path(@event), remote: true, class: "event-edit-icon" do %>
+              <i class="far fa-edit fa-lg"></i>
+            <% end %>
+            <div id="event-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+          </div>
+          <div class="pet-delete-link float-right">
+            <%= link_to event_path(@event), data: { confirm: "本当に削除しますか?" }, method: :delete, class: "event-delete-icon" do %>
+              <i class="fas fa-trash-alt fa-lg"></i>
+            <% end %>
+          </div>
         </div>
       </div>
+    <% end %>
+    <div class="event-show-table">
+      <%= render 'show_table', event: @event %>
     </div>
-  <% end %>
-  <div class="event-show-table">
-    <%= render 'show_table', event: @event %>
   </div>
 </div>
 <script type="text/javascript">

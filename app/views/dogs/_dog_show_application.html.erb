@@ -1,12 +1,5 @@
 <h2>応募条件</h2>
-<div class="dog-application-1">
-  <% if dog.conditions.present? %>
-    <div class="condition-text">
-      <%= safe_join(dog.conditions.split("\n"),tag(:br)) %>
-    </div>
-  <% end %>
-</div>
-<div class="dog-applicaiton-2">
+<div class="dog-applicaiton-1">
   <div class="dog-application-s row">
     <div class="dog-application col-6">
       <div class="application">
@@ -14,11 +7,18 @@
         <p><%= dog.senior %></p>
       </div>
     </div>
-    <div class="dog-health col-6">
+    <div class="dog-application col-6">
       <div class="application">
         <p>単身者応募</p>
         <p><%= dog.single_people %></p>
       </div>
     </div>
   </div>
+</div>
+<div class="dog-application-2">
+  <% if dog.conditions.present? %>
+    <div class="condition-text">
+      <%= safe_join(dog.conditions.split("\n"),tag(:br)) %>
+    </div>
+  <% end %>
 </div>

@@ -10,8 +10,18 @@
   </head>
   <body>
     <div class="main-wrapper">
-      <%= render 'layouts/header' %> 
-      <%= yield %>
+      <%= render 'layouts/header' %>
+      <div class="main">
+        <%= yield %>
+      </div>
+      <footer id="footer">
+        <%= link_to homes_path do %>
+          <%= image_tag "wDOG_LOGO2.png", :size => "30x30" %>
+          <span>
+            w/Dog
+          </span>
+        <% end %>
+      </footer>
     </div>
   </body>
 </html>

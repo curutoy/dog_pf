@@ -4,8 +4,12 @@
   margin: 0;
   padding: 0;
 }
+html {
+  height: 100%;
+}
 body {
-  background-color: #ebc94e;
+  background-color: #efefef;
+  height: 100%;
 }
 li {
   list-style: none;
@@ -26,11 +30,15 @@ p {
   }
 }
 .main-wrapper {
-  padding-bottom: 300px;
+  position: relative;
+  min-height: 100%;
+}
+.main {
+  padding-bottom: 60px;
 }
 /* header */
 nav {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(235, 201, 78, 0.9);
 }
 .head-right > li {
   padding: 0 10px 0 10px;
@@ -64,6 +72,21 @@ nav {
 }
 .head-img-link::after {
   display: none;
+}
+/* footer */
+footer {
+  height: 60px;
+  background-color: #ebc94e;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  a {
+    line-height: 60px;
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
+  }
 }
 /* home */
 .main-bg {
@@ -102,6 +125,10 @@ nav {
   }
 }
 /* devise */
+.devise {
+  background-color: #ebc94e;
+  padding-bottom: 100px;
+}
 .devise-container {
   width: 60%;
   margin: 0 auto;
@@ -114,7 +141,7 @@ nav {
 .sign-link,
 .devise-edit,
 .account-cancel {
-  background-color: white;
+  background-color: #efefef;
   border-radius: 10px;
   padding: 20px;
 }
@@ -133,9 +160,7 @@ nav {
   font-weight: bold;
   margin-left: 5px;
 }
-.sign-link {
-  margin-bottom: 100px;
-}
+
 /* login */
 .sign-in {
   h3 {
@@ -156,7 +181,7 @@ nav {
 .devise-edit {
   .field {
     padding-bottom: 10px;
-    border-bottom: dotted 2px black;
+    border-bottom: solid 2px white;
     margin-bottom: 10px;
   }
   .actions,
@@ -172,7 +197,7 @@ nav {
 }
 /*devise_edit*/
 .devise-edit-container {
-  margin-top: 150px;
+  padding-top: 150px;
 }
 .edit-image {
   text-align: center;
@@ -312,7 +337,7 @@ nav {
   padding-left: 20px;
 }
 .search-form {
-  background-color: #efefef;
+  background-color: white;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 30px;
@@ -359,6 +384,16 @@ nav {
   border-radius: 15px;
 }
 /* dog_show user_show protector_show*/
+.dog-show-top {
+  padding-bottom: 40px;
+  border-bottom: dotted 2px #5a544b;
+}
+.p-show-top-container,
+.u-show-top-container {
+  padding-bottom: 20px;
+  border-bottom: dotted 2px #5a544b;
+  margin-bottom: 40px;
+}
 .dog-show-top,
 .user-show-top,
 .protector-show-top {
@@ -392,7 +427,6 @@ nav {
   border-bottom: dotted 1px black;
   margin-bottom: 10px;
 }
-.dog-show-profile,
 .dog-show-skill,
 .dog-show-health,
 .dog-show-application,
@@ -409,11 +443,14 @@ nav {
   border: dotted 1px black;
   border-radius: 5px;
   padding: 5px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .dog-show-skill,
 .dog-show-health,
 .dog-show-application {
+  border-bottom: dotted 1px #5a544b;
+  padding-bottom: 20px;
   h2 {
     margin-bottom: 20px;
   }
@@ -427,6 +464,10 @@ nav {
   border: dotted 1px black;
   border-radius: 50%;
   padding: 10px;
+}
+.dog-health-1,
+.dog-applicaiton-1 {
+  padding-bottom: 30px;
 }
 .dog-posts {
   margin-bottom: 50px;
@@ -466,16 +507,20 @@ nav {
   margin-bottom: 30px;
 }
 /*dog.event new edit */
+.dogs {
+  padding-top: 150px;
+  padding-bottom: 100px;
+  background-color: #ebc94e;
+}
 .dogs-container,
 .event-container {
   width: 70%;
   margin: 0 auto;
-  margin-top: 150px;
 }
 .dog-new,
 .dog-edit,
 .event-new {
-  background-color: white;
+  background-color: #efefef;
   border-radius: 10px;
   padding: 20px;
 }
@@ -485,7 +530,7 @@ nav {
 }
 .dog-edit {
   .field {
-    border-bottom: dotted 2px black;
+    border-bottom: solid 2px white;
     padding-bottom: 10px;
     margin-bottom: 10px;
   }
@@ -554,12 +599,17 @@ nav {
   margin-bottom: 50px;
 }
 /*rooms_show*/
+.dm-show {
+  background-color: #ebc94e;
+  padding-top: 100px;
+}
 .dm {
   width: 70%;
   margin: 0 auto;
-  background-color: white;
+  background-color: #efefef;
   min-height: 100vh;
   padding: 0 10px 70px 10px;
+  border-radius: 20px;
 }
 .dm-top {
   text-align: center;
@@ -600,16 +650,21 @@ nav {
   margin: 0 auto;
   text-align: center;
   padding: 20px 0 20px 0;
-  background: white;
+  background: #efefef;
 }
 /* room_index */
+.dm-index-all {
+  background-color: #ebc94e;
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
 .dm-index {
   width: 50%;
   margin: 0 auto;
-  background-color: white;
+  background-color: #efefef;
   min-height: 100vh;
   padding-top: 50px;
-  margin-top: 85px;
+  border-radius: 20px;
 }
 .dm-index-top,
 .partner {
@@ -623,6 +678,11 @@ nav {
   color: black;
 }
 /* event_new */
+.event {
+  background-color: #ebc94e;
+  padding-top: 120px;
+  padding-bottom: 100px;
+}
 .bootstrap-date {
   display: inline-block;
   width: auto;
@@ -631,7 +691,11 @@ nav {
   margin-bottom: 20px;
 }
 /* event_show */
-.event-show,
+.event-show-all {
+  background-color: #ebc94e;
+  padding-top: 120px;
+  padding-bottom: 100px;
+}
 .event-index {
   margin-top: 120px;
 }
@@ -640,9 +704,10 @@ nav {
   margin: 0 auto;
 }
 .event-table {
-  background: #fffff0;
+  background-color: #fffff0;
+  margin-bottom: 0;
   td {
-    border: 1px solid black;
+    border: 1px solid #efefef;
   }
 }
 .fa-edit {
