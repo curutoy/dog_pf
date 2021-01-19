@@ -1,25 +1,31 @@
 <% if messages.present? %>
   <div class="message">
     <% messages.each do |m| %>
-      <div class="user-message">
-        <p><%= l m.created_at %></p>
-        <p class="dm-content"><%= m.content %></p>
-        <div class="dm-image">
-          <% if m.protector_id == nil %>
+      <% if m.protector_id == nil %> 
+        <div class="user-message">
+          <p><%= l m.created_at %></p>
+          <p class="dm-content"><%= m.content %></p>
+          <div class="dm-image">
             <% if m.user.image.attached? %> 
               <%= image_tag m.user.image.variant(combine_options:{gravity: :center, resize:"30x30^", crop:"30x30+0+0"}).processed %>
             <% else %>
               <%= image_tag "user_default.png", :size => "40x40" %>
             <% end %>
-          <% else %>
+          </div>
+        </div>
+      <% else %>
+        <div class="protector-message">
+          <p><%= l m.created_at %></p>
+          <p class="dm-content"><%= m.content %></p>
+          <span class="dm-image">
             <% if m.protector.image.attached? %> 
               <%= image_tag m.protector.image.variant(combine_options:{gravity: :center, resize:"30x30^", crop:"30x30+0+0"}).processed %>
             <% else %>
               <%= image_tag "protector_default.png", :size => "40x40" %>
             <% end %>
-          <% end %>
+          </span>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 <% else %>
