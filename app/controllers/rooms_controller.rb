@@ -24,7 +24,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     if protector_signed_in?
       if Entry.where(protector_id: current_protector.id, room_id: @room.id).present?
-        @messages = @room.messages.includes(:user, :protector).references(:message)
+        @messages = @room.messages.includes(:user, :protector).references(:message).order("messages.id ASC")
         @message = Message.new
         @entries = @room.entries
       else
@@ -32,7 +32,7 @@ class RoomsController < ApplicationController
       end
     else
       if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-        @messages = @room.messages.includes(:user, :protector).references(:message)
+        @messages = @room.messages.includes(:user, :protector).references(:message).order("messages.id ASC")
         @message = Message.new
         @entries = @room.entries
       else
