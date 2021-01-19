@@ -22,23 +22,9 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    if protector_signed_in?
-      if Entry.where(protector_id: current_protector.id, room_id: @room.id).present?
-        @messages = @room.messages.includes(:user, :protector).references(:message)
-        @message = Message.new
-        @entries = @room.entries
-      else
-        redirect_to root_path
-      end
-    else
-      if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-        @messages = @room.messages.includes(:user, :protector).references(:message)
-        @message = Message.new
-        @entries = @room.entries
-      else
-        redirect_to root_path
-      end
-    end
+    @messages = @room.messages.includes(:user, :protector).references(:message)
+    @message = Message.new
+    @entries = @room.entries
   end
 
   private
