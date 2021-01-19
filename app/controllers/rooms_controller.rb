@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @messages = @room.messages.includes(:user, :protector).references(:message)
+    @messages = @room.messages.includes(:user, :protector).references(:message).order("messages.id ASC")
     @message = Message.new
     @entries = @room.entries
   end
