@@ -16,10 +16,6 @@ class User < ApplicationRecord
   validates :name,          presence: true,
                             length: { maximum: 20 }
   validates :email,         length: { maximum: 60 }
-  validates :address,       presence: true
-  validates :family_people, presence: true
-  validates :house,         presence: true
-  validates :caretaker,     presence: true
   validates :profile,       length: { maximum: 200 }
   validates :image,         content_type: {
                               in: %w(image/jpeg image/png),
