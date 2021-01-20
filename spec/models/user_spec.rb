@@ -39,24 +39,24 @@ RSpec.describe User, type: :model do
       expect(testuser1).to be_invalid
     end
 
-    it "addressが空白の場合エラーが発生すること" do
+    it "addressが空白の場合エラーは発生しないこと" do
       testuser1.address = ""
-      expect(testuser1).to be_invalid
+      expect(testuser1).to be_valid
     end
 
-    it "family_peopleが空白の場合エラーが発生すること" do
+    it "family_peopleが空白の場合エラーは発生しないこと" do
       testuser1.family_people = ""
-      expect(testuser1).to be_invalid
+      expect(testuser1).to be_valid
     end
 
-    it "houseが空白の場合エラーが発生すること" do
+    it "houseが空白の場合エラーは発生しないこと" do
       testuser1.house = ""
-      expect(testuser1).to be_invalid
+      expect(testuser1).to be_valid
     end
 
-    it "caretakerが空白の場合エラーが発生すること" do
+    it "caretakerが空白の場合エラーは発生しないこと" do
       testuser1.caretaker = ""
-      expect(testuser1).to be_invalid
+      expect(testuser1).to be_valid
     end
 
     it "profileが空白の場合エラーは発生しないこと" do
