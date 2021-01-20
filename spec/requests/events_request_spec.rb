@@ -5,8 +5,7 @@ RSpec.describe "Events", type: :request do
   let!(:protector1) { create(:protector) }
   let!(:protector2) { create(:protector2) }
   let(:event1)      { build(:event, protector: protector1) }
-  let!(:event2)     { build(:event, protector: protector2) }
-  let!(:events)     { create_list(:event, 2, protector: protector1) }
+  let(:event2)      { build(:event, protector: protector2) }
 
   describe "GET /new" do
     context "ログインしていない場合" do
@@ -99,6 +98,8 @@ RSpec.describe "Events", type: :request do
   describe "GET /index" do
     context "ログインしていない場合" do
       before do
+        event1.save
+        event2.save
         get events_path
       end
 
@@ -111,12 +112,14 @@ RSpec.describe "Events", type: :request do
       end
 
       it "@eventsが取得できていること" do
-        expect(assigns(:events)).to eq events.sort.reverse
+        expect(assigns(:events)).to contain_exactly(event1, event2)
       end
     end
 
     context "userでログイン状態の場合" do
       before do
+        event1.save
+        event2.save
         sign_in user
         get events_path
       end
@@ -130,12 +133,14 @@ RSpec.describe "Events", type: :request do
       end
 
       it "@eventsが取得できていること" do
-        expect(assigns(:events)).to eq events.sort.reverse
+        expect(assigns(:events)).to contain_exactly(event1, event2)
       end
     end
 
     context "protectorでログイン状態の場合" do
       before do
+        event1.save
+        event2.save
         sign_in protector1
         get events_path
       end
@@ -149,7 +154,7 @@ RSpec.describe "Events", type: :request do
       end
 
       it "@eventsが取得できていること" do
-        expect(assigns(:events)).to eq events.sort.reverse
+        expect(assigns(:events)).to contain_exactly(event1, event2)
       end
     end
   end
