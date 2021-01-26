@@ -67,11 +67,17 @@ nav {
 .notification-circle::before {
   color: red;
 }
-.head-img img {
-  border-radius: 50%;
+.head-img {
+  text-align: center;
+  img {
+    border-radius: 50%;
+  }
 }
 .head-img-link::after {
   display: none;
+}
+.dropdown-menu {
+  text-align: center;
 }
 /* footer */
 footer {
