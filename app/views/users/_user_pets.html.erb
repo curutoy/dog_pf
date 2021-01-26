@@ -1,11 +1,12 @@
 <div class="user-pet-top row">
-  <div class="user-pet-title col-8">
+  <div class="user-pet-title col-6">
     <h1>先住動物</h1>
   </div>
   <% if user_signed_in? && user.id == current_user.id %>
-    <div class="det-new-link col-4">
+    <div class="pet-new-link col-6">
       <%= link_to new_user_pet_path(user), remote: true, class: "pet-icon pet-new-icon" do %>
         <i class="fas fa-paw fa-3x"></i>
+        <p>登録</p>
       <% end %>
       <div id="pet-new-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     </div>
@@ -17,7 +18,7 @@
       <div class="pet-post col col-sm-4" id="pets-<%= pet.id %>">
         <div class="box pet-box">
           <div class="pet-img">
-            <%= image_tag pet.image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "img-fluid" %>
+            <%= image_tag pet.image.variant(combine_options:{gravity: :center, resize:"250x250^", crop:"250x250+0+0"}).processed, class: "img-fluid" %>
           </div>
           <div class="pet-info">
             <div class="pet-info-1">
