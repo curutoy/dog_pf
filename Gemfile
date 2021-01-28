@@ -48,6 +48,8 @@ gem 'paperclip'
 gem 'aws-sdk'
 # Google map
 gem "geocoder"
+# Use mysql as the database for Active Record
+gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,8 +59,6 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rubocop-airbnb'
   gem 'pry-rails'
-  # Use mysql as the database for Active Record
-  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 end
 
 group :development do
@@ -79,10 +79,6 @@ group :test do
   gem 'webdrivers'
   gem 'rspec_junit_formatter'
   gem 'launchy'
-end
-
-group :production do
-  gem 'pg', '~> 0.19.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
